@@ -1,9 +1,14 @@
 {
 	"name": "wmde/fundraising-store",
+	"description": "Persistence services around the fundraising database",
 	"require": {
 		"php": ">=5.3.2",
 		"doctrine/dbal": "~2.4",
 		"doctrine/orm": "~2.4"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "~2.1",
+		"phpmd/phpmd": "~2.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -14,5 +19,25 @@
 		"branch-alias": {
 			"dev-master": "0.1.x-dev"
 		}
+	},
+	"scripts": {
+		"test": [
+			"composer validate --no-interaction",
+			"phpunit"
+		],
+		"cs": [
+			"composer phpcs",
+			"composer phpmd"
+		],
+		"ci": [
+			"composer test",
+			"composer cs"
+		],
+		"phpcs": [
+			"vendor/bin/phpcs tests/* --standard=phpcs.xml --extensions=php -sp"
+		],
+		"phpmd": [
+			"vendor/bin/phpmd tests/ text phpmd.xml"
+		]
 	}
 }
