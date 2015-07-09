@@ -5,7 +5,7 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BackendBanner
+ * @since 0.1
  *
  * @ORM\Table(name="backend_banner", indexes={@ORM\Index(name="idx_cn_name", columns={"cn_name"}), @ORM\Index(name="idx_keyword", columns={"keyword"})})
  * @ORM\Entity

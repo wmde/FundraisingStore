@@ -5,7 +5,7 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Spenden
+ * @since 0.1
  *
  * @ORM\Table(name="spenden", indexes={@ORM\Index(name="email", columns={"email"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="ort", columns={"ort"}), @ORM\Index(name="dt_new", columns={"dt_new", "is_public"}), @ORM\Index(name="dt_exp", columns={"dt_exp", "dt_del"}), @ORM\Index(name="zahlweise", columns={"zahlweise", "dt_new"}), @ORM\Index(name="dt_gruen", columns={"dt_gruen", "dt_del"}), @ORM\Index(name="ueb_code", columns={"ueb_code"}), @ORM\Index(name="dt_backup", columns={"dt_backup"}), @ORM\Index(name="status", columns={"status", "dt_new"}), @ORM\Index(name="comment_list", columns={"is_public", "dt_del"})})
  * @ORM\Entity
