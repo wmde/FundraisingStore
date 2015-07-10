@@ -38,9 +38,21 @@ in the root directory. You can use the tools in their standard manner, though ca
 required by our CI by executing `composer ci`. To just run tests use `composer test`, and to just
 run style checks use `composer cs`.
 
+## Release notes
+
+### Version 0.1 (2015-07-10)
+
+Initial release with `Store\Factory`, `Store\Installer` and these entities:
+
+* ActionLog
+* BackendBanner
+* BackendImpressions
+* Request
+* Spenden
+* Users
+
 ## Links
 
 * [Fundraising Store on Packagist](https://packagist.org/packages/wmde/fundraising-store)
 * [Fundraising Store on TravisCI](https://travis-ci.org/wmde/FundraisingStore)
 * [Fundraising Store on ScrutinizerCI](https://scrutinizer-ci.com/g/wmde/FundraisingStore)
- 

@@ -6,7 +6,7 @@ use ContactRequest;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Request
+ * @since 0.1
  *
  * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
  * @ORM\Entity

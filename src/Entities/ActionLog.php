@@ -5,7 +5,7 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ActionLog
+ * @since 0.1
  *
  * @ORM\Table(name="action_log")
  * @ORM\Entity

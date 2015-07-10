@@ -5,7 +5,7 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Users
+ * @since 0.1
  *
  * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="user_name", columns={"user_name"}), @ORM\UniqueConstraint(name="user_address", columns={"user_address"})})
  * @ORM\Entity
