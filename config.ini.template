@@ -1,0 +1,6 @@
+[database]
+driver=driver_label
+host=dbhost
+dbname=dbname
+user=dbuser
+password=dbpass
