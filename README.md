@@ -40,6 +40,12 @@ run style checks use `composer cs`.
 
 ## Release notes
 
+### Version 0.2 (2015-07-10)
+
+* Added CLI configuration for Doctrine ORM shell commands
+
+* Factored out EntityManager configuration into `Store\EntityManagerProvider`
+
 ### Version 0.1 (2015-07-10)
 
 Initial release with `Store\Factory`, `Store\Installer` and these entities:
