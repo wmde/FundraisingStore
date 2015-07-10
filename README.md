@@ -1,4 +1,4 @@
-# Wikibase DataModel Services
+# Persistence Services for WMDE Fundraising
 
 [![Build Status](https://secure.travis-ci.org/wmde/FundraisingStore.png?branch=master)](http://travis-ci.org/wmde/FundraisingStore)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wmde/FundraisingStore/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wmde/FundraisingStore/?branch=master)
