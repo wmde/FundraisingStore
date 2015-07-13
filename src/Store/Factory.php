@@ -2,8 +2,12 @@
 
 namespace WMDE\Fundraising\Store;
 
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\ORM\Tools\Setup;
 
 /**
  * @since 0.1
@@ -24,10 +28,23 @@ class Factory {
 
 	/**
 	 * @return EntityManager
+	 * @throws \Doctrine\DBAL\DBALException
+	 * @throws \Doctrine\ORM\ORMException
 	 */
-	private function getEntityManager() {
-		$provider = new EntityManagerProvider( $this->connection );
-		return $provider->getEntityManager();
+	public function getEntityManager() {
+		$paths = [ __DIR__ . '/../Entities/' ];
+		$config = Setup::createConfiguration();
+
+		$driver = new AnnotationDriver( new AnnotationReader(), $paths );
+		AnnotationRegistry::registerLoader( 'class_exists' );
+		$config->setMetadataDriverImpl( $driver );
+
+		$entityManager = EntityManager::create( $this->connection, $config );
+
+		$platform = $entityManager->getConnection()->getDatabasePlatform();
+		$platform->registerDoctrineTypeMapping( 'enum', 'string' );
+
+		return $entityManager;
 	}
 
 	/**
