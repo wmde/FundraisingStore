@@ -4,8 +4,14 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use WMDE\Fundraising\Store\Factory;
 
-$config = parse_ini_file( 'config.ini', true );
+require_once( '../../local-db-config.php' );
 
-$factory = new Factory( DriverManager::getConnection( $config['database'] ) );
+$factory = new Factory( DriverManager::getConnection( [
+	'driver' => 'pdo_mysql',
+	'host' => DB_HOST,
+	'dbname' => DB_NAME,
+	'user' => DB_USER,
+	'password' => DB_PASS
+] ) );
 
 return ConsoleRunner::createHelperSet( $factory->getEntityManager() );
