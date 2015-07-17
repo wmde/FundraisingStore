@@ -30,6 +30,10 @@ Fundraising Store 1.x:
 }
 ```
 
+This package provides `vendor/bin/cli-config.php` file required by the Doctrine Console. In order to use it,
+database credentials must be provided in `vendor/bin/config.ini`. Rename or copy `vendor/bin/config.ini.template`
+and fill in actual credentials.
+
 ## Tests
 
 This library comes with a set up PHPUnit tests that cover all non-trivial code. Additionally, code

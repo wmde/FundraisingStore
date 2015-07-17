@@ -39,5 +39,8 @@
 		"phpmd": [
 			"vendor/bin/phpmd tests/ text phpmd.xml"
 		]
-	}
+	},
+	"bin": [
+		"cli-config.php"
+	]
 }

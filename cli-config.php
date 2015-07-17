@@ -2,16 +2,16 @@
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use WMDE\Fundraising\Store\EntityManagerProvider;
+use WMDE\Fundraising\Store\Factory;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once( '../../local-db-config.php' );
 
-$config = parse_ini_file( __DIR__ . '/config.ini', true );
+$factory = new Factory( DriverManager::getConnection( [
+	'driver' => 'pdo_mysql',
+	'host' => DB_HOST,
+	'dbname' => DB_NAME,
+	'user' => DB_USER,
+	'password' => DB_PASS
+] ) );
 
-$provider = new EntityManagerProvider( DriverManager::getConnection( $config['database'] ) );
-$entityManager = $provider->getEntityManager();
-
-$platform = $entityManager->getConnection()->getDatabasePlatform();
-$platform->registerDoctrineTypeMapping( 'enum', 'string' );
-
-return ConsoleRunner::createHelperSet( $entityManager );
+return ConsoleRunner::createHelperSet( $factory->getEntityManager() );
