@@ -41,7 +41,6 @@
 		]
 	},
 	"bin": [
-		"cli-config.php",
-		"config.ini.template"
+		"cli-config.php"
 	]
 }
