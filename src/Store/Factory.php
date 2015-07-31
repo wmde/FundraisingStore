@@ -26,6 +26,9 @@ class Factory {
 		return new Installer( $this->getEntityManager() );
 	}
 
+	public function newUpdater() {
+		return new Updater( $this->getEntityManager() );
+	}
 	/**
 	 * @return EntityManager
 	 * @throws \Doctrine\DBAL\DBALException
