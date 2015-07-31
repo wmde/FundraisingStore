@@ -22,14 +22,24 @@ class Factory {
 		$this->connection = $connection;
 	}
 
+	/**
+	 * @since 0.1
+	 * @return Installer
+	 */
 	public function newInstaller() {
 		return new Installer( $this->getEntityManager() );
 	}
 
+	/**
+	 * @since 0.2
+	 * @return Updater
+	 */
 	public function newUpdater() {
 		return new Updater( $this->getEntityManager() );
 	}
+
 	/**
+	 * @since 0.1
 	 * @return EntityManager
 	 * @throws \Doctrine\DBAL\DBALException
 	 * @throws \Doctrine\ORM\ORMException
@@ -51,6 +61,7 @@ class Factory {
 	}
 
 	/**
+	 * @since 0.1
 	 * @return Connection
 	 */
 	public function getConnection() {
