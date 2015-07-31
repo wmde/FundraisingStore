@@ -1,6 +1,7 @@
 <?php
 
 namespace WMDE\Fundraising\Store\Tests;
+
 use Doctrine\ORM\Tools\SchemaTool;
 
 /**
