@@ -21,7 +21,7 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 
 	public function testMissingTableIsThereAfterUpdate() {
 		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
-		$schemaTo->dropTable( 'public.action_log' );
+		$schemaTo->dropTable( 'action_log' );
 
 		$this->updateDatabase( $schemaTo );
 
@@ -40,20 +40,20 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 
 	public function testMissingColumnIsThereAfterUpdate() {
 		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
-		$schemaTo->getTable( 'public.action_log' )->dropColumn( 'al_username' );
+		$schemaTo->getTable( 'action_log' )->dropColumn( 'al_username' );
 
 		$this->updateDatabase( $schemaTo );
 
 		$this->assertArrayNotHasKey(
 			'al_username',
-			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'public.action_log' )->getColumns()
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'action_log' )->getColumns()
 		);
 
 		$this->factory->newUpdater()->update();
 
 		$this->assertArrayHasKey(
 			'al_username',
-			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'public.action_log' )->getColumns()
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'action_log' )->getColumns()
 		);
 	}
 
