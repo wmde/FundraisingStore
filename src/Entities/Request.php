@@ -120,14 +120,14 @@ class Request {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="membership_type", type="string", options={"default":""}, nullable=false)
+	 * @ORM\Column(name="membership_type", type="string", options={"default":"sustaining"}, nullable=false)
 	 */
 	private $membershipType = 'sustaining';
 
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="membership_fee", type="integer", options={"default":""}, nullable=false)
+	 * @ORM\Column(name="membership_fee", type="integer", options={"default":0}, nullable=false)
 	 */
 	private $membershipFee = 0;
 
