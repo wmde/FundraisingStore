@@ -14,23 +14,23 @@ class Users {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_name", type="string", length=32, nullable=false)
+	 * @ORM\Column(name="user_name", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $userName;
+	private $userName = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_address", type="string", length=64, nullable=false)
+	 * @ORM\Column(name="user_address", type="string", length=64, options={"default":""}, nullable=false)
 	 */
-	private $userAddress;
+	private $userAddress = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_pass", type="string", length=32, nullable=false)
+	 * @ORM\Column(name="user_pass", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $userPass;
+	private $userPass = '';
 
 	/**
 	 * @var \DateTime
@@ -49,9 +49,9 @@ class Users {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_salt", type="string", length=8, nullable=false)
+	 * @ORM\Column(name="user_salt", type="string", length=8, options={"default":""}, nullable=false)
 	 */
-	private $userSalt;
+	private $userSalt = '';
 
 	/**
 	 * @var boolean
