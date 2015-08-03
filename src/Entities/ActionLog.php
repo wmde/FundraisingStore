@@ -15,44 +15,44 @@ class ActionLog {
 	 * @var \DateTime
 	 *
 	 * @ORM\Version
-	 * @ORM\Column(name="al_timestamp", type="datetime", nullable=false)
+	 * @ORM\Column(name="al_timestamp", type="datetime", options={"default":"1970-01-01 00:00:00"}, nullable=false)
 	 */
-	private $alTimestamp;
+	private $alTimestamp = '1970-01-01 00:00:00';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="al_type", type="string", length=16, nullable=false)
+	 * @ORM\Column(name="al_type", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $alType;
+	private $alType = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="al_remote_addr", type="string", length=16, nullable=false)
+	 * @ORM\Column(name="al_remote_addr", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $alRemoteAddr;
+	private $alRemoteAddr = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="al_session_id", type="string", length=32, nullable=false)
+	 * @ORM\Column(name="al_session_id", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $alSessionId;
+	private $alSessionId = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="al_username", type="string", length=45, nullable=false)
+	 * @ORM\Column(name="al_username", type="string", length=45, options={"default":""}, nullable=false)
 	 */
-	private $alUsername;
+	private $alUsername = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="al_password", type="string", length=32, nullable=false)
+	 * @ORM\Column(name="al_password", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $alPassword;
+	private $alPassword = '';
 
 	/**
 	 * @var integer
