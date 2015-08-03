@@ -2,7 +2,7 @@
 
 namespace WMDE\Fundraising\Store\Tests;
 
-use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\DBAL\Schema\Schema;
 
 /**
  * @licence GNU GPL v2+
@@ -10,25 +10,41 @@ use Doctrine\ORM\Tools\SchemaTool;
  */
 class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 
-	public function testMissingTableIsThereAfterUpdate() {
-		$factory = TestEnvironment::newDefault()->getFactory();
-		$entityManager = $factory->getEntityManager();
+	/**
+	 * @var \WMDE\Fundraising\Store\Factory
+	 */
+	private $factory;
 
-		$schemaTool = new SchemaTool( $entityManager );
-		$actionLogMetaData = $entityManager->getMetadataFactory()->getMetadataFor( 'WMDE\Fundraising\Entities\ActionLog' );
-		$schemaTool->dropSchema( array( $actionLogMetaData ) );
+	public function setUp() {
+		$this->factory = TestEnvironment::newDefault()->getFactory();
+	}
+
+	public function testMissingTableIsThereAfterUpdate() {
+		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
+		$schemaTo->dropTable( 'public.action_log' );
+
+		$this->updateDatabase( $schemaTo );
 
 		$this->assertNotContains(
 			'public.action_log',
-			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
 		);
 
-		$factory->newUpdater()->update();
+		$this->factory->newUpdater()->update();
 
 		$this->assertContains(
 			'public.action_log',
-			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
 		);
+	}
+
+	private function updateDatabase( Schema $schemaTo ) {
+		$schemaFrom = $this->factory->getConnection()->getSchemaManager()->createSchema();
+		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
+
+		foreach ($updateSql as $sql) {
+			$this->factory->getConnection()->executeQuery($sql);
+		}
 	}
 
 }
