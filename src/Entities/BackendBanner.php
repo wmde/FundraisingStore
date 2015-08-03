@@ -14,30 +14,30 @@ class BackendBanner {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="cn_name", type="string", length=100, nullable=false)
+	 * @ORM\Column(name="cn_name", type="string", length=100, options={"default":""}, nullable=false)
 	 */
-	private $cnName;
+	private $cnName = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="layout", type="string", length=100, nullable=false)
+	 * @ORM\Column(name="layout", type="string", length=100, options={"default":""}, nullable=false)
 	 */
-	private $layout;
+	private $layout = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="campaign", type="string", length=100, nullable=false)
+	 * @ORM\Column(name="campaign", type="string", length=100, options={"default":""}, nullable=false)
 	 */
-	private $campaign;
+	private $campaign = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="keyword", type="string", length=100, nullable=false)
+	 * @ORM\Column(name="keyword", type="string", length=100, options={"default":""}, nullable=false)
 	 */
-	private $keyword;
+	private $keyword = '';
 
 	/**
 	 * @var integer
