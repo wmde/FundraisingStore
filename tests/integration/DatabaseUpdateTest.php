@@ -63,6 +63,25 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testChangedColumnIsFixedAfterUpdate() {
+		$schemaTo = $this->schemaManager->createSchema();
+		$schemaTo->getTable( 'action_log' )->changeColumn( 'al_username', array( 'length' => 30 ) );
+
+		$this->updateDatabaseBySchema( $schemaTo );
+
+		$this->assertSame(
+			30,
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumn( 'al_username' )->getLength()
+		);
+
+		$this->factory->newUpdater()->update();
+
+		$this->assertSame(
+			45,
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumn( 'al_username' )->getLength()
+		);
+	}
+
 	private function updateDatabaseBySchema( Schema $schemaTo ) {
 		$schemaFrom = $this->schemaManager->createSchema();
 		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
