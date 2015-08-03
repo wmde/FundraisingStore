@@ -14,23 +14,23 @@ class BackendImpressions {
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="banner_id", type="integer",  options={"unsigned"=true}, nullable=false)
+	 * @ORM\Column(name="banner_id", type="integer",  options={"unsigned"=true}, options={"default":0}, nullable=false)
 	 */
-	private $bannerId;
+	private $bannerId = 0;
 
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="datetime", type="datetime", nullable=false)
+	 * @ORM\Column(name="datetime", type="datetime", options={"default":"1970-01-01 00:00:00"}, nullable=false)
 	 */
-	private $datetime;
+	private $datetime = '1970-01-01 00:00:00';
 
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="imp_count", type="integer",  options={"unsigned"=true}, nullable=false)
+	 * @ORM\Column(name="imp_count", type="integer",  options={"unsigned"=true}, options={"default":0}, nullable=false)
 	 */
-	private $impCount;
+	private $impCount = 0;
 
 	/**
 	 * @var integer

@@ -22,9 +22,9 @@ class Request {
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="timestamp", type="datetime", nullable=false)
+	 * @ORM\Column(name="timestamp", type="datetime", options={"default":"1970-01-01 00:00:00"}, nullable=false)
 	 */
-	private $timestamp;
+	private $timestamp = '1970-01-01 00:00:00';
 
 	/**
 	 * @var string
@@ -50,23 +50,23 @@ class Request {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="name", type="string", length=250, nullable=false)
+	 * @ORM\Column(name="name", type="string", length=250, options={"default":""}, nullable=false)
 	 */
-	private $name;
+	private $name = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="vorname", type="string", length=50, nullable=false)
+	 * @ORM\Column(name="vorname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $vorname;
+	private $vorname = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="nachname", type="string", length=50, nullable=false)
+	 * @ORM\Column(name="nachname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $nachname;
+	private $nachname = '';
 
 	/**
 	 * @var string
@@ -92,42 +92,42 @@ class Request {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="email", type="string", length=250, nullable=false)
+	 * @ORM\Column(name="email", type="string", length=250, options={"default":""}, nullable=false)
 	 */
-	private $email;
+	private $email = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="phone", type="string", length=30, nullable=false)
+	 * @ORM\Column(name="phone", type="string", length=30, options={"default":""}, nullable=false)
 	 */
-	private $phone;
+	private $phone = '';
 
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="dob", type="date", nullable=false)
+	 * @ORM\Column(name="dob", type="date", options={"default":"0000-00-00"}, nullable=false)
 	 */
-	private $dob;
+	private $dob = '0000-00-00';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="wikimedium_shipping", type="string", nullable=false)
+	 * @ORM\Column(name="wikimedium_shipping", type="string", options={"default":""}, nullable=false)
 	 */
-	private $wikimediumShipping;
+	private $wikimediumShipping = 'none';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="membership_type", type="string", nullable=false)
+	 * @ORM\Column(name="membership_type", type="string", options={"default":"sustaining"}, nullable=false)
 	 */
-	private $membershipType;
+	private $membershipType = 'sustaining';
 
 	/**
 	 * @var integer
 	 *
-	 * @ORM\Column(name="membership_fee", type="integer", nullable=false)
+	 * @ORM\Column(name="membership_fee", type="integer", options={"default":0}, nullable=false)
 	 */
 	private $membershipFee = 0;
 
@@ -142,23 +142,23 @@ class Request {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="account_number", type="string", length=16, nullable=false)
+	 * @ORM\Column(name="account_number", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $accountNumber;
+	private $accountNumber = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="bank_name", type="string", length=50, nullable=false)
+	 * @ORM\Column(name="bank_name", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $bankName;
+	private $bankName = '';
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="bank_code", type="string", length=16, nullable=false)
+	 * @ORM\Column(name="bank_code", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $bankCode;
+	private $bankCode = '';
 
 	/**
 	 * @var string
@@ -177,9 +177,9 @@ class Request {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="account_holder", type="string", length=50, nullable=false)
+	 * @ORM\Column(name="account_holder", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $accountHolder;
+	private $accountHolder = '';
 
 	/**
 	 * @var string
