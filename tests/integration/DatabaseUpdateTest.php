@@ -23,7 +23,7 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
 		$schemaTo->dropTable( 'action_log' );
 
-		$this->updateDatabase( $schemaTo );
+		$this->updateDatabaseBySchema( $schemaTo );
 
 		$this->assertNotContains(
 			'public.action_log',
@@ -42,7 +42,7 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
 		$schemaTo->getTable( 'action_log' )->dropColumn( 'al_username' );
 
-		$this->updateDatabase( $schemaTo );
+		$this->updateDatabaseBySchema( $schemaTo );
 
 		$this->assertArrayNotHasKey(
 			'al_username',
@@ -57,7 +57,7 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	private function updateDatabase( Schema $schemaTo ) {
+	private function updateDatabaseBySchema( Schema $schemaTo ) {
 		$schemaFrom = $this->factory->getConnection()->getSchemaManager()->createSchema();
 		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
 
