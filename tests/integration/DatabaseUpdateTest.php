@@ -18,20 +18,16 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		$actionLogMetaData = $entityManager->getMetadataFactory()->getMetadataFor( 'WMDE\Fundraising\Entities\ActionLog' );
 		$schemaTool->dropSchema( array( $actionLogMetaData ) );
 
-		$updater = $factory->newUpdater();
-		$updater->update();
+		$this->assertNotContains(
+			'public.action_log',
+			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
+		);
 
-		$tableNames = $factory->getConnection()->getSchemaManager()->createSchema()->getTableNames();
-		$this->assertSame(
-			[
-				'public.action_log',
-				'public.backend_banner',
-				'public.backend_impressions',
-				'public.request',
-				'public.spenden',
-				'public.users'
-			],
-			$tableNames
+		$factory->newUpdater()->update();
+
+		$this->assertContains(
+			'public.action_log',
+			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
 		);
 	}
 
