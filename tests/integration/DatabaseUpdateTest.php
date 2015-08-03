@@ -38,6 +38,25 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testMissingColumnIsThereAfterUpdate() {
+		$schemaTo = $this->factory->getConnection()->getSchemaManager()->createSchema();
+		$schemaTo->getTable( 'public.action_log' )->dropColumn( 'al_username' );
+
+		$this->updateDatabase( $schemaTo );
+
+		$this->assertArrayNotHasKey(
+			'al_username',
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'public.action_log' )->getColumns()
+		);
+
+		$this->factory->newUpdater()->update();
+
+		$this->assertArrayHasKey(
+			'al_username',
+			$this->factory->getConnection()->getSchemaManager()->createSchema()->getTable( 'public.action_log' )->getColumns()
+		);
+	}
+
 	private function updateDatabase( Schema $schemaTo ) {
 		$schemaFrom = $this->factory->getConnection()->getSchemaManager()->createSchema();
 		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
