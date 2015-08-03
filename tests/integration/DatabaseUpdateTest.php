@@ -86,8 +86,8 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		$schemaFrom = $this->schemaManager->createSchema();
 		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
 
-		foreach ($updateSql as $sql) {
-			$this->factory->getConnection()->executeQuery($sql);
+		foreach ( $updateSql as $sql ) {
+			$this->factory->getConnection()->executeQuery( $sql );
 		}
 	}
 
