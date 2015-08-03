@@ -2,7 +2,7 @@
 
 namespace WMDE\Fundraising\Store\Tests;
 
-use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\DBAL\Schema\Schema;
 
 /**
  * @licence GNU GPL v2+
@@ -10,25 +10,85 @@ use Doctrine\ORM\Tools\SchemaTool;
  */
 class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 
-	public function testMissingTableIsThereAfterUpdate() {
-		$factory = TestEnvironment::newDefault()->getFactory();
-		$entityManager = $factory->getEntityManager();
+	/**
+	 * @var \WMDE\Fundraising\Store\Factory
+	 */
+	private $factory;
 
-		$schemaTool = new SchemaTool( $entityManager );
-		$actionLogMetaData = $entityManager->getMetadataFactory()->getMetadataFor( 'WMDE\Fundraising\Entities\ActionLog' );
-		$schemaTool->dropSchema( array( $actionLogMetaData ) );
+	/**
+	 * @var \Doctrine\DBAL\Schema\AbstractSchemaManager
+	 */
+	private $schemaManager;
+
+	public function setUp() {
+		$this->factory = TestEnvironment::newDefault()->getFactory();
+		$this->schemaManager = $this->factory->getConnection()->getSchemaManager();
+	}
+
+	public function testMissingTableIsThereAfterUpdate() {
+		$schemaTo = $this->schemaManager->createSchema();
+		$schemaTo->dropTable( 'action_log' );
+
+		$this->updateDatabaseBySchema( $schemaTo );
 
 		$this->assertNotContains(
 			'public.action_log',
-			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
+			$this->schemaManager->createSchema()->getTableNames()
 		);
 
-		$factory->newUpdater()->update();
+		$this->factory->newUpdater()->update();
 
 		$this->assertContains(
 			'public.action_log',
-			$factory->getConnection()->getSchemaManager()->createSchema()->getTableNames()
+			$this->schemaManager->createSchema()->getTableNames()
 		);
+	}
+
+	public function testMissingColumnIsThereAfterUpdate() {
+		$schemaTo = $this->schemaManager->createSchema();
+		$schemaTo->getTable( 'action_log' )->dropColumn( 'al_username' );
+
+		$this->updateDatabaseBySchema( $schemaTo );
+
+		$this->assertArrayNotHasKey(
+			'al_username',
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumns()
+		);
+
+		$this->factory->newUpdater()->update();
+
+		$this->assertArrayHasKey(
+			'al_username',
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumns()
+		);
+	}
+
+	public function testChangedColumnIsFixedAfterUpdate() {
+		$schemaTo = $this->schemaManager->createSchema();
+		$schemaTo->getTable( 'action_log' )->changeColumn( 'al_username', array( 'length' => 30 ) );
+
+		$this->updateDatabaseBySchema( $schemaTo );
+
+		$this->assertSame(
+			30,
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumn( 'al_username' )->getLength()
+		);
+
+		$this->factory->newUpdater()->update();
+
+		$this->assertSame(
+			45,
+			$this->schemaManager->createSchema()->getTable( 'action_log' )->getColumn( 'al_username' )->getLength()
+		);
+	}
+
+	private function updateDatabaseBySchema( Schema $schemaTo ) {
+		$schemaFrom = $this->schemaManager->createSchema();
+		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
+
+		foreach ( $updateSql as $sql ) {
+			$this->factory->getConnection()->executeQuery( $sql );
+		}
 	}
 
 }
