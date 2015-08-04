@@ -20,9 +20,15 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 	 */
 	private $schemaManager;
 
+	/**
+	 * @var \Doctrine\ORM\EntityManager
+	 */
+	private $entityManager;
+
 	public function setUp() {
 		$this->factory = TestEnvironment::newDefault()->getFactory();
 		$this->schemaManager = $this->factory->getConnection()->getSchemaManager();
+		$this->entityManager = $this->factory->getEntityManager();
 	}
 
 	public function testMissingTableIsThereAfterUpdate() {
@@ -82,6 +88,23 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testDataIsStillThereAfterColumnUpdate() {
+		$this->factory->getConnection()->insert( 'action_log', array( 'al_username' => 'test' ) );
+
+		$schemaTo = $this->schemaManager->createSchema();
+		$schemaTo->getTable( 'action_log' )->dropColumn( 'al_type' );
+		$this->updateDatabaseBySchema( $schemaTo );
+
+		$this->factory->newUpdater()->update();
+
+		$entity = $this->entityManager->getRepository( 'WMDE\Fundraising\Entities\ActionLog' )->findOneBy( array() );
+
+		$this->assertSame(
+			'test',
+			$entity->getAlUsername()
+		);
+	}
+
 	private function updateDatabaseBySchema( Schema $schemaTo ) {
 		$schemaFrom = $this->schemaManager->createSchema();
 		$updateSql = $schemaFrom->getMigrateToSql( $schemaTo, $this->factory->getConnection()->getDatabasePlatform() );
@@ -90,5 +113,4 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 			$this->factory->getConnection()->executeQuery( $sql );
 		}
 	}
-
 }
