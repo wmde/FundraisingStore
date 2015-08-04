@@ -107,18 +107,18 @@ class DatabaseUpdateTest extends \PHPUnit_Framework_TestCase {
 
 	public function testDataIsSetToDefaultAfterColumnUpdate() {
 		$schemaTo = $this->schemaManager->createSchema();
-		$schemaTo->getTable( 'action_log' )->dropColumn( 'al_timestamp' );
+		$schemaTo->getTable( 'backend_impressions' )->dropColumn( 'datetime' );
 		$this->updateDatabaseBySchema( $schemaTo );
 
-		$this->factory->getConnection()->insert( 'action_log', [ 'al_username' => 'test' ] );
+		$this->factory->getConnection()->insert( 'backend_impressions', [ 'banner_id' => 'banner1' ] );
 
 		$this->factory->newUpdater()->update();
 
-		$entity = $this->entityManager->getRepository( 'WMDE\Fundraising\Entities\ActionLog' )->findOneBy( [ ] );
+		$entity = $this->entityManager->getRepository( 'WMDE\Fundraising\Entities\BackendImpressions' )->findOneBy( [ ] );
 
 		$this->assertSame(
 			'1970-01-01 00:00:00',
-			$entity->getAlTimestamp()->format( 'Y-m-d H:i:s' )
+			$entity->getDatetime()->format( 'Y-m-d H:i:s' )
 		);
 	}
 
