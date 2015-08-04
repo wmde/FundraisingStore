@@ -15,9 +15,9 @@ class ActionLog {
 	 * @var \DateTime
 	 *
 	 * @ORM\Version
-	 * @ORM\Column(name="al_timestamp", type="datetime", options={"default":"1970-01-01 00:00:00"}, nullable=false)
+	 * @ORM\Column(name="al_timestamp", type="datetime", options={"default":0}, nullable=false)
 	 */
-	private $alTimestamp = '1970-01-01 00:00:00';
+	private $alTimestamp = 0;
 
 	/**
 	 * @var string
@@ -63,6 +63,10 @@ class ActionLog {
 	 */
 	private $alId;
 
+
+	public function __construct() {
+		$this->setAlTimestamp( new \DateTime() );
+	}
 
 	/**
 	 * Set alTimestamp
