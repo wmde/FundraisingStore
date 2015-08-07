@@ -31,14 +31,6 @@ class Factory {
 	}
 
 	/**
-	 * @since 0.2
-	 * @return Updater
-	 */
-	public function newUpdater() {
-		return new Updater( $this->getEntityManager() );
-	}
-
-	/**
 	 * @since 0.1
 	 * @return EntityManager
 	 * @throws \Doctrine\DBAL\DBALException
