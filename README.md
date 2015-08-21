@@ -25,7 +25,7 @@ Fundraising Store 1.x:
 ```js
 {
     "require": {
-        "wmde/fundraising-store": "~1.0"
+        "wmde/fundraising-store": "^1.0.0"
     }
 }
 ```
@@ -44,11 +44,9 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 0.2 (2015-07-10)
+### Version 1.0 (2015-08-21)
 
 * Added CLI configuration for Doctrine ORM shell commands
-
-* Factored out EntityManager configuration into `Store\EntityManagerProvider`
 
 ### Version 0.1 (2015-07-10)
 
