@@ -8,7 +8,8 @@
 	},
 	"require-dev": {
 		"squizlabs/php_codesniffer": "~2.2",
-		"phpmd/phpmd": "~2.3"
+		"phpmd/phpmd": "~2.3",
+		"ockcyp/covers-validator": "~0.2.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -23,7 +24,8 @@
 	"scripts": {
 		"test": [
 			"composer validate --no-interaction",
-			"phpunit"
+			"phpunit",
+			"vendor/bin/covers-validator"
 		],
 		"cs": [
 			"composer phpcs",
