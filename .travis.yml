@@ -9,3 +9,7 @@ sudo: false
 install: travis_retry composer install --prefer-source
 
 script: composer ci
+
+cache:
+  directories:
+    - $HOME/.composer/cache
