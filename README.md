@@ -44,9 +44,10 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 1.0 (2015-08-21)
+### Version 1.0 (2016-01-09)
 
 * Added CLI configuration for Doctrine ORM shell commands
+* Added request type and status constants
 
 ### Version 0.1 (2015-07-10)
 
