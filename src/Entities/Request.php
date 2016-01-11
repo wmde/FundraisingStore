@@ -404,6 +404,7 @@ class Request {
 	 */
 	public function setVorname( $vorname ) {
 		$this->vorname = $vorname;
+		$this->setNameFromParts( $vorname, $this->getNachname() );
 
 		return $this;
 	}
@@ -425,6 +426,7 @@ class Request {
 	 */
 	public function setNachname( $nachname ) {
 		$this->nachname = $nachname;
+		$this->setNameFromParts( $this->getVorname(), $nachname );
 
 		return $this;
 	}
@@ -436,6 +438,16 @@ class Request {
 	 */
 	public function getNachname() {
 		return $this->nachname;
+	}
+
+	/**
+	 * Set the fill name
+	 */
+	public function setNameFromParts( $vorname, $nachname) {
+		$parts = array_filter( [ $vorname, $nachname ] );
+		$this->setName( implode( ' ', $parts ) );
+
+		return $this;
 	}
 
 	/**
