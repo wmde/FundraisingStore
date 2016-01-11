@@ -441,7 +441,7 @@ class Request {
 	}
 
 	/**
-	 * Set the fill name
+	 * Sets the full name
 	 */
 	public function setNameFromParts( $vorname, $nachname) {
 		$parts = array_filter( [ $vorname, $nachname ] );
