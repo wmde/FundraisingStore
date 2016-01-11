@@ -44,13 +44,12 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 1.1 (2016-01-11)
-
-* Automatically set the full name in Request when first or last name is set.
-
-### Version 1.0 (2015-08-21)
+### Version 1.0 (2016-01-11)
 
 * Added CLI configuration for Doctrine ORM shell commands
+* Added request type and status constants
+* Automatically set the full name in Request when first or last name is set.
+* Changed the minimum PHP version to 5.5
 
 ### Version 0.1 (2015-07-10)
 
