@@ -5,12 +5,12 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @since 0.1
+ * @since 2.0
  *
  * @ORM\Table(name="spenden", indexes={@ORM\Index(name="email", columns={"email"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="ort", columns={"ort"}), @ORM\Index(name="dt_new", columns={"dt_new", "is_public"}), @ORM\Index(name="dt_exp", columns={"dt_exp", "dt_del"}), @ORM\Index(name="zahlweise", columns={"zahlweise", "dt_new"}), @ORM\Index(name="dt_gruen", columns={"dt_gruen", "dt_del"}), @ORM\Index(name="ueb_code", columns={"ueb_code"}), @ORM\Index(name="dt_backup", columns={"dt_backup"}), @ORM\Index(name="status", columns={"status", "dt_new"}), @ORM\Index(name="comment_list", columns={"is_public", "dt_del"})})
  * @ORM\Entity
  */
-class Spenden {
+class Donation {
 	/**
 	 * @var string
 	 *
@@ -23,7 +23,7 @@ class Spenden {
 	 *
 	 * @ORM\Column(name="ort", type="string", length=250, nullable=true)
 	 */
-	private $ort;
+	private $city;
 
 	/**
 	 * @var string
@@ -44,49 +44,49 @@ class Spenden {
 	 *
 	 * @ORM\Column(name="bescheinigung", type="boolean", nullable=true)
 	 */
-	private $bescheinigung;
+	private $donationReceipt;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="eintrag", type="string", length=250, options={"default":""}, nullable=false)
 	 */
-	private $eintrag = '';
+	private $publicRecord = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="betrag", type="string", length=250, nullable=true)
 	 */
-	private $betrag;
+	private $amount;
 
 	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="periode", type="smallint", options={"default":0}, nullable=false)
 	 */
-	private $periode = 0;
+	private $period = 0;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="zahlweise", type="string", length=3, options={"default":"BEZ", "fixed":true}, nullable=false)
 	 */
-	private $zahlweise = 'BEZ';
+	private $paymentType = 'BEZ';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="kommentar", type="text", options={"default":""}, nullable=false)
 	 */
-	private $kommentar = '';
+	private $comment = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="ueb_code", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $uebCode = '';
+	private $transferCode = '';
 
 	/**
 	 * @var string
@@ -197,24 +197,24 @@ class Spenden {
 	}
 
 	/**
-	 * Set ort
+	 * Set city
 	 *
-	 * @param string $ort
+	 * @param string $city
 	 * @return Spenden
 	 */
-	public function setOrt( $ort ) {
-		$this->ort = $ort;
+	public function setCity( $city ) {
+		$this->city = $city;
 
 		return $this;
 	}
 
 	/**
-	 * Get ort
+	 * Get city
 	 *
 	 * @return string
 	 */
-	public function getOrt() {
-		return $this->ort;
+	public function getCity() {
+		return $this->city;
 	}
 
 	/**
@@ -260,150 +260,150 @@ class Spenden {
 	}
 
 	/**
-	 * Set bescheinigung
+	 * Set donation receipt state
 	 *
-	 * @param boolean $bescheinigung
+	 * @param boolean $donationReceipt
 	 * @return Spenden
 	 */
-	public function setBescheinigung( $bescheinigung ) {
-		$this->bescheinigung = $bescheinigung;
+	public function setDonationReceipt( $donationReceipt ) {
+		$this->donationReceipt = $donationReceipt;
 
 		return $this;
 	}
 
 	/**
-	 * Get bescheinigung
+	 * Get donation receipt state
 	 *
 	 * @return boolean
 	 */
-	public function getBescheinigung() {
-		return $this->bescheinigung;
+	public function getDonationReceipt() {
+		return $this->donationReceipt;
 	}
 
 	/**
-	 * Set eintrag
+	 * Set publicly displayed donation record
 	 *
-	 * @param string $eintrag
+	 * @param string $publicRecord
 	 * @return Spenden
 	 */
-	public function setEintrag( $eintrag ) {
-		$this->eintrag = $eintrag;
+	public function setPublicRecord( $publicRecord ) {
+		$this->publicRecord = $publicRecord;
 
 		return $this;
 	}
 
 	/**
-	 * Get eintrag
+	 * Get publicly displayed donation record
 	 *
 	 * @return string
 	 */
-	public function getEintrag() {
-		return $this->eintrag;
+	public function getPublicRecord() {
+		return $this->publicRecord;
 	}
 
 	/**
-	 * Set betrag
+	 * Set amount
 	 *
-	 * @param string $betrag
+	 * @param string $amount
 	 * @return Spenden
 	 */
-	public function setBetrag( $betrag ) {
-		$this->betrag = $betrag;
+	public function setAmount( $amount ) {
+		$this->amount = $amount;
 
 		return $this;
 	}
 
 	/**
-	 * Get betrag
+	 * Get amount
 	 *
 	 * @return string
 	 */
-	public function getBetrag() {
-		return $this->betrag;
+	public function getAmount() {
+		return $this->amount;
 	}
 
 	/**
-	 * Set periode
+	 * Set period
 	 *
-	 * @param integer $periode
+	 * @param integer $period
 	 * @return Spenden
 	 */
-	public function setPeriode( $periode ) {
-		$this->periode = $periode;
+	public function setPeriod( $period ) {
+		$this->period = $period;
 
 		return $this;
 	}
 
 	/**
-	 * Get periode
+	 * Get period
 	 *
 	 * @return integer
 	 */
-	public function getPeriode() {
-		return $this->periode;
+	public function getPeriod() {
+		return $this->period;
 	}
 
 	/**
-	 * Set zahlweise
+	 * Set payment type short code
 	 *
-	 * @param string $zahlweise
+	 * @param string $paymentType
 	 * @return Spenden
 	 */
-	public function setZahlweise( $zahlweise ) {
-		$this->zahlweise = $zahlweise;
+	public function setPaymentType( $paymentType ) {
+		$this->paymentType = $paymentType;
 
 		return $this;
 	}
 
 	/**
-	 * Get zahlweise
+	 * Get payment type short code
 	 *
 	 * @return string
 	 */
-	public function getZahlweise() {
-		return $this->zahlweise;
+	public function getPaymentType() {
+		return $this->paymentType;
 	}
 
 	/**
-	 * Set kommentar
+	 * Set comment
 	 *
-	 * @param string $kommentar
+	 * @param string $comment
 	 * @return Spenden
 	 */
-	public function setKommentar( $kommentar ) {
-		$this->kommentar = $kommentar;
+	public function setComment( $comment ) {
+		$this->comment = $comment;
 
 		return $this;
 	}
 
 	/**
-	 * Get kommentar
+	 * Get comment
 	 *
 	 * @return string
 	 */
-	public function getKommentar() {
-		return $this->kommentar;
+	public function getComment() {
+		return $this->comment;
 	}
 
 	/**
-	 * Set uebCode
+	 * Set bank transfer reference code
 	 *
-	 * @param string $uebCode
+	 * @param string $transferCode
 	 * @return Spenden
 	 */
-	public function setUebCode( $uebCode ) {
-		$this->uebCode = $uebCode;
+	public function setTransferCode( $transferCode ) {
+		$this->transferCode = $transferCode;
 
 		return $this;
 	}
 
 	/**
-	 * Get uebCode
+	 * Get bank transfer reference code
 	 *
 	 * @return string
 	 */
-	public function getUebCode() {
-		return $this->uebCode;
+	public function getTransferCode() {
+		return $this->transferCode;
 	}
 
 	/**
@@ -671,9 +671,9 @@ class Spenden {
 		$data = $this->decodeData( $this->data );
 
 		if ( $mode === null ) {
-			$mode = $this->eintrag;
+			$mode = $this->publicRecord;
 			if ( !is_int( $mode ) ) {
-				return $this->eintrag;
+				return $this->publicRecord;
 			}
 		}
 
