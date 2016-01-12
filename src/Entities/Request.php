@@ -30,21 +30,21 @@ class Request {
 	 *
 	 * @ORM\Column(name="anrede", type="string", length=16, nullable=true)
 	 */
-	private $anrede;
+	private $salutation;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="firma", type="string", length=100, nullable=true)
 	 */
-	private $firma;
+	private $company;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="titel", type="string", length=16, nullable=true)
 	 */
-	private $titel;
+	private $title;
 
 	/**
 	 * @var string
@@ -58,35 +58,35 @@ class Request {
 	 *
 	 * @ORM\Column(name="vorname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $vorname = '';
+	private $firstName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="nachname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $nachname = '';
+	private $lastName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="strasse", type="string", length=100, nullable=true)
 	 */
-	private $strasse;
+	private $address;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="plz", type="string", length=8, nullable=true)
 	 */
-	private $plz;
+	private $postcode;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="ort", type="string", length=100, nullable=true)
 	 */
-	private $ort;
+	private $city;
 
 	/**
 	 * @var string
@@ -313,66 +313,66 @@ class Request {
 	}
 
 	/**
-	 * Set anrede
+	 * Set salutation
 	 *
-	 * @param string $anrede
+	 * @param string $salutation
 	 * @return Request
 	 */
-	public function setAnrede( $anrede ) {
-		$this->anrede = $anrede;
+	public function setSalutation( $salutation ) {
+		$this->salutation = $salutation;
 
 		return $this;
 	}
 
 	/**
-	 * Get anrede
+	 * Get salutation
 	 *
 	 * @return string
 	 */
-	public function getAnrede() {
-		return $this->anrede;
+	public function getSalutation() {
+		return $this->salutation;
 	}
 
 	/**
-	 * Set firma
+	 * Set company name
 	 *
-	 * @param string $firma
+	 * @param string $company
 	 * @return Request
 	 */
-	public function setFirma( $firma ) {
-		$this->firma = $firma;
+	public function setCompany( $company ) {
+		$this->company = $company;
 
 		return $this;
 	}
 
 	/**
-	 * Get firma
+	 * Get company name
 	 *
 	 * @return string
 	 */
-	public function getFirma() {
-		return $this->firma;
+	public function getCompany() {
+		return $this->company;
 	}
 
 	/**
-	 * Set titel
+	 * Set title
 	 *
-	 * @param string $titel
+	 * @param string $title
 	 * @return Request
 	 */
-	public function setTitel( $titel ) {
-		$this->titel = $titel;
+	public function setTitle( $title ) {
+		$this->title = $title;
 
 		return $this;
 	}
 
 	/**
-	 * Get titel
+	 * Get title
 	 *
 	 * @return string
 	 */
-	public function getTitel() {
-		return $this->titel;
+	public function getTitle() {
+		return $this->title;
 	}
 
 	/**
@@ -397,47 +397,47 @@ class Request {
 	}
 
 	/**
-	 * Set vorname
+	 * Set first name
 	 *
-	 * @param string $vorname
+	 * @param string $firstName
 	 * @return Request
 	 */
-	public function setVorname( $vorname ) {
-		$this->vorname = $vorname;
-		$this->setNameFromParts( $vorname, $this->getNachname() );
+	public function setFirstName( $firstName ) {
+		$this->firstName = $firstName;
+		$this->setNameFromParts( $firstName, $this->getLastName() );
 
 		return $this;
 	}
 
 	/**
-	 * Get vorname
+	 * Get first name
 	 *
 	 * @return string
 	 */
-	public function getVorname() {
-		return $this->vorname;
+	public function getFirstName() {
+		return $this->firstName;
 	}
 
 	/**
-	 * Set nachname
+	 * Set last name
 	 *
-	 * @param string $nachname
+	 * @param string $lastName
 	 * @return Request
 	 */
-	public function setNachname( $nachname ) {
-		$this->nachname = $nachname;
-		$this->setNameFromParts( $this->getVorname(), $nachname );
+	public function setLastName( $lastName ) {
+		$this->lastName = $lastName;
+		$this->setNameFromParts( $this->getFirstName(), $lastName );
 
 		return $this;
 	}
 
 	/**
-	 * Get nachname
+	 * Get last name
 	 *
 	 * @return string
 	 */
-	public function getNachname() {
-		return $this->nachname;
+	public function getLastName() {
+		return $this->lastName;
 	}
 
 	/**
@@ -451,66 +451,66 @@ class Request {
 	}
 
 	/**
-	 * Set strasse
+	 * Set address (street, etc)
 	 *
-	 * @param string $strasse
+	 * @param string $address
 	 * @return Request
 	 */
-	public function setStrasse( $strasse ) {
-		$this->strasse = $strasse;
+	public function setAddress( $address ) {
+		$this->address = $address;
 
 		return $this;
 	}
 
 	/**
-	 * Get strasse
+	 * Get address (street, etc)
 	 *
 	 * @return string
 	 */
-	public function getStrasse() {
-		return $this->strasse;
+	public function getAddress() {
+		return $this->address;
 	}
 
 	/**
-	 * Set plz
+	 * Set postcode
 	 *
-	 * @param string $plz
+	 * @param string $postcode
 	 * @return Request
 	 */
-	public function setPlz( $plz ) {
-		$this->plz = $plz;
+	public function setPostcode( $postcode ) {
+		$this->postcode = $postcode;
 
 		return $this;
 	}
 
 	/**
-	 * Get plz
+	 * Get postcode
 	 *
 	 * @return string
 	 */
-	public function getPlz() {
-		return $this->plz;
+	public function getPostcode() {
+		return $this->postcode;
 	}
 
 	/**
-	 * Set ort
+	 * Set city
 	 *
-	 * @param string $ort
+	 * @param string $city
 	 * @return Request
 	 */
-	public function setOrt( $ort ) {
-		$this->ort = $ort;
+	public function setCity( $city ) {
+		$this->city = $city;
 
 		return $this;
 	}
 
 	/**
-	 * Get ort
+	 * Get city
 	 *
 	 * @return string
 	 */
-	public function getOrt() {
-		return $this->ort;
+	public function getCity() {
+		return $this->city;
 	}
 
 	/**
