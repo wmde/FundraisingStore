@@ -10,6 +10,11 @@ install: travis_retry composer install --prefer-source
 
 script: composer ci
 
+notifications:
+  email:
+    on_success: change
+    on_failure: always
+
 cache:
   directories:
     - $HOME/.composer/cache
