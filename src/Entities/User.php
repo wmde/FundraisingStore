@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="user_name", columns={"user_name"}), @ORM\UniqueConstraint(name="user_address", columns={"user_address"})})
  * @ORM\Entity
  */
-class Users {
+class User {
 	/**
 	 * @var string
 	 *
@@ -81,7 +81,7 @@ class Users {
 	 * Set userName
 	 *
 	 * @param string $userName
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserName( $userName ) {
 		$this->userName = $userName;
@@ -102,7 +102,7 @@ class Users {
 	 * Set userAddress
 	 *
 	 * @param string $userAddress
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserAddress( $userAddress ) {
 		$this->userAddress = $userAddress;
@@ -123,7 +123,7 @@ class Users {
 	 * Set userPass
 	 *
 	 * @param string $userPass
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserPass( $userPass ) {
 		$this->userPass = $userPass;
@@ -144,7 +144,7 @@ class Users {
 	 * Set userPassExpiry
 	 *
 	 * @param \DateTime $userPassExpiry
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserPassExpiry( $userPassExpiry ) {
 		$this->userPassExpiry = $userPassExpiry;
@@ -165,7 +165,7 @@ class Users {
 	 * Set userPassNotification
 	 *
 	 * @param boolean $userPassNotification
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserPassNotification( $userPassNotification ) {
 		$this->userPassNotification = $userPassNotification;
@@ -186,7 +186,7 @@ class Users {
 	 * Set userSalt
 	 *
 	 * @param string $userSalt
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserSalt( $userSalt ) {
 		$this->userSalt = $userSalt;
@@ -207,7 +207,7 @@ class Users {
 	 * Set userRole
 	 *
 	 * @param boolean $userRole
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserRole( $userRole ) {
 		$this->userRole = $userRole;
@@ -228,7 +228,7 @@ class Users {
 	 * Set userActive
 	 *
 	 * @param boolean $userActive
-	 * @return Users
+	 * @return User
 	 */
 	public function setUserActive( $userActive ) {
 		$this->userActive = $userActive;
