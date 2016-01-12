@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="backend_impressions", indexes={@ORM\Index(name="idx_banner_id", columns={"banner_id"}), @ORM\Index(name="idx_banner_id_datetime", columns={"banner_id", "datetime"})})
  * @ORM\Entity
  */
-class BackendImpressions {
+class BackendImpression {
 	/**
 	 * @var integer
 	 *
@@ -46,7 +46,7 @@ class BackendImpressions {
 	 * Set bannerId
 	 *
 	 * @param integer $bannerId
-	 * @return BackendImpressions
+	 * @return BackendImpression
 	 */
 	public function setBannerId( $bannerId ) {
 		$this->bannerId = $bannerId;
@@ -67,7 +67,7 @@ class BackendImpressions {
 	 * Set datetime
 	 *
 	 * @param \DateTime $datetime
-	 * @return BackendImpressions
+	 * @return BackendImpression
 	 */
 	public function setDatetime( $datetime ) {
 		$this->datetime = $datetime;
@@ -88,7 +88,7 @@ class BackendImpressions {
 	 * Set impCount
 	 *
 	 * @param integer $impCount
-	 * @return BackendImpressions
+	 * @return BackendImpression
 	 */
 	public function setImpCount( $impCount ) {
 		$this->impCount = $impCount;
