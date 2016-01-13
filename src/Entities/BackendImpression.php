@@ -5,7 +5,7 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @since 0.1
+ * @since 2.0
  *
  * @ORM\Table(name="backend_impressions", indexes={@ORM\Index(name="idx_banner_id", columns={"banner_id"}), @ORM\Index(name="idx_banner_id_datetime", columns={"banner_id", "datetime"})})
  * @ORM\Entity
