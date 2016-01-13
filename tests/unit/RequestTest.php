@@ -9,27 +9,27 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 {
 	public function testGivenOnlyAFirstname_theNameIsSetToFirstname() {
 		$request = new Request();
-		$request->setVorname( 'Douglas' );
+		$request->setFirstName( 'Douglas' );
 		$this->assertEquals( 'Douglas', $request->getName() );
 	}
 
 	public function testGivenOnlyALastname_theNameIsSetToLastname() {
 		$request = new Request();
-		$request->setNachname( 'Adams' );
+		$request->setLastName( 'Adams' );
 		$this->assertEquals( 'Adams', $request->getName() );
 	}
 
 	public function testGivenFirstnameAndLastname_theFullNameIsSet() {
 		$request = new Request();
-		$request->setVorname( 'Douglas' );
-		$request->setNachname( 'Adams' );
+		$request->setFirstName( 'Douglas' );
+		$request->setLastName( 'Adams' );
 		$this->assertEquals( 'Douglas Adams', $request->getName() );
 	}
 
 	public function testFullNameCanBeSetSeparately() {
 		$request = new Request();
-		$request->setVorname( 'Douglas' );
-		$request->setNachname( 'Adams' );
+		$request->setFirstName( 'Douglas' );
+		$request->setLastName( 'Adams' );
 		$request->setName( 'Arthur Dent' );
 		$this->assertEquals( 'Arthur Dent', $request->getName() );
 	}
@@ -37,8 +37,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 	public function testSettingFirstOrLastNameOverridesFullname() {
 		$request = new Request();
 		$request->setName( 'Arthur Dent' );
-		$request->setVorname( 'Douglas' );
-		$request->setNachname( 'Adams' );
+		$request->setFirstName( 'Douglas' );
+		$request->setLastName( 'Adams' );
 		$this->assertEquals( 'Douglas Adams', $request->getName() );
 	}
 }
