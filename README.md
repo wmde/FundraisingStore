@@ -46,9 +46,13 @@ run style checks use `composer cs`.
 
 ### Version 2.0 (2016-01-13)
 
-* Rename entity `Spenden` to `Donation`. Database table name stays the same.
-* Use only english property names in public interface of `Request` and `Donation` class. 
-  Database field names stay the same. 
+* Rename entites. Database table names stay the same for backwards compatibility.
+ * `Spenden` => `Donation`.
+ * `Users` => `User`
+ * `BackendImpressions` => `BackendImpression`
+* Use only English property names in public interface of `Request` and `Donation` class.
+  Database field names stay the same.
+
 
 ### Version 1.0 (2016-01-11)
 
