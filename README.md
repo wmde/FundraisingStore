@@ -44,12 +44,13 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 2.0 (2016-01-13)
+### Version 2.0 (2016-mm-dd)
 
 * Rename entites. Database table names stay the same for backwards compatibility.
  * `Spenden` => `Donation`.
  * `Users` => `User`
  * `BackendImpressions` => `BackendImpression`
+ * `Request` => `Inquiry`
 * Use only English property names in public interface of `Request` and `Donation` class.
   Database field names stay the same.
 

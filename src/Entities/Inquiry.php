@@ -5,12 +5,12 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @since 0.1
+ * @since 2.0
  *
  * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
  * @ORM\Entity
  */
-class Request {
+class Inquiry {
 	/**
 	 * @var integer
 	 *
@@ -266,15 +266,11 @@ class Request {
 	const STATUS_ABORTED = -4;
 	const STATUS_CANCELED = -8;
 
-	const TYPE_MEMBERSHIP = 'membership';
-	const TYPE_SUBSCRIPTION = 'subscription';
-	const TYPE_OTHER = 'other';
-	
 	/**
 	 * Set donationId
 	 *
 	 * @param integer $donationId
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setDonationId( $donationId ) {
 		$this->donationId = $donationId;
@@ -295,7 +291,7 @@ class Request {
 	 * Set timestamp
 	 *
 	 * @param \DateTime $timestamp
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setTimestamp( $timestamp ) {
 		$this->timestamp = $timestamp;
@@ -316,7 +312,7 @@ class Request {
 	 * Set salutation
 	 *
 	 * @param string $salutation
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setSalutation( $salutation ) {
 		$this->salutation = $salutation;
@@ -337,7 +333,7 @@ class Request {
 	 * Set company name
 	 *
 	 * @param string $company
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setCompany( $company ) {
 		$this->company = $company;
@@ -358,7 +354,7 @@ class Request {
 	 * Set title
 	 *
 	 * @param string $title
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setTitle( $title ) {
 		$this->title = $title;
@@ -379,7 +375,7 @@ class Request {
 	 * Set name
 	 *
 	 * @param string $name
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -400,7 +396,7 @@ class Request {
 	 * Set first name
 	 *
 	 * @param string $firstName
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setFirstName( $firstName ) {
 		$this->firstName = $firstName;
@@ -422,7 +418,7 @@ class Request {
 	 * Set last name
 	 *
 	 * @param string $lastName
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setLastName( $lastName ) {
 		$this->lastName = $lastName;
@@ -454,7 +450,7 @@ class Request {
 	 * Set address (street, etc)
 	 *
 	 * @param string $address
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setAddress( $address ) {
 		$this->address = $address;
@@ -475,7 +471,7 @@ class Request {
 	 * Set postcode
 	 *
 	 * @param string $postcode
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setPostcode( $postcode ) {
 		$this->postcode = $postcode;
@@ -496,7 +492,7 @@ class Request {
 	 * Set city
 	 *
 	 * @param string $city
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setCity( $city ) {
 		$this->city = $city;
@@ -517,7 +513,7 @@ class Request {
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setEmail( $email ) {
 		$this->email = $email;
@@ -538,7 +534,7 @@ class Request {
 	 * Set phone
 	 *
 	 * @param string $phone
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setPhone( $phone ) {
 		$this->phone = $phone;
@@ -559,7 +555,7 @@ class Request {
 	 * Set dob
 	 *
 	 * @param \DateTime $dob
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setDob( $dob ) {
 		$this->dob = $dob;
@@ -580,7 +576,7 @@ class Request {
 	 * Set wikimediumShipping
 	 *
 	 * @param string $wikimediumShipping
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setWikimediumShipping( $wikimediumShipping ) {
 		$this->wikimediumShipping = $wikimediumShipping;
@@ -601,7 +597,7 @@ class Request {
 	 * Set membershipType
 	 *
 	 * @param string $membershipType
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipType( $membershipType ) {
 		$this->membershipType = $membershipType;
@@ -622,7 +618,7 @@ class Request {
 	 * Set membershipFee
 	 *
 	 * @param integer $membershipFee
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipFee( $membershipFee ) {
 		$this->membershipFee = $membershipFee;
@@ -644,7 +640,7 @@ class Request {
 	 *
 	 * @param integer $membershipFeeInterval
 	 *
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipFeeInterval($membershipFeeInterval) {
 		$this->membershipFeeInterval = $membershipFeeInterval;
@@ -666,7 +662,7 @@ class Request {
 	 * Set accountNumber
 	 *
 	 * @param string $accountNumber
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setAccountNumber( $accountNumber ) {
 		$this->accountNumber = $accountNumber;
@@ -687,7 +683,7 @@ class Request {
 	 * Set bankName
 	 *
 	 * @param string $bankName
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBankName( $bankName ) {
 		$this->bankName = $bankName;
@@ -708,7 +704,7 @@ class Request {
 	 * Set bankCode
 	 *
 	 * @param string $bankCode
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBankCode( $bankCode ) {
 		$this->bankCode = $bankCode;
@@ -729,7 +725,7 @@ class Request {
 	 * Set iban
 	 *
 	 * @param string $iban
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setIban( $iban ) {
 		$this->iban = $iban;
@@ -750,7 +746,7 @@ class Request {
 	 * Set bic
 	 *
 	 * @param string $bic
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBic( $bic ) {
 		$this->bic = $bic;
@@ -771,7 +767,7 @@ class Request {
 	 * Set accountHolder
 	 *
 	 * @param string $accountHolder
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setAccountHolder( $accountHolder ) {
 		$this->accountHolder = $accountHolder;
@@ -792,7 +788,7 @@ class Request {
 	 * Set comment
 	 *
 	 * @param string $comment
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -813,7 +809,7 @@ class Request {
 	 * Set export
 	 *
 	 * @param \DateTime $export
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setExport( $export ) {
 		$this->export = $export;
@@ -834,7 +830,7 @@ class Request {
 	 * Set backup
 	 *
 	 * @param \DateTime $backup
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBackup( $backup ) {
 		$this->backup = $backup;
@@ -855,7 +851,7 @@ class Request {
 	 * Set wikilogin
 	 *
 	 * @param boolean $wikilogin
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setWikilogin( $wikilogin ) {
 		$this->wikilogin = $wikilogin;
@@ -876,7 +872,7 @@ class Request {
 	 * Set tracking
 	 *
 	 * @param string $tracking
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setTracking( $tracking ) {
 		$this->tracking = $tracking;
@@ -897,7 +893,7 @@ class Request {
 	 * Set status
 	 *
 	 * @param integer $status
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -918,7 +914,7 @@ class Request {
 	 * Set country
 	 *
 	 * @param string $country
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setCountry( $country ) {
 		$this->country = $country;
@@ -939,7 +935,7 @@ class Request {
 	 * Set data
 	 *
 	 * @param string $data
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setData( $data ) {
 		$this->data = $data;
@@ -960,7 +956,7 @@ class Request {
 	 * Set guid
 	 *
 	 * @param string $guid
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setGuid( $guid ) {
 		$this->guid = $guid;
@@ -981,7 +977,7 @@ class Request {
 	 * Set type
 	 *
 	 * @param string $type
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setType( $type ) {
 		$this->type = $type;
