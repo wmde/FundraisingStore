@@ -9,14 +9,13 @@ class RequestInsertionTest extends \PHPUnit_Framework_TestCase {
 
 	public function testNewRequestCanBeInserted() {
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
-		$request = new Request();
-		$entityManager->persist( $request );
+		$entityManager->persist( new Request() );
 		$entityManager->flush();
 		$count = $entityManager->createQueryBuilder()
 			->select( 'COUNT(r.id)' )
-			->from( Request::class, 'r')
+			->from( Request::class, 'r' )
 			->getQuery()
 			->getSingleScalarResult();
-		$this->assertEquals( 1, $count );
+		$this->assertSame( 1, $count );
 	}
 }
