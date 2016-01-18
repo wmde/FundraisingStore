@@ -244,13 +244,6 @@ class Inquiry {
 	private $guid;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="type", type="string", options={"default":"membership"}, nullable=false)
-	 */
-	private $type = 'membership';
-
-	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -950,48 +943,6 @@ class Inquiry {
 	 */
 	public function getData() {
 		return $this->data;
-	}
-
-	/**
-	 * Set guid
-	 *
-	 * @param string $guid
-	 * @return Inquiry
-	 */
-	public function setGuid( $guid ) {
-		$this->guid = $guid;
-
-		return $this;
-	}
-
-	/**
-	 * Get guid
-	 *
-	 * @return string
-	 */
-	public function getGuid() {
-		return $this->guid;
-	}
-
-	/**
-	 * Set type
-	 *
-	 * @param string $type
-	 * @return Inquiry
-	 */
-	public function setType( $type ) {
-		$this->type = $type;
-
-		return $this;
-	}
-
-	/**
-	 * Get type
-	 *
-	 * @return string
-	 */
-	public function getType() {
-		return $this->type;
 	}
 
 	/**
