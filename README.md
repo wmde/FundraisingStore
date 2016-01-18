@@ -50,8 +50,9 @@ run style checks use `composer cs`.
  * `Spenden` => `Donation`.
  * `Users` => `User`
  * `BackendImpressions` => `BackendImpression`
- * `Request` => `Inquiry`
-* Use only English property names in public interface of `Request` and `Donation` class.
+ * `Request` => `Inquiry`, `Subscription` ( split into two classes, removed type field)
+* Add `Address` entity
+* Use only English property names in public interface of `Inquiry` and `Donation` class.
   Database field names stay the same.
 
 
