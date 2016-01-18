@@ -13,4 +13,4 @@ build/
 .floo
 .flooignore
 
-config.ini
+local-db-config.php
