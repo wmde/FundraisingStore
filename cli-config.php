@@ -7,8 +7,7 @@ use WMDE\Fundraising\Store\Factory;
 // Load config for both dependency and standalone use case
 if ( file_exists( __DIR__ . '/../../local-db-config.php' ) ) {
 	require_once( __DIR__ . '/../../local-db-config.php' );
-}
-else {
+} else {
 	require_once( __DIR__ . '/local-db-config.php' );
 }
 
