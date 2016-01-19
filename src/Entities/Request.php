@@ -21,7 +21,7 @@ class Request {
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="timestamp", type="datetime", nullable=false)
+	 * @ORM\Column(name="timestamp", type="datetime", nullable=true)
 	 */
 	private $timestamp;
 
@@ -269,12 +269,7 @@ class Request {
 	const TYPE_MEMBERSHIP = 'membership';
 	const TYPE_SUBSCRIPTION = 'subscription';
 	const TYPE_OTHER = 'other';
-
-	public function __construct() {
-		$this->setTimestamp( new \DateTime( '1970-01-01 00:00:00' ) );
-	}
-
-
+	
 	/**
 	 * Set donationId
 	 *
