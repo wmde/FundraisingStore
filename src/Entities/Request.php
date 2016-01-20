@@ -21,9 +21,9 @@ class Request {
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="timestamp", type="datetime", options={"default":"1970-01-01 00:00:00"}, nullable=false)
+	 * @ORM\Column(name="timestamp", type="datetime", nullable=true)
 	 */
-	private $timestamp = '1970-01-01 00:00:00';
+	private $timestamp;
 
 	/**
 	 * @var string
@@ -105,9 +105,9 @@ class Request {
 	/**
 	 * @var \DateTime
 	 *
-	 * @ORM\Column(name="dob", type="date", options={"default":"0000-00-00"}, nullable=false)
+	 * @ORM\Column(name="dob", type="date", nullable=true)
 	 */
-	private $dob = '0000-00-00';
+	private $dob;
 
 	/**
 	 * @var string
@@ -269,7 +269,7 @@ class Request {
 	const TYPE_MEMBERSHIP = 'membership';
 	const TYPE_SUBSCRIPTION = 'subscription';
 	const TYPE_OTHER = 'other';
-
+	
 	/**
 	 * Set donationId
 	 *
