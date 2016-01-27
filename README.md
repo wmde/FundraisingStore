@@ -20,12 +20,12 @@ this package as well as its dependencies.
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `wmde/fundraising-store` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-Fundraising Store 1.x:
+Fundraising Store 2.x:
 
 ```js
 {
     "require": {
-        "wmde/fundraising-store": "^1.0.0"
+        "wmde/fundraising-store": "^2.0.0"
     }
 }
 ```
@@ -43,6 +43,18 @@ required by our CI by executing `composer ci`. To just run tests use `composer t
 run style checks use `composer cs`.
 
 ## Release notes
+
+### Version 2.0 (2016-mm-dd)
+
+* Rename entites. Database table names stay the same for backwards compatibility.
+ * `Spenden` => `Donation`.
+ * `Users` => `User`
+ * `BackendImpressions` => `BackendImpression`
+ * `Request` => `Inquiry`, `Subscription` ( split into two classes, removed type field)
+* Add `Address` entity
+* Use only English property names in public interface of `Inquiry` and `Donation` class.
+  Database field names stay the same.
+
 
 ### Version 1.0 (2016-01-11)
 

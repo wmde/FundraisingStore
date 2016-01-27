@@ -5,12 +5,12 @@ namespace WMDE\Fundraising\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @since 0.1
+ * @since 2.0
  *
  * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
  * @ORM\Entity
  */
-class Request {
+class Inquiry {
 	/**
 	 * @var integer
 	 *
@@ -30,21 +30,21 @@ class Request {
 	 *
 	 * @ORM\Column(name="anrede", type="string", length=16, nullable=true)
 	 */
-	private $anrede;
+	private $salutation;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="firma", type="string", length=100, nullable=true)
 	 */
-	private $firma;
+	private $company;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="titel", type="string", length=16, nullable=true)
 	 */
-	private $titel;
+	private $title;
 
 	/**
 	 * @var string
@@ -58,35 +58,35 @@ class Request {
 	 *
 	 * @ORM\Column(name="vorname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $vorname = '';
+	private $firstName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="nachname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $nachname = '';
+	private $lastName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="strasse", type="string", length=100, nullable=true)
 	 */
-	private $strasse;
+	private $address;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="plz", type="string", length=8, nullable=true)
 	 */
-	private $plz;
+	private $postcode;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="ort", type="string", length=100, nullable=true)
 	 */
-	private $ort;
+	private $city;
 
 	/**
 	 * @var string
@@ -244,13 +244,6 @@ class Request {
 	private $guid;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="type", type="string", options={"default":"membership"}, nullable=false)
-	 */
-	private $type = 'membership';
-
-	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -266,15 +259,11 @@ class Request {
 	const STATUS_ABORTED = -4;
 	const STATUS_CANCELED = -8;
 
-	const TYPE_MEMBERSHIP = 'membership';
-	const TYPE_SUBSCRIPTION = 'subscription';
-	const TYPE_OTHER = 'other';
-	
 	/**
 	 * Set donationId
 	 *
 	 * @param integer $donationId
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setDonationId( $donationId ) {
 		$this->donationId = $donationId;
@@ -295,7 +284,7 @@ class Request {
 	 * Set timestamp
 	 *
 	 * @param \DateTime $timestamp
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setTimestamp( $timestamp ) {
 		$this->timestamp = $timestamp;
@@ -313,73 +302,73 @@ class Request {
 	}
 
 	/**
-	 * Set anrede
+	 * Set salutation
 	 *
-	 * @param string $anrede
-	 * @return Request
+	 * @param string $salutation
+	 * @return Inquiry
 	 */
-	public function setAnrede( $anrede ) {
-		$this->anrede = $anrede;
+	public function setSalutation( $salutation ) {
+		$this->salutation = $salutation;
 
 		return $this;
 	}
 
 	/**
-	 * Get anrede
+	 * Get salutation
 	 *
 	 * @return string
 	 */
-	public function getAnrede() {
-		return $this->anrede;
+	public function getSalutation() {
+		return $this->salutation;
 	}
 
 	/**
-	 * Set firma
+	 * Set company name
 	 *
-	 * @param string $firma
-	 * @return Request
+	 * @param string $company
+	 * @return Inquiry
 	 */
-	public function setFirma( $firma ) {
-		$this->firma = $firma;
+	public function setCompany( $company ) {
+		$this->company = $company;
 
 		return $this;
 	}
 
 	/**
-	 * Get firma
+	 * Get company name
 	 *
 	 * @return string
 	 */
-	public function getFirma() {
-		return $this->firma;
+	public function getCompany() {
+		return $this->company;
 	}
 
 	/**
-	 * Set titel
+	 * Set title
 	 *
-	 * @param string $titel
-	 * @return Request
+	 * @param string $title
+	 * @return Inquiry
 	 */
-	public function setTitel( $titel ) {
-		$this->titel = $titel;
+	public function setTitle( $title ) {
+		$this->title = $title;
 
 		return $this;
 	}
 
 	/**
-	 * Get titel
+	 * Get title
 	 *
 	 * @return string
 	 */
-	public function getTitel() {
-		return $this->titel;
+	public function getTitle() {
+		return $this->title;
 	}
 
 	/**
 	 * Set name
 	 *
 	 * @param string $name
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -397,47 +386,47 @@ class Request {
 	}
 
 	/**
-	 * Set vorname
+	 * Set first name
 	 *
-	 * @param string $vorname
-	 * @return Request
+	 * @param string $firstName
+	 * @return Inquiry
 	 */
-	public function setVorname( $vorname ) {
-		$this->vorname = $vorname;
-		$this->setNameFromParts( $vorname, $this->getNachname() );
+	public function setFirstName( $firstName ) {
+		$this->firstName = $firstName;
+		$this->setNameFromParts( $firstName, $this->getLastName() );
 
 		return $this;
 	}
 
 	/**
-	 * Get vorname
+	 * Get first name
 	 *
 	 * @return string
 	 */
-	public function getVorname() {
-		return $this->vorname;
+	public function getFirstName() {
+		return $this->firstName;
 	}
 
 	/**
-	 * Set nachname
+	 * Set last name
 	 *
-	 * @param string $nachname
-	 * @return Request
+	 * @param string $lastName
+	 * @return Inquiry
 	 */
-	public function setNachname( $nachname ) {
-		$this->nachname = $nachname;
-		$this->setNameFromParts( $this->getVorname(), $nachname );
+	public function setLastName( $lastName ) {
+		$this->lastName = $lastName;
+		$this->setNameFromParts( $this->getFirstName(), $lastName );
 
 		return $this;
 	}
 
 	/**
-	 * Get nachname
+	 * Get last name
 	 *
 	 * @return string
 	 */
-	public function getNachname() {
-		return $this->nachname;
+	public function getLastName() {
+		return $this->lastName;
 	}
 
 	/**
@@ -451,73 +440,73 @@ class Request {
 	}
 
 	/**
-	 * Set strasse
+	 * Set address (street, etc)
 	 *
-	 * @param string $strasse
-	 * @return Request
+	 * @param string $address
+	 * @return Inquiry
 	 */
-	public function setStrasse( $strasse ) {
-		$this->strasse = $strasse;
+	public function setAddress( $address ) {
+		$this->address = $address;
 
 		return $this;
 	}
 
 	/**
-	 * Get strasse
+	 * Get address (street, etc)
 	 *
 	 * @return string
 	 */
-	public function getStrasse() {
-		return $this->strasse;
+	public function getAddress() {
+		return $this->address;
 	}
 
 	/**
-	 * Set plz
+	 * Set postcode
 	 *
-	 * @param string $plz
-	 * @return Request
+	 * @param string $postcode
+	 * @return Inquiry
 	 */
-	public function setPlz( $plz ) {
-		$this->plz = $plz;
+	public function setPostcode( $postcode ) {
+		$this->postcode = $postcode;
 
 		return $this;
 	}
 
 	/**
-	 * Get plz
+	 * Get postcode
 	 *
 	 * @return string
 	 */
-	public function getPlz() {
-		return $this->plz;
+	public function getPostcode() {
+		return $this->postcode;
 	}
 
 	/**
-	 * Set ort
+	 * Set city
 	 *
-	 * @param string $ort
-	 * @return Request
+	 * @param string $city
+	 * @return Inquiry
 	 */
-	public function setOrt( $ort ) {
-		$this->ort = $ort;
+	public function setCity( $city ) {
+		$this->city = $city;
 
 		return $this;
 	}
 
 	/**
-	 * Get ort
+	 * Get city
 	 *
 	 * @return string
 	 */
-	public function getOrt() {
-		return $this->ort;
+	public function getCity() {
+		return $this->city;
 	}
 
 	/**
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setEmail( $email ) {
 		$this->email = $email;
@@ -538,7 +527,7 @@ class Request {
 	 * Set phone
 	 *
 	 * @param string $phone
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setPhone( $phone ) {
 		$this->phone = $phone;
@@ -559,7 +548,7 @@ class Request {
 	 * Set dob
 	 *
 	 * @param \DateTime $dob
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setDob( $dob ) {
 		$this->dob = $dob;
@@ -580,7 +569,7 @@ class Request {
 	 * Set wikimediumShipping
 	 *
 	 * @param string $wikimediumShipping
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setWikimediumShipping( $wikimediumShipping ) {
 		$this->wikimediumShipping = $wikimediumShipping;
@@ -601,7 +590,7 @@ class Request {
 	 * Set membershipType
 	 *
 	 * @param string $membershipType
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipType( $membershipType ) {
 		$this->membershipType = $membershipType;
@@ -622,7 +611,7 @@ class Request {
 	 * Set membershipFee
 	 *
 	 * @param integer $membershipFee
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipFee( $membershipFee ) {
 		$this->membershipFee = $membershipFee;
@@ -644,7 +633,7 @@ class Request {
 	 *
 	 * @param integer $membershipFeeInterval
 	 *
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setMembershipFeeInterval($membershipFeeInterval) {
 		$this->membershipFeeInterval = $membershipFeeInterval;
@@ -666,7 +655,7 @@ class Request {
 	 * Set accountNumber
 	 *
 	 * @param string $accountNumber
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setAccountNumber( $accountNumber ) {
 		$this->accountNumber = $accountNumber;
@@ -687,7 +676,7 @@ class Request {
 	 * Set bankName
 	 *
 	 * @param string $bankName
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBankName( $bankName ) {
 		$this->bankName = $bankName;
@@ -708,7 +697,7 @@ class Request {
 	 * Set bankCode
 	 *
 	 * @param string $bankCode
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBankCode( $bankCode ) {
 		$this->bankCode = $bankCode;
@@ -729,7 +718,7 @@ class Request {
 	 * Set iban
 	 *
 	 * @param string $iban
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setIban( $iban ) {
 		$this->iban = $iban;
@@ -750,7 +739,7 @@ class Request {
 	 * Set bic
 	 *
 	 * @param string $bic
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBic( $bic ) {
 		$this->bic = $bic;
@@ -771,7 +760,7 @@ class Request {
 	 * Set accountHolder
 	 *
 	 * @param string $accountHolder
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setAccountHolder( $accountHolder ) {
 		$this->accountHolder = $accountHolder;
@@ -792,7 +781,7 @@ class Request {
 	 * Set comment
 	 *
 	 * @param string $comment
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -813,7 +802,7 @@ class Request {
 	 * Set export
 	 *
 	 * @param \DateTime $export
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setExport( $export ) {
 		$this->export = $export;
@@ -834,7 +823,7 @@ class Request {
 	 * Set backup
 	 *
 	 * @param \DateTime $backup
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setBackup( $backup ) {
 		$this->backup = $backup;
@@ -855,7 +844,7 @@ class Request {
 	 * Set wikilogin
 	 *
 	 * @param boolean $wikilogin
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setWikilogin( $wikilogin ) {
 		$this->wikilogin = $wikilogin;
@@ -876,7 +865,7 @@ class Request {
 	 * Set tracking
 	 *
 	 * @param string $tracking
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setTracking( $tracking ) {
 		$this->tracking = $tracking;
@@ -897,7 +886,7 @@ class Request {
 	 * Set status
 	 *
 	 * @param integer $status
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -918,7 +907,7 @@ class Request {
 	 * Set country
 	 *
 	 * @param string $country
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setCountry( $country ) {
 		$this->country = $country;
@@ -939,7 +928,7 @@ class Request {
 	 * Set data
 	 *
 	 * @param string $data
-	 * @return Request
+	 * @return Inquiry
 	 */
 	public function setData( $data ) {
 		$this->data = $data;
@@ -954,48 +943,6 @@ class Request {
 	 */
 	public function getData() {
 		return $this->data;
-	}
-
-	/**
-	 * Set guid
-	 *
-	 * @param string $guid
-	 * @return Request
-	 */
-	public function setGuid( $guid ) {
-		$this->guid = $guid;
-
-		return $this;
-	}
-
-	/**
-	 * Get guid
-	 *
-	 * @return string
-	 */
-	public function getGuid() {
-		return $this->guid;
-	}
-
-	/**
-	 * Set type
-	 *
-	 * @param string $type
-	 * @return Request
-	 */
-	public function setType( $type ) {
-		$this->type = $type;
-
-		return $this;
-	}
-
-	/**
-	 * Get type
-	 *
-	 * @return string
-	 */
-	public function getType() {
-		return $this->type;
 	}
 
 	/**
