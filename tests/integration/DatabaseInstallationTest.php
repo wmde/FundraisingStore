@@ -17,11 +17,13 @@ class DatabaseInstallationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame(
 			[
 				'public.action_log',
+				'public.address',
 				'public.backend_banner',
 				'public.backend_impressions',
 				'public.request',
 				'public.spenden',
-				'public.users'
+				'public.subscription',
+				'public.users',
 			],
 			$tableNames
 		);
