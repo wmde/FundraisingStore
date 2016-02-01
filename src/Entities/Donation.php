@@ -3,6 +3,7 @@
 namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @since 2.0
@@ -126,6 +127,7 @@ class Donation {
 	/**
 	 * @var \DateTime
 	 *
+	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="dt_new", type="datetime", nullable=true)
 	 */
 	private $dtNew;

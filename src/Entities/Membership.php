@@ -3,6 +3,7 @@
 namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @since 2.0
@@ -11,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Membership {
+
 	/**
 	 * @var integer
 	 *
@@ -20,7 +22,7 @@ class Membership {
 
 	/**
 	 * @var \DateTime
-	 *
+	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="timestamp", type="datetime", nullable=true)
 	 */
 	private $timestamp;

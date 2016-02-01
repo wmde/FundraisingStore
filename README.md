@@ -54,6 +54,7 @@ run style checks use `composer cs`.
 * Add `Address` entity
 * Use only English property names in public interface of `Inquiry` and `Donation` class.
   Database field names stay the same.
+* Automatically add creation timestamps to donations, membership requests and subscriptions.
 
 
 ### Version 1.0 (2016-01-11)
