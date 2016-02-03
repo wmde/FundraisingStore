@@ -179,7 +179,7 @@ class Donation {
 	 * Set name
 	 *
 	 * @param string $name
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -221,7 +221,7 @@ class Donation {
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setEmail( $email ) {
 		$this->email = $email;
@@ -242,7 +242,7 @@ class Donation {
 	 * Set info
 	 *
 	 * @param boolean $info
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setInfo( $info ) {
 		$this->info = $info;
@@ -263,7 +263,7 @@ class Donation {
 	 * Set donation receipt state
 	 *
 	 * @param boolean $donationReceipt
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDonationReceipt( $donationReceipt ) {
 		$this->donationReceipt = $donationReceipt;
@@ -284,7 +284,7 @@ class Donation {
 	 * Set publicly displayed donation record
 	 *
 	 * @param string $publicRecord
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setPublicRecord( $publicRecord ) {
 		$this->publicRecord = $publicRecord;
@@ -305,7 +305,7 @@ class Donation {
 	 * Set amount
 	 *
 	 * @param string $amount
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setAmount( $amount ) {
 		$this->amount = $amount;
@@ -326,7 +326,7 @@ class Donation {
 	 * Set period
 	 *
 	 * @param integer $period
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setPeriod( $period ) {
 		$this->period = $period;
@@ -347,7 +347,7 @@ class Donation {
 	 * Set payment type short code
 	 *
 	 * @param string $paymentType
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setPaymentType( $paymentType ) {
 		$this->paymentType = $paymentType;
@@ -368,7 +368,7 @@ class Donation {
 	 * Set comment
 	 *
 	 * @param string $comment
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -389,7 +389,7 @@ class Donation {
 	 * Set bank transfer reference code
 	 *
 	 * @param string $transferCode
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setTransferCode( $transferCode ) {
 		$this->transferCode = $transferCode;
@@ -410,7 +410,7 @@ class Donation {
 	 * Set data
 	 *
 	 * @param string $data
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setData( $data ) {
 		$this->data = $data;
@@ -431,7 +431,7 @@ class Donation {
 	 * Set source
 	 *
 	 * @param string $source
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setSource( $source ) {
 		$this->source = $source;
@@ -452,7 +452,7 @@ class Donation {
 	 * Set remoteAddr
 	 *
 	 * @param string $remoteAddr
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setRemoteAddr( $remoteAddr ) {
 		$this->remoteAddr = $remoteAddr;
@@ -473,7 +473,7 @@ class Donation {
 	 * Set hash
 	 *
 	 * @param string $hash
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setHash( $hash ) {
 		$this->hash = $hash;
@@ -494,7 +494,7 @@ class Donation {
 	 * Set isPublic
 	 *
 	 * @param boolean $isPublic
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setIsPublic( $isPublic ) {
 		$this->isPublic = $isPublic;
@@ -515,7 +515,7 @@ class Donation {
 	 * Set dtNew
 	 *
 	 * @param \DateTime $dtNew
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDtNew( $dtNew ) {
 		$this->dtNew = $dtNew;
@@ -536,7 +536,7 @@ class Donation {
 	 * Set dtDel
 	 *
 	 * @param \DateTime $dtDel
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDtDel( $dtDel ) {
 		$this->dtDel = $dtDel;
@@ -557,7 +557,7 @@ class Donation {
 	 * Set dtExp
 	 *
 	 * @param \DateTime $dtExp
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDtExp( $dtExp ) {
 		$this->dtExp = $dtExp;
@@ -578,7 +578,7 @@ class Donation {
 	 * Set status
 	 *
 	 * @param string $status
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -599,7 +599,7 @@ class Donation {
 	 * Set dtGruen
 	 *
 	 * @param \DateTime $dtGruen
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDtGruen( $dtGruen ) {
 		$this->dtGruen = $dtGruen;
@@ -620,7 +620,7 @@ class Donation {
 	 * Set dtBackup
 	 *
 	 * @param \DateTime $dtBackup
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setDtBackup( $dtBackup ) {
 		$this->dtBackup = $dtBackup;
