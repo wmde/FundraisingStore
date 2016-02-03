@@ -230,4 +230,12 @@ class Subscription {
 		return $this->getStatus() === self::STATUS_NEUTRAL;
 	}
 
+	public function getHexConfirmationCode() {
+		return bin2hex( $this->confirmationCode );
+	}
+
+	public function setHexConfirmationCode( $confirmationCode ) {
+		$this->confirmationCode = hex2bin( $confirmationCode );
+	}
+
 }
