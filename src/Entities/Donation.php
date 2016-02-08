@@ -200,7 +200,7 @@ class Donation {
 	 * Set city
 	 *
 	 * @param string $city
-	 * @return Spenden
+	 * @return Donation
 	 */
 	public function setCity( $city ) {
 		$this->city = $city;
