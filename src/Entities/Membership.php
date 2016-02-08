@@ -237,13 +237,6 @@ class Membership {
 	private $data;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="guid", type="blob", length=16, nullable=true)
-	 */
-	private $guid;
-
-	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
