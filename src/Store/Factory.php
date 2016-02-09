@@ -8,6 +8,7 @@ use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Doctrine\ORM\Tools\Setup;
+use Gedmo\Timestampable\TimestampableListener;
 
 /**
  * @since 0.1
@@ -40,11 +41,17 @@ class Factory {
 		$paths = [ __DIR__ . '/../Entities/' ];
 		$config = Setup::createConfiguration();
 
-		$driver = new AnnotationDriver( new AnnotationReader(), $paths );
+		$annotationReader = new AnnotationReader();
+		$driver = new AnnotationDriver( $annotationReader, $paths );
 		AnnotationRegistry::registerLoader( 'class_exists' );
 		$config->setMetadataDriverImpl( $driver );
 
-		$entityManager = EntityManager::create( $this->connection, $config );
+		$eventManager = $this->connection->getEventManager();
+		$timestampableListener = new TimestampableListener;
+		$timestampableListener->setAnnotationReader( $annotationReader );
+		$eventManager->addEventSubscriber( $timestampableListener );
+
+		$entityManager = EntityManager::create( $this->connection, $config, $eventManager );
 
 		$platform = $entityManager->getConnection()->getDatabasePlatform();
 		$platform->registerDoctrineTypeMapping( 'enum', 'string' );

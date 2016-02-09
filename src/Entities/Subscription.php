@@ -3,6 +3,7 @@
 namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @since 2.0
@@ -68,6 +69,13 @@ class Subscription {
 	 * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
 	 */
 	private $address;
+
+	/**
+	 * @var \DateTime
+	 * @Gedmo\Timestampable(on="create")
+	 * @ORM\Column(type="datetime")
+	 */
+	private $createdAt;
 
 	const STATUS_CONFIRMED = 1;
 	const STATUS_NEUTRAL = 0;
@@ -217,6 +225,22 @@ class Subscription {
 	 */
 	public function getAddress() {
 		return $this->address;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getCreatedAt() {
+		return $this->createdAt;
+	}
+
+	/**
+	 * @param \DateTime $createdAt
+	 * @return Membership
+	 */
+	public function setCreatedAt( $createdAt ) {
+		$this->createdAt = $createdAt;
+		return $this;
 	}
 
 	/**
