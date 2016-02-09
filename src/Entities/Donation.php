@@ -128,7 +128,7 @@ class Donation {
 	 * @var \DateTime
 	 *
 	 * @Gedmo\Timestampable(on="create")
-	 * @ORM\Column(name="dt_new", type="datetime", nullable=true)
+	 * @ORM\Column(name="dt_new", type="datetime")
 	 */
 	private $dtNew;
 

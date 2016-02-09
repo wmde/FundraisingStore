@@ -22,8 +22,9 @@ class Membership {
 
 	/**
 	 * @var \DateTime
+	 *
 	 * @Gedmo\Timestampable(on="create")
-	 * @ORM\Column(name="timestamp", type="datetime", nullable=true)
+	 * @ORM\Column(name="timestamp", type="datetime")
 	 */
 	private $timestamp;
 
