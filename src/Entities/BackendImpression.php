@@ -46,7 +46,7 @@ class BackendImpression {
 	 * Set bannerId
 	 *
 	 * @param integer $bannerId
-	 * @return BackendImpression
+	 * @return self
 	 */
 	public function setBannerId( $bannerId ) {
 		$this->bannerId = $bannerId;
@@ -67,7 +67,7 @@ class BackendImpression {
 	 * Set datetime
 	 *
 	 * @param \DateTime $datetime
-	 * @return BackendImpression
+	 * @return self
 	 */
 	public function setDatetime( $datetime ) {
 		$this->datetime = $datetime;
@@ -88,7 +88,7 @@ class BackendImpression {
 	 * Set impCount
 	 *
 	 * @param integer $impCount
-	 * @return BackendImpression
+	 * @return self
 	 */
 	public function setImpCount( $impCount ) {
 		$this->impCount = $impCount;

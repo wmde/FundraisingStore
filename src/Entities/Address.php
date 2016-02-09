@@ -88,7 +88,7 @@ class Address {
 	 * Set salutation
 	 *
 	 * @param string $salutation
-	 * @return Address
+	 * @return self
 	 */
 	public function setSalutation( $salutation ) {
 		$this->salutation = $salutation;
@@ -109,7 +109,7 @@ class Address {
 	 * Set company name
 	 *
 	 * @param string $company
-	 * @return Address
+	 * @return self
 	 */
 	public function setCompany( $company ) {
 		$this->company = $company;
@@ -130,7 +130,7 @@ class Address {
 	 * Set title
 	 *
 	 * @param string $title
-	 * @return Address
+	 * @return self
 	 */
 	public function setTitle( $title ) {
 		$this->title = $title;
@@ -151,7 +151,7 @@ class Address {
 	 * Set first name
 	 *
 	 * @param string $firstName
-	 * @return Address
+	 * @return self
 	 */
 	public function setFirstName( $firstName ) {
 		$this->firstName = $firstName;
@@ -172,7 +172,7 @@ class Address {
 	 * Set last name
 	 *
 	 * @param string $lastName
-	 * @return Address
+	 * @return self
 	 */
 	public function setLastName( $lastName ) {
 		$this->lastName = $lastName;
@@ -193,7 +193,7 @@ class Address {
 	 * Set address (street, etc)
 	 *
 	 * @param string $address
-	 * @return Address
+	 * @return self
 	 */
 	public function setAddress( $address ) {
 		$this->address = $address;
@@ -214,7 +214,7 @@ class Address {
 	 * Set postcode
 	 *
 	 * @param string $postcode
-	 * @return Address
+	 * @return self
 	 */
 	public function setPostcode( $postcode ) {
 		$this->postcode = $postcode;
@@ -235,7 +235,7 @@ class Address {
 	 * Set city
 	 *
 	 * @param string $city
-	 * @return Address
+	 * @return self
 	 */
 	public function setCity( $city ) {
 		$this->city = $city;
@@ -256,7 +256,7 @@ class Address {
 	 * Set country
 	 *
 	 * @param string $country
-	 * @return Address
+	 * @return self
 	 */
 	public function setCountry( $country ) {
 		$this->country = $country;
