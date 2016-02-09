@@ -53,7 +53,7 @@ class BackendBanner {
 	 * Set cnName
 	 *
 	 * @param string $cnName
-	 * @return BackendBanner
+	 * @return self
 	 */
 	public function setCnName( $cnName ) {
 		$this->cnName = $cnName;
@@ -74,7 +74,7 @@ class BackendBanner {
 	 * Set layout
 	 *
 	 * @param string $layout
-	 * @return BackendBanner
+	 * @return self
 	 */
 	public function setLayout( $layout ) {
 		$this->layout = $layout;
@@ -95,7 +95,7 @@ class BackendBanner {
 	 * Set campaign
 	 *
 	 * @param string $campaign
-	 * @return BackendBanner
+	 * @return self
 	 */
 	public function setCampaign( $campaign ) {
 		$this->campaign = $campaign;
@@ -116,7 +116,7 @@ class BackendBanner {
 	 * Set keyword
 	 *
 	 * @param string $keyword
-	 * @return BackendBanner
+	 * @return self
 	 */
 	public function setKeyword( $keyword ) {
 		$this->keyword = $keyword;

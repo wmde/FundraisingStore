@@ -81,7 +81,7 @@ class User {
 	 * Set userName
 	 *
 	 * @param string $userName
-	 * @return User
+	 * @return self
 	 */
 	public function setUserName( $userName ) {
 		$this->userName = $userName;
@@ -102,7 +102,7 @@ class User {
 	 * Set userAddress
 	 *
 	 * @param string $userAddress
-	 * @return User
+	 * @return self
 	 */
 	public function setUserAddress( $userAddress ) {
 		$this->userAddress = $userAddress;
@@ -123,7 +123,7 @@ class User {
 	 * Set userPass
 	 *
 	 * @param string $userPass
-	 * @return User
+	 * @return self
 	 */
 	public function setUserPass( $userPass ) {
 		$this->userPass = $userPass;
@@ -144,7 +144,7 @@ class User {
 	 * Set userPassExpiry
 	 *
 	 * @param \DateTime $userPassExpiry
-	 * @return User
+	 * @return self
 	 */
 	public function setUserPassExpiry( $userPassExpiry ) {
 		$this->userPassExpiry = $userPassExpiry;
@@ -165,7 +165,7 @@ class User {
 	 * Set userPassNotification
 	 *
 	 * @param boolean $userPassNotification
-	 * @return User
+	 * @return self
 	 */
 	public function setUserPassNotification( $userPassNotification ) {
 		$this->userPassNotification = $userPassNotification;
@@ -186,7 +186,7 @@ class User {
 	 * Set userSalt
 	 *
 	 * @param string $userSalt
-	 * @return User
+	 * @return self
 	 */
 	public function setUserSalt( $userSalt ) {
 		$this->userSalt = $userSalt;
@@ -207,7 +207,7 @@ class User {
 	 * Set userRole
 	 *
 	 * @param boolean $userRole
-	 * @return User
+	 * @return self
 	 */
 	public function setUserRole( $userRole ) {
 		$this->userRole = $userRole;
@@ -228,7 +228,7 @@ class User {
 	 * Set userActive
 	 *
 	 * @param boolean $userActive
-	 * @return User
+	 * @return self
 	 */
 	public function setUserActive( $userActive ) {
 		$this->userActive = $userActive;

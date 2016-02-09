@@ -89,7 +89,7 @@ class Subscription {
 	 * Set name
 	 *
 	 * @param string $fullName
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setFullName( $fullName ) {
 		$this->fullName = $fullName;
@@ -110,7 +110,7 @@ class Subscription {
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setEmail( $email ) {
 		$this->email = $email;
@@ -131,7 +131,7 @@ class Subscription {
 	 * Set export
 	 *
 	 * @param \DateTime $export
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setExport( $export ) {
 		$this->export = $export;
@@ -152,7 +152,7 @@ class Subscription {
 	 * Set backup
 	 *
 	 * @param \DateTime $backup
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setBackup( $backup ) {
 		$this->backup = $backup;
@@ -173,7 +173,7 @@ class Subscription {
 	 * Set status
 	 *
 	 * @param integer $status
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -194,7 +194,7 @@ class Subscription {
 	 * Set guid
 	 *
 	 * @param string $confirmationCode
-	 * @return Subscription
+	 * @return self
 	 */
 	public function setConfirmationCode( $confirmationCode ) {
 		$this->confirmationCode = $confirmationCode;

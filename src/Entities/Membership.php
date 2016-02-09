@@ -258,7 +258,7 @@ class Membership {
 	 * Set donationId
 	 *
 	 * @param integer $donationId
-	 * @return Membership
+	 * @return self
 	 */
 	public function setDonationId( $donationId ) {
 		$this->donationId = $donationId;
@@ -279,7 +279,7 @@ class Membership {
 	 * Set timestamp
 	 *
 	 * @param \DateTime $timestamp
-	 * @return Membership
+	 * @return self
 	 */
 	public function setTimestamp( $timestamp ) {
 		$this->timestamp = $timestamp;
@@ -300,7 +300,7 @@ class Membership {
 	 * Set salutation
 	 *
 	 * @param string $salutation
-	 * @return Membership
+	 * @return self
 	 */
 	public function setSalutation( $salutation ) {
 		$this->salutation = $salutation;
@@ -321,7 +321,7 @@ class Membership {
 	 * Set company name
 	 *
 	 * @param string $company
-	 * @return Membership
+	 * @return self
 	 */
 	public function setCompany( $company ) {
 		$this->company = $company;
@@ -342,7 +342,7 @@ class Membership {
 	 * Set title
 	 *
 	 * @param string $title
-	 * @return Membership
+	 * @return self
 	 */
 	public function setTitle( $title ) {
 		$this->title = $title;
@@ -363,7 +363,7 @@ class Membership {
 	 * Set name
 	 *
 	 * @param string $name
-	 * @return Membership
+	 * @return self
 	 */
 	public function setName( $name ) {
 		$this->name = $name;
@@ -384,7 +384,7 @@ class Membership {
 	 * Set first name
 	 *
 	 * @param string $firstName
-	 * @return Membership
+	 * @return self
 	 */
 	public function setFirstName( $firstName ) {
 		$this->firstName = $firstName;
@@ -406,7 +406,7 @@ class Membership {
 	 * Set last name
 	 *
 	 * @param string $lastName
-	 * @return Membership
+	 * @return self
 	 */
 	public function setLastName( $lastName ) {
 		$this->lastName = $lastName;
@@ -438,7 +438,7 @@ class Membership {
 	 * Set address (street, etc)
 	 *
 	 * @param string $address
-	 * @return Membership
+	 * @return self
 	 */
 	public function setAddress( $address ) {
 		$this->address = $address;
@@ -459,7 +459,7 @@ class Membership {
 	 * Set postcode
 	 *
 	 * @param string $postcode
-	 * @return Membership
+	 * @return self
 	 */
 	public function setPostcode( $postcode ) {
 		$this->postcode = $postcode;
@@ -480,7 +480,7 @@ class Membership {
 	 * Set city
 	 *
 	 * @param string $city
-	 * @return Membership
+	 * @return self
 	 */
 	public function setCity( $city ) {
 		$this->city = $city;
@@ -501,7 +501,7 @@ class Membership {
 	 * Set email
 	 *
 	 * @param string $email
-	 * @return Membership
+	 * @return self
 	 */
 	public function setEmail( $email ) {
 		$this->email = $email;
@@ -522,7 +522,7 @@ class Membership {
 	 * Set phone
 	 *
 	 * @param string $phone
-	 * @return Membership
+	 * @return self
 	 */
 	public function setPhone( $phone ) {
 		$this->phone = $phone;
@@ -543,7 +543,7 @@ class Membership {
 	 * Set dob
 	 *
 	 * @param \DateTime $dob
-	 * @return Membership
+	 * @return self
 	 */
 	public function setDob( $dob ) {
 		$this->dob = $dob;
@@ -564,7 +564,7 @@ class Membership {
 	 * Set wikimediumShipping
 	 *
 	 * @param string $wikimediumShipping
-	 * @return Membership
+	 * @return self
 	 */
 	public function setWikimediumShipping( $wikimediumShipping ) {
 		$this->wikimediumShipping = $wikimediumShipping;
@@ -585,7 +585,7 @@ class Membership {
 	 * Set membershipType
 	 *
 	 * @param string $membershipType
-	 * @return Membership
+	 * @return self
 	 */
 	public function setMembershipType( $membershipType ) {
 		$this->membershipType = $membershipType;
@@ -606,7 +606,7 @@ class Membership {
 	 * Set membershipFee
 	 *
 	 * @param integer $membershipFee
-	 * @return Membership
+	 * @return self
 	 */
 	public function setMembershipFee( $membershipFee ) {
 		$this->membershipFee = $membershipFee;
@@ -627,8 +627,7 @@ class Membership {
 	 * Set membershipFeeInterval
 	 *
 	 * @param integer $membershipFeeInterval
-	 *
-	 * @return Membership
+	 * @return self
 	 */
 	public function setMembershipFeeInterval($membershipFeeInterval) {
 		$this->membershipFeeInterval = $membershipFeeInterval;
@@ -650,7 +649,7 @@ class Membership {
 	 * Set accountNumber
 	 *
 	 * @param string $accountNumber
-	 * @return Membership
+	 * @return self
 	 */
 	public function setAccountNumber( $accountNumber ) {
 		$this->accountNumber = $accountNumber;
@@ -671,7 +670,7 @@ class Membership {
 	 * Set bankName
 	 *
 	 * @param string $bankName
-	 * @return Membership
+	 * @return self
 	 */
 	public function setBankName( $bankName ) {
 		$this->bankName = $bankName;
@@ -692,7 +691,7 @@ class Membership {
 	 * Set bankCode
 	 *
 	 * @param string $bankCode
-	 * @return Membership
+	 * @return self
 	 */
 	public function setBankCode( $bankCode ) {
 		$this->bankCode = $bankCode;
@@ -713,7 +712,7 @@ class Membership {
 	 * Set iban
 	 *
 	 * @param string $iban
-	 * @return Membership
+	 * @return self
 	 */
 	public function setIban( $iban ) {
 		$this->iban = $iban;
@@ -734,7 +733,7 @@ class Membership {
 	 * Set bic
 	 *
 	 * @param string $bic
-	 * @return Membership
+	 * @return self
 	 */
 	public function setBic( $bic ) {
 		$this->bic = $bic;
@@ -755,7 +754,7 @@ class Membership {
 	 * Set accountHolder
 	 *
 	 * @param string $accountHolder
-	 * @return Membership
+	 * @return self
 	 */
 	public function setAccountHolder( $accountHolder ) {
 		$this->accountHolder = $accountHolder;
@@ -776,7 +775,7 @@ class Membership {
 	 * Set comment
 	 *
 	 * @param string $comment
-	 * @return Membership
+	 * @return self
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -797,7 +796,7 @@ class Membership {
 	 * Set export
 	 *
 	 * @param \DateTime $export
-	 * @return Membership
+	 * @return self
 	 */
 	public function setExport( $export ) {
 		$this->export = $export;
@@ -818,7 +817,7 @@ class Membership {
 	 * Set backup
 	 *
 	 * @param \DateTime $backup
-	 * @return Membership
+	 * @return self
 	 */
 	public function setBackup( $backup ) {
 		$this->backup = $backup;
@@ -839,7 +838,7 @@ class Membership {
 	 * Set wikilogin
 	 *
 	 * @param boolean $wikilogin
-	 * @return Membership
+	 * @return self
 	 */
 	public function setWikilogin( $wikilogin ) {
 		$this->wikilogin = $wikilogin;
@@ -860,7 +859,7 @@ class Membership {
 	 * Set tracking
 	 *
 	 * @param string $tracking
-	 * @return Membership
+	 * @return self
 	 */
 	public function setTracking( $tracking ) {
 		$this->tracking = $tracking;
@@ -881,7 +880,7 @@ class Membership {
 	 * Set status
 	 *
 	 * @param integer $status
-	 * @return Membership
+	 * @return self
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -902,7 +901,7 @@ class Membership {
 	 * Set country
 	 *
 	 * @param string $country
-	 * @return Membership
+	 * @return self
 	 */
 	public function setCountry( $country ) {
 		$this->country = $country;
@@ -923,7 +922,7 @@ class Membership {
 	 * Set data
 	 *
 	 * @param string $data
-	 * @return Membership
+	 * @return self
 	 */
 	public function setData( $data ) {
 		$this->data = $data;

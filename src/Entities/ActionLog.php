@@ -72,7 +72,7 @@ class ActionLog {
 	 * Set alTimestamp
 	 *
 	 * @param \DateTime $alTimestamp
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlTimestamp( $alTimestamp ) {
 		$this->alTimestamp = $alTimestamp;
@@ -93,7 +93,7 @@ class ActionLog {
 	 * Set alType
 	 *
 	 * @param string $alType
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlType( $alType ) {
 		$this->alType = $alType;
@@ -114,7 +114,7 @@ class ActionLog {
 	 * Set alRemoteAddr
 	 *
 	 * @param string $alRemoteAddr
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlRemoteAddr( $alRemoteAddr ) {
 		$this->alRemoteAddr = $alRemoteAddr;
@@ -135,7 +135,7 @@ class ActionLog {
 	 * Set alSessionId
 	 *
 	 * @param string $alSessionId
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlSessionId( $alSessionId ) {
 		$this->alSessionId = $alSessionId;
@@ -156,7 +156,7 @@ class ActionLog {
 	 * Set alUsername
 	 *
 	 * @param string $alUsername
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlUsername( $alUsername ) {
 		$this->alUsername = $alUsername;
@@ -177,7 +177,7 @@ class ActionLog {
 	 * Set alPassword
 	 *
 	 * @param string $alPassword
-	 * @return ActionLog
+	 * @return self
 	 */
 	public function setAlPassword( $alPassword ) {
 		$this->alPassword = $alPassword;
