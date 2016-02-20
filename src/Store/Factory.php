@@ -16,8 +16,11 @@ use Gedmo\Timestampable\TimestampableListener;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Jonas Kress
+ * @author Kai Nissen < kai.nissen@wikimedia.de >
  */
 class Factory {
+
+	private $entityManager;
 
 	public function __construct( Connection $connection ) {
 		$this->connection = $connection;
@@ -38,6 +41,14 @@ class Factory {
 	 * @throws \Doctrine\ORM\ORMException
 	 */
 	public function getEntityManager() {
+		if ( !$this->entityManager ) {
+			$this->setupEntityManager();
+		}
+
+		return $this->entityManager;
+	}
+
+	public function setupEntityManager() {
 		$paths = [ __DIR__ . '/../Entities/' ];
 		$config = Setup::createConfiguration();
 
@@ -51,12 +62,14 @@ class Factory {
 		$timestampableListener->setAnnotationReader( $annotationReader );
 		$eventManager->addEventSubscriber( $timestampableListener );
 
+		$eventManager->addEventListener( 'prePersist', new TransferCodeListener( new TransferCodeGenerator() ) );
+
 		$entityManager = EntityManager::create( $this->connection, $config, $eventManager );
 
 		$platform = $entityManager->getConnection()->getDatabasePlatform();
 		$platform->registerDoctrineTypeMapping( 'enum', 'string' );
 
-		return $entityManager;
+		$this->entityManager = $entityManager;
 	}
 
 	/**
