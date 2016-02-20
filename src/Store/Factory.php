@@ -62,6 +62,8 @@ class Factory {
 		$timestampableListener->setAnnotationReader( $annotationReader );
 		$eventManager->addEventSubscriber( $timestampableListener );
 
+		$eventManager->addEventListener( 'prePersist', new TransferCodeListener( new TransferCodeGenerator() ) );
+
 		$entityManager = EntityManager::create( $this->connection, $config, $eventManager );
 
 		$platform = $entityManager->getConnection()->getDatabasePlatform();
