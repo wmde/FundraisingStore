@@ -16,8 +16,11 @@ use Gedmo\Timestampable\TimestampableListener;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Jonas Kress
+ * @author Kai Nissen < kai.nissen@wikimedia.de >
  */
 class Factory {
+
+	private $entityManager;
 
 	public function __construct( Connection $connection ) {
 		$this->connection = $connection;
@@ -38,6 +41,14 @@ class Factory {
 	 * @throws \Doctrine\ORM\ORMException
 	 */
 	public function getEntityManager() {
+		if ( !$this->entityManager ) {
+			$this->entityManager = $this->setupEntityManager();
+		}
+
+		return $this->entityManager;
+	}
+
+	private function setupEntityManager() {
 		$paths = [ __DIR__ . '/../Entities/' ];
 		$config = Setup::createConfiguration();
 
