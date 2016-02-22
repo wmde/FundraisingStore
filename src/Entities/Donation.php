@@ -649,14 +649,11 @@ class Donation {
 	}
 
 	public function getUExpiry() {
-		$data = $this->decodeData( $this->data );
-
-		return $data[ 'uexpiry' ];
+		return $this->getDecodedData()[ 'uexpiry' ];
 	}
 
 	public function uTokenIsExpired() {
-		$uexp_time = strtotime( $this->getUExpiry() );
-		return time() > $uexp_time;
+		return time() > strtotime( $this->getUExpiry() );
 	}
 
 	public function validateToken( $tokenToCheck, $serverSecret ) {
@@ -670,7 +667,7 @@ class Donation {
 	}
 
 	public function getEntryType( $mode = null ) {
-		$data = $this->decodeData( $this->data );
+		$data = $this->getDecodedData();
 
 		if ( $mode === null ) {
 			$mode = $this->publicRecord;
@@ -692,7 +689,20 @@ class Donation {
 		return $eintrag;
 	}
 
-	private function decodeData( $data ) {
-		return unserialize( base64_decode( $data ) );
+	/**
+	 * @since 2.0
+	 * @return array
+	 */
+	public function getDecodedData() {
+		return unserialize( base64_decode( $this->data ) );
 	}
+
+	/**
+	 * @since 2.0
+	 * @param array $data
+	 */
+	public function encodeAndSetData( array $data ) {
+		$this->data = base64_encode( serialize( $data ) );
+	}
+
 }
