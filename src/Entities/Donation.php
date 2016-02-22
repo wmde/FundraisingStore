@@ -689,8 +689,39 @@ class Donation {
 		return $eintrag;
 	}
 
-	private function getDecodedData() {
+	/**
+	 * @since 2.0
+	 * @return array
+	 */
+	public function getDecodedData() {
 		return unserialize( base64_decode( $this->data ) );
+	}
+
+	/**
+	 * @since 2.0
+	 * @param array $data
+	 */
+	public function encodeAndSetData( array $data ) {
+		$this->data = base64_encode( serialize( $data ) );
+	}
+
+	/**
+	 * Marks the donation as cancelled by updating the required fields.
+	 * No validation is done here, as this should happen in the domain.
+	 *
+	 * @since 2.0
+	 */
+	public function cancel() {
+		$this->dtDel = date( 'Y-m-d H:i:s' );
+		$this->status = 'D';
+
+		$data = $this->getDecodedData();
+
+		$data['dt_del'] = $this->dtDel;
+		$data['status'] = $this->status;
+		$data['utoken'] = '';
+
+		$this->encodeAndSetData( $data );
 	}
 
 }
