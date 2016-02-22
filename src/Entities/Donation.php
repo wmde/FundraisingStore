@@ -721,6 +721,8 @@ class Donation {
 		$data['status'] = $this->status;
 		$data['utoken'] = '';
 
+		// TODO: write to $data['log'] ?
+
 		$this->encodeAndSetData( $data );
 	}
 
