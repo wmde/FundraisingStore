@@ -10,7 +10,7 @@
 	"require-dev": {
 		"squizlabs/php_codesniffer": "~2.2",
 		"phpmd/phpmd": "~2.3",
-		"ockcyp/covers-validator": "~0.2.0"
+		"ockcyp/covers-validator": "~0.4.0"
 	},
 	"autoload": {
 		"psr-4": {
