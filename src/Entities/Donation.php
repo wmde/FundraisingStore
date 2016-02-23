@@ -537,7 +537,7 @@ class Donation {
 	/**
 	 * Set dtDel
 	 *
-	 * @param \DateTime $dtDel
+	 * @param \DateTime|null $dtDel
 	 * @return self
 	 */
 	public function setDtDel( $dtDel ) {
@@ -549,7 +549,7 @@ class Donation {
 	/**
 	 * Get dtDel
 	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getDtDel() {
 		return $this->dtDel;
