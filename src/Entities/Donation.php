@@ -648,6 +648,15 @@ class Donation {
 		return $this->id;
 	}
 
+	/**
+	 * @since 2.0
+	 *
+	 * @param integer|null $id
+	 */
+	public function setId( $id ) {
+		$this->id = $id;
+	}
+
 	public function getUExpiry() {
 		return $this->getDecodedData()[ 'uexpiry' ];
 	}
