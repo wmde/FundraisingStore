@@ -27,4 +27,25 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame( $someData, $donation->getDecodedData() );
 	}
 
+	public function testWhenSettingIdToAnInteger_getIdReturnsIt() {
+		$donation = new Donation();
+		$donation->setId( 1337 );
+
+		$this->assertSame( 1337, $donation->getId() );
+	}
+
+	public function testWhenSettingIdToNull_getIdReturnsNull() {
+		$donation = new Donation();
+		$donation->setId( 1337 );
+		$donation->setId( null );
+
+		$this->assertNull( $donation->getId() );
+	}
+
+	public function testWhenIdIsNotSet_getIdReturnsNull() {
+		$donation = new Donation();
+
+		$this->assertNull( $donation->getId() );
+	}
+
 }
