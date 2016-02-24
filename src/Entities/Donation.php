@@ -642,7 +642,7 @@ class Donation {
 	/**
 	 * Get id
 	 *
-	 * @return integer
+	 * @return integer|null
 	 */
 	public function getId() {
 		return $this->id;
