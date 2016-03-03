@@ -4,6 +4,7 @@ namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use WMDE\Fundraising\Store\DonationData;
 
 /**
  * @since 2.0
@@ -409,27 +410,6 @@ class Donation {
 	}
 
 	/**
-	 * Set data
-	 *
-	 * @param string $data
-	 * @return self
-	 */
-	public function setData( $data ) {
-		$this->data = $data;
-
-		return $this;
-	}
-
-	/**
-	 * Get data
-	 *
-	 * @return string
-	 */
-	public function getData() {
-		return $this->data;
-	}
-
-	/**
 	 * Set source
 	 *
 	 * @param string $source
@@ -699,11 +679,30 @@ class Donation {
 	}
 
 	/**
+	 * @param string $data Base 64 encoded, serialized PHP array
+	 * @return self
+	 */
+	public function setData( $data ) {
+		$this->data = $data;
+
+		return $this;
+	}
+
+	/**
+	 * @return string Base 64 encoded, serialized PHP array
+	 */
+	public function getData() {
+		return $this->data;
+	}
+
+	/**
 	 * @since 2.0
 	 * @return array
 	 */
 	public function getDecodedData() {
-		return unserialize( base64_decode( $this->data ) );
+		$data = unserialize( base64_decode( $this->data ) );
+
+		return is_array( $data ) ? $data : [];
 	}
 
 	/**
@@ -712,6 +711,45 @@ class Donation {
 	 */
 	public function encodeAndSetData( array $data ) {
 		$this->data = base64_encode( serialize( $data ) );
+	}
+
+	/**
+	 * @since 2.0
+	 * @return DonationData
+	 */
+	public function getDataObject() {
+		$dataArray = $this->getDecodedData();
+
+		$data = new DonationData();
+
+		$data->setToken( array_key_exists( 'token', $dataArray ) ? $dataArray['token'] : null );
+		$data->setUpdateToken( array_key_exists( 'utoken', $dataArray ) ? $dataArray['utoken'] : null );
+		$data->setUpdateTokenExpiry( array_key_exists( 'uexpiry', $dataArray ) ? $dataArray['uexpiry'] : null );
+
+		return $data;
+	}
+
+	/**
+	 * @since 2.0
+	 * @param DonationData $data
+	 */
+	public function setDataObject( DonationData $data ) {
+		$dataArray = array_merge(
+			$this->getDecodedData(),
+			[
+				'token' => $data->getToken(),
+				'utoken' => $data->getUpdateToken(),
+				'uexpiry' => $data->getUpdateTokenExpiry(),
+			]
+		);
+
+		foreach ( [ 'token', 'utoken', 'uexpiry' ] as $keyName ) {
+			if ( is_null( $dataArray[$keyName] ) ) {
+				unset( $dataArray[$keyName] );
+			}
+		}
+
+		$this->encodeAndSetData( $dataArray );
 	}
 
 }
