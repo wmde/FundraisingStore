@@ -679,6 +679,8 @@ class Donation {
 	}
 
 	/**
+	 * @deprecated since 2.0, use encodeAndSetData or setDataObject instead
+	 *
 	 * @param string $data Base 64 encoded, serialized PHP array
 	 * @return self
 	 */
@@ -689,6 +691,8 @@ class Donation {
 	}
 
 	/**
+	 * @deprecated since 2.0, use getDecodedData or getDataObject instead
+	 *
 	 * @return string Base 64 encoded, serialized PHP array
 	 */
 	public function getData() {
