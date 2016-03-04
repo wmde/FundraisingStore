@@ -3,6 +3,7 @@
 namespace WMDE\Fundraising\Store\Tests;
 
 use WMDE\Fundraising\Entities\Donation;
+use WMDE\Fundraising\Store\DonationData;
 
 /**
  * @covers WMDE\Fundraising\Entities\Donation
@@ -27,6 +28,12 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame( $someData, $donation->getDecodedData() );
 	}
 
+	public function testGivenNoData_getDecodedDataReturnsEmptyArray() {
+		$donation = new Donation();
+
+		$this->assertSame( [], $donation->getDecodedData() );
+	}
+
 	public function testWhenSettingIdToAnInteger_getIdReturnsIt() {
 		$donation = new Donation();
 		$donation->setId( 1337 );
@@ -46,6 +53,81 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		$donation = new Donation();
 
 		$this->assertNull( $donation->getId() );
+	}
+
+	public function testGivenNoData_getDataObjectReturnsObjectWithNullValues() {
+		$donation = new Donation();
+
+		$this->assertNull( $donation->getDataObject()->getToken() );
+		$this->assertNull( $donation->getDataObject()->getUpdateToken() );
+		$this->assertNull( $donation->getDataObject()->getUpdateTokenExpiry() );
+	}
+
+	public function testGivenData_getDataObjectReturnsTheValues() {
+		$donation = new Donation();
+		$donation->encodeAndSetData( [
+			'token' => 'foo',
+			'utoken' => 'bar',
+			'uexpiry' => 'baz',
+		] );
+
+		$this->assertSame( 'foo', $donation->getDataObject()->getToken() );
+		$this->assertSame( 'bar', $donation->getDataObject()->getUpdateToken() );
+		$this->assertSame( 'baz', $donation->getDataObject()->getUpdateTokenExpiry() );
+	}
+
+	public function testWhenProvidingData_setDataObjectSetsData() {
+		$data = new DonationData();
+		$data->setToken( 'foo' );
+		$data->setUpdateToken( 'bar' );
+		$data->setUpdateTokenExpiry( 'baz' );
+
+		$donation = new Donation();
+		$donation->setDataObject( $data );
+
+		$this->assertSame(
+			[
+				'token' => 'foo',
+				'utoken' => 'bar',
+				'uexpiry' => 'baz',
+			],
+			$donation->getDecodedData()
+		);
+	}
+
+	public function testWhenProvidingNullData_setObjectDoesNotSetFields() {
+		$donation = new Donation();
+		$donation->setDataObject( new DonationData() );
+
+		$this->assertSame(
+			[],
+			$donation->getDecodedData()
+		);
+	}
+
+	public function testWhenDataAlreadyExists_setDataObjectRetainsAndUpdatesData() {
+		$donation = new Donation();
+		$donation->encodeAndSetData( [
+			'nyan' => 'cat',
+			'token' => 'wee',
+			'pink' => 'fluffy',
+		] );
+
+		$data = new DonationData();
+		$data->setToken( 'foo' );
+		$data->setUpdateToken( 'bar' );
+
+		$donation->setDataObject( $data );
+
+		$this->assertSame(
+			[
+				'nyan' => 'cat',
+				'token' => 'foo',
+				'pink' => 'fluffy',
+				'utoken' => 'bar',
+			],
+			$donation->getDecodedData()
+		);
 	}
 
 }
