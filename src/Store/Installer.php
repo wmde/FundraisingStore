@@ -21,10 +21,19 @@ class Installer {
 	}
 
 	public function install() {
-		$schemaTool = new SchemaTool( $this->entityManager );
-		$classesMetaData = $this->entityManager->getMetadataFactory()->getAllMetadata();
+		$this->getSchemaTool()->createSchema( $this->getClassMetaData() );
+	}
 
-		$schemaTool->createSchema( $classesMetaData );
+	public function uninstall() {
+		$this->getSchemaTool()->dropSchema( $this->getClassMetaData() );
+	}
+
+	private function getSchemaTool() {
+		return new SchemaTool( $this->entityManager );
+	}
+
+	private function getClassMetaData() {
+		return $this->entityManager->getMetadataFactory()->getAllMetadata();
 	}
 
 }
