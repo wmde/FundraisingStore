@@ -10,20 +10,22 @@ namespace WMDE\Fundraising\Store\Tests;
 class DatabaseInstallationTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGetTablesAreThere() {
-		$factory = TestEnvironment::newDefault()->getFactory();
+		$environment = TestEnvironment::newDefault();
 
-		$tableNames = $factory->getConnection()->getSchemaManager()->createSchema()->getTableNames();
+		$tableNames = $environment->getFactory()->getConnection()->getSchemaManager()->createSchema()->getTableNames();
+
+		$dbName = $environment->getDatabaseName();
 
 		$this->assertSame(
 			[
-				'public.action_log',
-				'public.address',
-				'public.backend_banner',
-				'public.backend_impressions',
-				'public.request',
-				'public.spenden',
-				'public.subscription',
-				'public.users',
+				$dbName . '.action_log',
+				$dbName . '.address',
+				$dbName . '.backend_banner',
+				$dbName . '.backend_impressions',
+				$dbName . '.request',
+				$dbName . '.spenden',
+				$dbName . '.subscription',
+				$dbName . '.users',
 			],
 			$tableNames
 		);

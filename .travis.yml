@@ -1,12 +1,17 @@
 language: php
 
-php:
-  - 5.5
-  - 7
+matrix:
+  include:
+    - php: 5.5
+      env: DB=sqlite
+    - php: 7
+      env: DB=mysql
 
 sudo: false
 
-install: travis_retry composer install --prefer-source
+install:
+  - if [ "$DB" == "mysql" ]; then mysql -e 'create database spenden;'; fi
+  - travis_retry composer install
 
 script: composer ci
 

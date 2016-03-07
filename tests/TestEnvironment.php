@@ -19,16 +19,46 @@ class TestEnvironment {
 	private $factory;
 
 	public function __construct() {
-		$this->factory = new Factory( DriverManager::getConnection( [
-			'driver' => 'pdo_sqlite',
-			'memory' => true,
-		] ) );
+		$this->factory = new Factory( DriverManager::getConnection(
+			$this->newConnectionDetails()
+		) );
+
+		try {
+			$this->factory->newInstaller()->uninstall();
+		}
+		catch ( \Exception $ex ) {
+		}
 
 		$this->factory->newInstaller()->install();
 	}
 
 	public function getFactory() {
 		return $this->factory;
+	}
+
+	private function newConnectionDetails() {
+		if ( getenv( 'DB' ) === 'mysql' ) {
+			return [
+				'driver' => 'pdo_mysql',
+				'user' => 'root',
+				'password' => '',
+				'dbname' => 'spenden',
+				'host' => 'localhost',
+			];
+		}
+
+		return [
+			'driver' => 'pdo_sqlite',
+			'memory' => true,
+		];
+	}
+
+	public function getDatabaseName() {
+		if ( getenv( 'DB' ) === 'mysql' ) {
+			return 'spenden';
+		}
+
+		return 'public';
 	}
 
 }
