@@ -106,6 +106,8 @@ class Membership {
 	private $phone = '';
 
 	/**
+	 * Date of birth
+	 *
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="dob", type="date", nullable=true)
