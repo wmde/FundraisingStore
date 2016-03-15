@@ -130,4 +130,28 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testWhenModifyingTheDataObject_modificationsAreReflected() {
+		$donation = new Donation();
+		$donation->encodeAndSetData( [
+			'nyan' => 'cat',
+			'token' => 'wee',
+			'pink' => 'fluffy',
+		] );
+
+		$donation->modifyDataObject( function( DonationData $data ) {
+			$data->setToken( 'foo' );
+			$data->setUpdateToken( 'bar' );
+		} );
+
+		$this->assertSame(
+			[
+				'nyan' => 'cat',
+				'token' => 'foo',
+				'pink' => 'fluffy',
+				'utoken' => 'bar',
+			],
+			$donation->getDecodedData()
+		);
+	}
+
 }

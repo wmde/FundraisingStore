@@ -762,4 +762,14 @@ class Donation {
 		$this->encodeAndSetData( $dataArray );
 	}
 
+	/**
+	 * @since 2.0
+	 * @param callable $modificationFunction Takes a modifiable DonationData parameter
+	 */
+	public function modifyDataObject( callable $modificationFunction ) {
+		$dataObject = $this->getDataObject();
+		$modificationFunction( $dataObject );
+		$this->setDataObject( $dataObject );
+	}
+
 }
