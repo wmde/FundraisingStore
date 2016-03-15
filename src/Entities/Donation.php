@@ -691,7 +691,7 @@ class Donation {
 	}
 
 	/**
-	 * @deprecated since 2.0, use getDecodedData or getDataObject instead
+	 * @deprecated since 2.0, use @see getDecodedData or @see getDataObject instead
 	 *
 	 * @return string Base 64 encoded, serialized PHP array
 	 */
@@ -700,6 +700,8 @@ class Donation {
 	}
 
 	/**
+	 * NOTE: if possible, use @see getDataObject instead, as it provides a nicer API.
+	 *
 	 * @since 2.0
 	 * @return array
 	 */
@@ -718,6 +720,10 @@ class Donation {
 	}
 
 	/**
+	 * WARNING: updates made to the return value will not be reflected in the Donation state.
+	 * Similarly, updates to the Donation state will not propagate to the returned object.
+	 * To update the Donation state, explicitly call @see setDataObject.
+	 *
 	 * @since 2.0
 	 * @return DonationData
 	 */
