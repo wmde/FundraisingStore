@@ -236,7 +236,7 @@ class Subscription {
 
 	/**
 	 * @param \DateTime $createdAt
-	 * @return Membership
+	 * @return self
 	 */
 	public function setCreatedAt( $createdAt ) {
 		$this->createdAt = $createdAt;

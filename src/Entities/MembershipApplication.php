@@ -11,7 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
  * @ORM\Entity
  */
-class Membership {
+class MembershipApplication {
 
 	/**
 	 * @var integer
@@ -261,6 +261,7 @@ class Membership {
 	 * Set donationId
 	 *
 	 * @param integer $donationId
+	 *
 	 * @return self
 	 */
 	public function setDonationId( $donationId ) {
@@ -282,6 +283,7 @@ class Membership {
 	 * Set timestamp
 	 *
 	 * @param \DateTime $timestamp
+	 *
 	 * @return self
 	 */
 	public function setTimestamp( $timestamp ) {
@@ -303,6 +305,7 @@ class Membership {
 	 * Set salutation
 	 *
 	 * @param string $salutation
+	 *
 	 * @return self
 	 */
 	public function setSalutation( $salutation ) {
@@ -324,6 +327,7 @@ class Membership {
 	 * Set company name
 	 *
 	 * @param string $company
+	 *
 	 * @return self
 	 */
 	public function setCompany( $company ) {
@@ -345,6 +349,7 @@ class Membership {
 	 * Set title
 	 *
 	 * @param string $title
+	 *
 	 * @return self
 	 */
 	public function setTitle( $title ) {
@@ -366,6 +371,7 @@ class Membership {
 	 * Set name
 	 *
 	 * @param string $name
+	 *
 	 * @return self
 	 */
 	public function setName( $name ) {
@@ -387,6 +393,7 @@ class Membership {
 	 * Set first name
 	 *
 	 * @param string $firstName
+	 *
 	 * @return self
 	 */
 	public function setFirstName( $firstName ) {
@@ -409,6 +416,7 @@ class Membership {
 	 * Set last name
 	 *
 	 * @param string $lastName
+	 *
 	 * @return self
 	 */
 	public function setLastName( $lastName ) {
@@ -441,6 +449,7 @@ class Membership {
 	 * Set address (street, etc)
 	 *
 	 * @param string $address
+	 *
 	 * @return self
 	 */
 	public function setAddress( $address ) {
@@ -462,6 +471,7 @@ class Membership {
 	 * Set postcode
 	 *
 	 * @param string $postcode
+	 *
 	 * @return self
 	 */
 	public function setPostcode( $postcode ) {
@@ -483,6 +493,7 @@ class Membership {
 	 * Set city
 	 *
 	 * @param string $city
+	 *
 	 * @return self
 	 */
 	public function setCity( $city ) {
@@ -504,6 +515,7 @@ class Membership {
 	 * Set email
 	 *
 	 * @param string $email
+	 *
 	 * @return self
 	 */
 	public function setEmail( $email ) {
@@ -525,6 +537,7 @@ class Membership {
 	 * Set phone
 	 *
 	 * @param string $phone
+	 *
 	 * @return self
 	 */
 	public function setPhone( $phone ) {
@@ -546,6 +559,7 @@ class Membership {
 	 * Set dob
 	 *
 	 * @param \DateTime $dob
+	 *
 	 * @return self
 	 */
 	public function setDob( $dob ) {
@@ -567,6 +581,7 @@ class Membership {
 	 * Set wikimediumShipping
 	 *
 	 * @param string $wikimediumShipping
+	 *
 	 * @return self
 	 */
 	public function setWikimediumShipping( $wikimediumShipping ) {
@@ -588,6 +603,7 @@ class Membership {
 	 * Set membershipType
 	 *
 	 * @param string $membershipType
+	 *
 	 * @return self
 	 */
 	public function setMembershipType( $membershipType ) {
@@ -609,6 +625,7 @@ class Membership {
 	 * Set membershipFee
 	 *
 	 * @param integer $membershipFee
+	 *
 	 * @return self
 	 */
 	public function setMembershipFee( $membershipFee ) {
@@ -630,6 +647,7 @@ class Membership {
 	 * Set membershipFeeInterval
 	 *
 	 * @param integer $membershipFeeInterval
+	 *
 	 * @return self
 	 */
 	public function setMembershipFeeInterval($membershipFeeInterval) {
@@ -652,6 +670,7 @@ class Membership {
 	 * Set accountNumber
 	 *
 	 * @param string $accountNumber
+	 *
 	 * @return self
 	 */
 	public function setAccountNumber( $accountNumber ) {
@@ -673,6 +692,7 @@ class Membership {
 	 * Set bankName
 	 *
 	 * @param string $bankName
+	 *
 	 * @return self
 	 */
 	public function setBankName( $bankName ) {
@@ -694,6 +714,7 @@ class Membership {
 	 * Set bankCode
 	 *
 	 * @param string $bankCode
+	 *
 	 * @return self
 	 */
 	public function setBankCode( $bankCode ) {
@@ -715,6 +736,7 @@ class Membership {
 	 * Set iban
 	 *
 	 * @param string $iban
+	 *
 	 * @return self
 	 */
 	public function setIban( $iban ) {
@@ -736,6 +758,7 @@ class Membership {
 	 * Set bic
 	 *
 	 * @param string $bic
+	 *
 	 * @return self
 	 */
 	public function setBic( $bic ) {
@@ -757,6 +780,7 @@ class Membership {
 	 * Set accountHolder
 	 *
 	 * @param string $accountHolder
+	 *
 	 * @return self
 	 */
 	public function setAccountHolder( $accountHolder ) {
@@ -778,6 +802,7 @@ class Membership {
 	 * Set comment
 	 *
 	 * @param string $comment
+	 *
 	 * @return self
 	 */
 	public function setComment( $comment ) {
@@ -799,6 +824,7 @@ class Membership {
 	 * Set export
 	 *
 	 * @param \DateTime $export
+	 *
 	 * @return self
 	 */
 	public function setExport( $export ) {
@@ -820,6 +846,7 @@ class Membership {
 	 * Set backup
 	 *
 	 * @param \DateTime $backup
+	 *
 	 * @return self
 	 */
 	public function setBackup( $backup ) {
@@ -841,6 +868,7 @@ class Membership {
 	 * Set wikilogin
 	 *
 	 * @param boolean $wikilogin
+	 *
 	 * @return self
 	 */
 	public function setWikilogin( $wikilogin ) {
@@ -862,6 +890,7 @@ class Membership {
 	 * Set tracking
 	 *
 	 * @param string $tracking
+	 *
 	 * @return self
 	 */
 	public function setTracking( $tracking ) {
@@ -883,6 +912,7 @@ class Membership {
 	 * Set status
 	 *
 	 * @param integer $status
+	 *
 	 * @return self
 	 */
 	public function setStatus( $status ) {
@@ -904,6 +934,7 @@ class Membership {
 	 * Set country
 	 *
 	 * @param string $country
+	 *
 	 * @return self
 	 */
 	public function setCountry( $country ) {
