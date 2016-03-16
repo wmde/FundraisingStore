@@ -1,13 +1,12 @@
 <?php
 
-
 namespace WMDE\Fundraising\Store\Tests;
 
 use WMDE\Fundraising\Entities\MembershipApplication;
 
-class MembershipInsertionTest extends \PHPUnit_Framework_TestCase {
+class MembershipApplicationInsertionTest extends \PHPUnit_Framework_TestCase {
 
-	public function testNewMembershipCanBeInserted() {
+	public function testNewMembershipApplicationCanBeInserted() {
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
 		$entityManager->persist( new MembershipApplication() );
 		$entityManager->flush();
