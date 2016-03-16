@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class MembershipApplication {
 
 	/**
-	 * @var integer
+	 * @var integer|null
 	 *
 	 * @ORM\Column(name="donation_id", type="integer", nullable=true)
 	 */
@@ -29,21 +29,21 @@ class MembershipApplication {
 	private $timestamp;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="anrede", type="string", length=16, nullable=true)
 	 */
 	private $salutation;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="firma", type="string", length=100, nullable=true)
 	 */
 	private $company;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="titel", type="string", length=16, nullable=true)
 	 */
@@ -71,21 +71,21 @@ class MembershipApplication {
 	private $lastName = '';
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="strasse", type="string", length=100, nullable=true)
 	 */
 	private $address;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="plz", type="string", length=8, nullable=true)
 	 */
 	private $postcode;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="ort", type="string", length=100, nullable=true)
 	 */
@@ -108,7 +108,7 @@ class MembershipApplication {
 	/**
 	 * Date of birth
 	 *
-	 * @var \DateTime
+	 * @var \DateTime|null
 	 *
 	 * @ORM\Column(name="dob", type="date", nullable=true)
 	 */
@@ -140,7 +140,6 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="membership_fee_interval", type="smallint", options={"default":12}, nullable=true)
 	 */
-
 	private $membershipFeeInterval = 12;
 
 	/**
@@ -258,9 +257,7 @@ class MembershipApplication {
 	const STATUS_CANCELED = -8;
 
 	/**
-	 * Set donationId
-	 *
-	 * @param integer $donationId
+	 * @param integer|null $donationId
 	 *
 	 * @return self
 	 */
@@ -271,17 +268,16 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get donationId
+	 * Returns the id of the donation that led to the membership application,
+	 * or null when the application is not linked to any donation.
 	 *
-	 * @return integer
+	 * @return integer|null
 	 */
 	public function getDonationId() {
 		return $this->donationId;
 	}
 
 	/**
-	 * Set timestamp
-	 *
 	 * @param \DateTime $timestamp
 	 *
 	 * @return self
@@ -293,8 +289,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get timestamp
-	 *
 	 * @return \DateTime
 	 */
 	public function getTimestamp() {
@@ -302,9 +296,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set salutation
-	 *
-	 * @param string $salutation
+	 * @param string|null $salutation
 	 *
 	 * @return self
 	 */
@@ -315,18 +307,14 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get salutation
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getSalutation() {
 		return $this->salutation;
 	}
 
 	/**
-	 * Set company name
-	 *
-	 * @param string $company
+	 * @param string|null $company
 	 *
 	 * @return self
 	 */
@@ -337,17 +325,13 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get company name
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getCompany() {
 		return $this->company;
 	}
 
 	/**
-	 * Set title
-	 *
 	 * @param string $title
 	 *
 	 * @return self
@@ -359,8 +343,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get title
-	 *
 	 * @return string
 	 */
 	public function getTitle() {
@@ -368,8 +350,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set name
-	 *
 	 * @param string $name
 	 *
 	 * @return self
@@ -381,8 +361,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get name
-	 *
 	 * @return string
 	 */
 	public function getName() {
@@ -390,8 +368,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set first name
-	 *
 	 * @param string $firstName
 	 *
 	 * @return self
@@ -404,8 +380,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get first name
-	 *
 	 * @return string
 	 */
 	public function getFirstName() {
@@ -413,8 +387,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set last name
-	 *
 	 * @param string $lastName
 	 *
 	 * @return self
@@ -427,8 +399,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get last name
-	 *
 	 * @return string
 	 */
 	public function getLastName() {
@@ -448,7 +418,7 @@ class MembershipApplication {
 	/**
 	 * Set address (street, etc)
 	 *
-	 * @param string $address
+	 * @param string|null $address
 	 *
 	 * @return self
 	 */
@@ -461,16 +431,14 @@ class MembershipApplication {
 	/**
 	 * Get address (street, etc)
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getAddress() {
 		return $this->address;
 	}
 
 	/**
-	 * Set postcode
-	 *
-	 * @param string $postcode
+	 * @param string|null $postcode
 	 *
 	 * @return self
 	 */
@@ -481,18 +449,14 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get postcode
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getPostcode() {
 		return $this->postcode;
 	}
 
 	/**
-	 * Set city
-	 *
-	 * @param string $city
+	 * @param string|null $city
 	 *
 	 * @return self
 	 */
@@ -503,9 +467,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get city
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getCity() {
 		return $this->city;
@@ -556,9 +518,9 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set dob
+	 * Sets the date of birth of the applicant
 	 *
-	 * @param \DateTime $dob
+	 * @param \DateTime|null $dob
 	 *
 	 * @return self
 	 */
@@ -569,9 +531,9 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get dob
+	 * Returns the date of birth of the applicant
 	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getDob() {
 		return $this->dob;
