@@ -112,7 +112,7 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="dob", type="date", nullable=true)
 	 */
-	private $dob;
+	private $dateOfBirth;
 
 	/**
 	 * @var string
@@ -531,12 +531,12 @@ class MembershipApplication {
 	/**
 	 * Sets the date of birth of the applicant
 	 *
-	 * @param \DateTime|null $dob
+	 * @param \DateTime|null $dateOfBirth
 	 *
 	 * @return self
 	 */
-	public function setDob( $dob ) {
-		$this->dob = $dob;
+	public function setDob( $dateOfBirth ) {
+		$this->dateOfBirth = $dateOfBirth;
 
 		return $this;
 	}
@@ -547,7 +547,7 @@ class MembershipApplication {
 	 * @return \DateTime|null
 	 */
 	public function getDob() {
-		return $this->dob;
+		return $this->dateOfBirth;
 	}
 
 	/**
