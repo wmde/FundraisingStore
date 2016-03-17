@@ -136,6 +136,8 @@ class MembershipApplication {
 	private $membershipFee = 0;
 
 	/**
+	 * FIXME: this should not be nullable
+	 *
 	 * @var integer
 	 *
 	 * @ORM\Column(name="membership_fee_interval", type="smallint", options={"default":12}, nullable=true)
@@ -164,14 +166,14 @@ class MembershipApplication {
 	private $bankCode = '';
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="iban", type="string", length=32, options={"default":""}, nullable=true)
 	 */
 	private $iban = '';
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="bic", type="string", length=32, options={"default":""}, nullable=true)
 	 */
@@ -192,14 +194,14 @@ class MembershipApplication {
 	private $comment = '';
 
 	/**
-	 * @var \DateTime
+	 * @var \DateTime|null
 	 *
 	 * @ORM\Column(name="export", type="datetime", nullable=true)
 	 */
 	private $export;
 
 	/**
-	 * @var \DateTime
+	 * @var \DateTime|null
 	 *
 	 * @ORM\Column(name="backup", type="datetime", nullable=true)
 	 */
@@ -213,13 +215,15 @@ class MembershipApplication {
 	private $wikilogin = 0;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="tracking", type="string", length=50, nullable=true)
 	 */
 	private $tracking;
 
 	/**
+	 * FIXME: this should not be nullable
+	 *
 	 * @var integer
 	 *
 	 * @ORM\Column(name="status", type="smallint", options={"default":0}, nullable=true)
@@ -227,14 +231,14 @@ class MembershipApplication {
 	private $status = 0;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="country", type="string", length=8, options={"default":""}, nullable=true)
 	 */
 	private $country = '';
 
 	/**
-	 * @var string
+	 * @var string|null
 	 *
 	 * @ORM\Column(name="data", type="text", nullable=true)
 	 */
@@ -255,6 +259,13 @@ class MembershipApplication {
 	const STATUS_MODERATION = -2;
 	const STATUS_ABORTED = -4;
 	const STATUS_CANCELED = -8;
+
+	/**
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
 	/**
 	 * @param integer|null $donationId
@@ -540,8 +551,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set wikimediumShipping
-	 *
 	 * @param string $wikimediumShipping
 	 *
 	 * @return self
@@ -553,8 +562,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get wikimediumShipping
-	 *
 	 * @return string
 	 */
 	public function getWikimediumShipping() {
@@ -562,8 +569,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set membershipType
-	 *
 	 * @param string $membershipType
 	 *
 	 * @return self
@@ -575,8 +580,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get membershipType
-	 *
 	 * @return string
 	 */
 	public function getMembershipType() {
@@ -584,8 +587,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set membershipFee
-	 *
 	 * @param integer $membershipFee
 	 *
 	 * @return self
@@ -597,8 +598,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get membershipFee
-	 *
 	 * @return integer
 	 */
 	public function getMembershipFee() {
@@ -606,8 +605,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set membershipFeeInterval
-	 *
 	 * @param integer $membershipFeeInterval
 	 *
 	 * @return self
@@ -619,8 +616,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get membershipFeeInterval
-	 *
 	 * @return integer
 	 */
 	public function getMembershipFeeInterval() {
@@ -629,8 +624,6 @@ class MembershipApplication {
 
 
 	/**
-	 * Set accountNumber
-	 *
 	 * @param string $accountNumber
 	 *
 	 * @return self
@@ -642,8 +635,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get accountNumber
-	 *
 	 * @return string
 	 */
 	public function getAccountNumber() {
@@ -651,8 +642,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set bankName
-	 *
 	 * @param string $bankName
 	 *
 	 * @return self
@@ -664,8 +653,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get bankName
-	 *
 	 * @return string
 	 */
 	public function getBankName() {
@@ -673,8 +660,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set bankCode
-	 *
 	 * @param string $bankCode
 	 *
 	 * @return self
@@ -686,8 +671,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get bankCode
-	 *
 	 * @return string
 	 */
 	public function getBankCode() {
@@ -695,9 +678,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set iban
-	 *
-	 * @param string $iban
+	 * @param string|null $iban
 	 *
 	 * @return self
 	 */
@@ -708,18 +689,14 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get iban
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getIban() {
 		return $this->iban;
 	}
 
 	/**
-	 * Set bic
-	 *
-	 * @param string $bic
+	 * @param string|null $bic
 	 *
 	 * @return self
 	 */
@@ -730,17 +707,13 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get bic
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getBic() {
 		return $this->bic;
 	}
 
 	/**
-	 * Set accountHolder
-	 *
 	 * @param string $accountHolder
 	 *
 	 * @return self
@@ -752,8 +725,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get accountHolder
-	 *
 	 * @return string
 	 */
 	public function getAccountHolder() {
@@ -761,8 +732,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set comment
-	 *
 	 * @param string $comment
 	 *
 	 * @return self
@@ -774,8 +743,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get comment
-	 *
 	 * @return string
 	 */
 	public function getComment() {
@@ -783,9 +750,9 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set export
+	 * Sets the time of export.
 	 *
-	 * @param \DateTime $export
+	 * @param \DateTime|null $export
 	 *
 	 * @return self
 	 */
@@ -796,18 +763,18 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get export
+	 * Returns the time of export.
 	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getExport() {
 		return $this->export;
 	}
 
 	/**
-	 * Set backup
+	 * Sets the time of backup.
 	 *
-	 * @param \DateTime $backup
+	 * @param \DateTime|null $backup
 	 *
 	 * @return self
 	 */
@@ -818,17 +785,15 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get backup
+	 * Returns the time of backup.
 	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getBackup() {
 		return $this->backup;
 	}
 
 	/**
-	 * Set wikilogin
-	 *
 	 * @param boolean $wikilogin
 	 *
 	 * @return self
@@ -840,8 +805,6 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get wikilogin
-	 *
 	 * @return boolean
 	 */
 	public function getWikilogin() {
@@ -849,9 +812,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set tracking
-	 *
-	 * @param string $tracking
+	 * @param string|null $tracking
 	 *
 	 * @return self
 	 */
@@ -862,16 +823,15 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get tracking
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getTracking() {
 		return $this->tracking;
 	}
 
 	/**
-	 * Set status
+	 * Sets the status of the membership request.
+	 * The allowed values are the STATUS_ constants in this class.
 	 *
 	 * @param integer $status
 	 *
@@ -884,7 +844,8 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get status
+	 * Returns the status of the membership request.
+	 * The possible values are the STATUS_ constants in this class.
 	 *
 	 * @return integer
 	 */
@@ -893,9 +854,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Set country
-	 *
-	 * @param string $country
+	 * @param string|null $country
 	 *
 	 * @return self
 	 */
@@ -906,18 +865,14 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get country
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getCountry() {
 		return $this->country;
 	}
 
 	/**
-	 * Set data
-	 *
-	 * @param string $data
+	 * @param string|null $data
 	 * @return self
 	 */
 	public function setData( $data ) {
@@ -927,21 +882,10 @@ class MembershipApplication {
 	}
 
 	/**
-	 * Get data
-	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function getData() {
 		return $this->data;
-	}
-
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
-		return $this->id;
 	}
 
 	public function isUnconfirmed() {
