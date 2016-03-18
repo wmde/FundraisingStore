@@ -732,7 +732,7 @@ class Donation {
 
 		$data = new DonationData();
 
-		$data->setToken( array_key_exists( 'token', $dataArray ) ? $dataArray['token'] : null );
+		$data->setAccessToken( array_key_exists( 'token', $dataArray ) ? $dataArray['token'] : null );
 		$data->setUpdateToken( array_key_exists( 'utoken', $dataArray ) ? $dataArray['utoken'] : null );
 		$data->setUpdateTokenExpiry( array_key_exists( 'uexpiry', $dataArray ) ? $dataArray['uexpiry'] : null );
 
@@ -747,7 +747,7 @@ class Donation {
 		$dataArray = array_merge(
 			$this->getDecodedData(),
 			[
-				'token' => $data->getToken(),
+				'token' => $data->getAccessToken(),
 				'utoken' => $data->getUpdateToken(),
 				'uexpiry' => $data->getUpdateTokenExpiry(),
 			]

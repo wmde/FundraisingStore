@@ -58,7 +58,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	public function testGivenNoData_getDataObjectReturnsObjectWithNullValues() {
 		$donation = new Donation();
 
-		$this->assertNull( $donation->getDataObject()->getToken() );
+		$this->assertNull( $donation->getDataObject()->getAccessToken() );
 		$this->assertNull( $donation->getDataObject()->getUpdateToken() );
 		$this->assertNull( $donation->getDataObject()->getUpdateTokenExpiry() );
 	}
@@ -71,14 +71,14 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 			'uexpiry' => 'baz',
 		] );
 
-		$this->assertSame( 'foo', $donation->getDataObject()->getToken() );
+		$this->assertSame( 'foo', $donation->getDataObject()->getAccessToken() );
 		$this->assertSame( 'bar', $donation->getDataObject()->getUpdateToken() );
 		$this->assertSame( 'baz', $donation->getDataObject()->getUpdateTokenExpiry() );
 	}
 
 	public function testWhenProvidingData_setDataObjectSetsData() {
 		$data = new DonationData();
-		$data->setToken( 'foo' );
+		$data->setAccessToken( 'foo' );
 		$data->setUpdateToken( 'bar' );
 		$data->setUpdateTokenExpiry( 'baz' );
 
@@ -114,7 +114,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		] );
 
 		$data = new DonationData();
-		$data->setToken( 'foo' );
+		$data->setAccessToken( 'foo' );
 		$data->setUpdateToken( 'bar' );
 
 		$donation->setDataObject( $data );
@@ -139,7 +139,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		] );
 
 		$donation->modifyDataObject( function( DonationData $data ) {
-			$data->setToken( 'foo' );
+			$data->setAccessToken( 'foo' );
 			$data->setUpdateToken( 'bar' );
 		} );
 
