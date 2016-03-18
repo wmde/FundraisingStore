@@ -10,22 +10,22 @@ namespace WMDE\Fundraising\Store;
  */
 class DonationData {
 
-	private $token;
+	private $accessToken;
 	private $updateToken;
 	private $updateTokenExpiry;
 
 	/**
 	 * @return string|null
 	 */
-	public function getToken() {
-		return $this->token;
+	public function getAccessToken() {
+		return $this->accessToken;
 	}
 
 	/**
 	 * @param string|null $token
 	 */
-	public function setToken( $token ) {
-		$this->token = $token;
+	public function setAccessToken( $token ) {
+		$this->accessToken = $token;
 	}
 
 	/**
