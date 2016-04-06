@@ -7,6 +7,7 @@ use WMDE\Fundraising\Store\DonationData;
 
 /**
  * @covers WMDE\Fundraising\Entities\Donation
+ * @covers WMDE\Fundraising\Store\DonationData
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
