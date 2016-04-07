@@ -4,6 +4,7 @@ namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use WMDE\Fundraising\Store\MembershipApplicationData;
 
 /**
  * @since 2.0
@@ -265,6 +266,15 @@ class MembershipApplication {
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * @since 2.0
+	 *
+	 * @param integer|null $id
+	 */
+	public function setId( $id ) {
+		$this->id = $id;
 	}
 
 	/**
@@ -900,17 +910,84 @@ class MembershipApplication {
 	}
 
 	public function log( $message ) {
-		$dataArray = $this->getDataArray();
+		$dataArray = $this->getDecodedData();
 		$dataArray[ "log" ][ date( "Y-m-d H:i:s" ) ] = $message;
-		return $this->saveDataArray( $dataArray );
-	}
+		$this->encodeAndSetData( $dataArray );
 
-	private function getDataArray() {
-		return unserialize( base64_decode( $this->data ) );
-	}
-
-	private function saveDataArray( array $dataArray ) {
-		$this->data = base64_encode( serialize( $dataArray ) );
 		return $this;
 	}
+
+	/**
+	 * NOTE: if possible, use @see getDataObject instead, as it provides a nicer API.
+	 *
+	 * @since 2.0
+	 * @return array
+	 */
+	public function getDecodedData() {
+		$data = unserialize( base64_decode( $this->data ) );
+
+		return is_array( $data ) ? $data : [];
+	}
+
+	/**
+	 * NOTE: if possible, use @see modifyDataObject instead, as it provides a nicer API.
+	 *
+	 * @since 2.0
+	 * @param array $data
+	 */
+	public function encodeAndSetData( array $dataArray ) {
+		$this->data = base64_encode( serialize( $dataArray ) );
+	}
+
+	/**
+	 * WARNING: updates made to the return value will not be reflected in the Donation state.
+	 * Similarly, updates to the Donation state will not propagate to the returned object.
+	 * To update the Donation state, explicitly call @see setDataObject.
+	 *
+	 * @since 2.0
+	 * @return MembershipApplicationData
+	 */
+	public function getDataObject() {
+		$dataArray = $this->getDecodedData();
+
+		$data = new MembershipApplicationData();
+
+		$data->setAccessToken( array_key_exists( 'token', $dataArray ) ? $dataArray['token'] : null );
+		$data->setUpdateToken( array_key_exists( 'utoken', $dataArray ) ? $dataArray['utoken'] : null );
+
+		return $data;
+	}
+
+	/**
+	 * @since 2.0
+	 * @param MembershipApplicationData $data
+	 */
+	public function setDataObject( MembershipApplicationData $data ) {
+		$dataArray = array_merge(
+			$this->getDecodedData(),
+			[
+				'token' => $data->getAccessToken(),
+				'utoken' => $data->getUpdateToken(),
+			]
+		);
+
+		foreach ( [ 'token', 'utoken' ] as $keyName ) {
+			if ( is_null( $dataArray[$keyName] ) ) {
+				unset( $dataArray[$keyName] );
+			}
+		}
+
+		$this->encodeAndSetData( $dataArray );
+	}
+
+	/**
+	 * @since 2.0
+	 * @param callable $modificationFunction Takes a modifiable MembershipApplicationData parameter
+	 */
+	public function modifyDataObject( callable $modificationFunction ) {
+		$dataObject = $this->getDataObject();
+		$modificationFunction( $dataObject );
+		$this->setDataObject( $dataObject );
+	}
+
 }

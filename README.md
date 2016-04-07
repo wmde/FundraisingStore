@@ -46,16 +46,35 @@ run style checks use `composer cs`.
 
 ### Version 2.0 (2016-mm-dd)
 
-* Rename entites. Database table names stay the same for backwards compatibility.
- * `Spenden` => `Donation`.
- * `Users` => `User`
- * `BackendImpressions` => `BackendImpression`
- * `Request` => `Inquiry`, `Subscription` ( split into two classes, removed type field)
-* Add `Address` entity
-* Use only English property names in public interface of `Inquiry` and `Donation` class.
-  Database field names stay the same.
-* Automatically add creation timestamps to donations, membership requests and subscriptions.
+#### Breaking changes
 
+* Renamed several entities. Database table names where not changed to remain backwards compatible.
+	* `Spenden` => `Donation`.
+	* `Users` => `User`
+	* `BackendImpressions` => `BackendImpression`
+	* `Request` was split into `MembershipApplication` and `Subscription` (the type field was removed)
+* The public PHP interfaces of `Donation` and `MembershipApplication` where changed to English.
+* Creation timestamps are now added automatically to donations, membership requests and subscriptions.
+
+#### New features
+
+* Added `Address` entity
+* Added `DonationData` class to provide nicer access to the data field
+* Added new methods to `Donation`
+	* `setId`
+	* `getDecodedData`
+	* `encodeAndSetData`
+	* `getDataObject`
+	* `setDataObject`
+	* `modifyDataObject`
+* Added `MembershipApplicationData` class to provide nicer access to the data field
+* Added new methods to `MembershipApplication`
+	* `setId`
+	* `getDecodedData`
+	* `encodeAndSetData`
+	* `getDataObject`
+	* `setDataObject`
+	* `modifyDataObject`
 
 ### Version 1.0 (2016-01-11)
 

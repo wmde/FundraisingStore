@@ -712,6 +712,8 @@ class Donation {
 	}
 
 	/**
+	 * NOTE: if possible, use @see modifyDataObject instead, as it provides a nicer API.
+	 *
 	 * @since 2.0
 	 * @param array $data
 	 */
