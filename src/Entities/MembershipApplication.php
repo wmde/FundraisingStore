@@ -418,10 +418,17 @@ class MembershipApplication {
 
 	/**
 	 * Sets the full name
+	 *
+	 * @param string|null $firstName
+	 * @param string|null $lastName
+	 *
+	 * @return self
 	 */
-	public function setNameFromParts( $vorname, $nachname) {
-		$parts = array_filter( [ $vorname, $nachname ] );
-		$this->setName( implode( ' ', $parts ) );
+	private function setNameFromParts( $firstName, $lastName ) {
+		$this->setName( implode(
+			' ',
+			array_filter( [ $firstName, $lastName ] )
+		) );
 
 		return $this;
 	}
