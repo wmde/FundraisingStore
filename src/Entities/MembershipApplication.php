@@ -27,14 +27,14 @@ class MembershipApplication {
 	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="timestamp", type="datetime")
 	 */
-	private $timestamp;
+	private $creationTime;
 
 	/**
 	 * @var string|null
 	 *
 	 * @ORM\Column(name="anrede", type="string", length=16, nullable=true)
 	 */
-	private $salutation;
+	private $applicantSalutation;
 
 	/**
 	 * @var string|null
@@ -48,7 +48,7 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="titel", type="string", length=16, nullable=true)
 	 */
-	private $title;
+	private $applicantTitle;
 
 	/**
 	 * @var string
@@ -62,14 +62,14 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="vorname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $firstName = '';
+	private $applicantFirstName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="nachname", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $lastName = '';
+	private $applicantLastName = '';
 
 	/**
 	 * @var string|null
@@ -93,18 +93,25 @@ class MembershipApplication {
 	private $city;
 
 	/**
+	 * @var string|null
+	 *
+	 * @ORM\Column(name="country", type="string", length=8, options={"default":""}, nullable=true)
+	 */
+	private $country = '';
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="email", type="string", length=250, options={"default":""}, nullable=false)
 	 */
-	private $email = '';
+	private $applicantEmailAddress = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="phone", type="string", length=30, options={"default":""}, nullable=false)
 	 */
-	private $phone = '';
+	private $applicantPhoneNumber = '';
 
 	/**
 	 * Date of birth
@@ -113,7 +120,7 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="dob", type="date", nullable=true)
 	 */
-	private $dateOfBirth;
+	private $applicantDateOfBirth;
 
 	/**
 	 * @var string
@@ -134,7 +141,7 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="membership_fee", type="integer", options={"default":0}, nullable=false)
 	 */
-	private $membershipFee = 0;
+	private $paymentAmountInEuro = 0;
 
 	/**
 	 * FIXME: this should not be nullable
@@ -143,49 +150,49 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="membership_fee_interval", type="smallint", options={"default":12}, nullable=true)
 	 */
-	private $membershipFeeInterval = 12;
+	private $paymentIntervalInMonths = 12;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="account_number", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $accountNumber = '';
+	private $paymentBankAccount = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="bank_name", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $bankName = '';
+	private $paymentBankName = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="bank_code", type="string", length=16, options={"default":""}, nullable=false)
 	 */
-	private $bankCode = '';
+	private $paymentBankCode = '';
 
 	/**
 	 * @var string|null
 	 *
 	 * @ORM\Column(name="iban", type="string", length=32, options={"default":""}, nullable=true)
 	 */
-	private $iban = '';
+	private $paymentIban = '';
 
 	/**
 	 * @var string|null
 	 *
 	 * @ORM\Column(name="bic", type="string", length=32, options={"default":""}, nullable=true)
 	 */
-	private $bic = '';
+	private $paymentBic = '';
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="account_holder", type="string", length=50, options={"default":""}, nullable=false)
 	 */
-	private $accountHolder = '';
+	private $paymentBankAccountHolder = '';
 
 	/**
 	 * @var string
@@ -230,13 +237,6 @@ class MembershipApplication {
 	 * @ORM\Column(name="status", type="smallint", options={"default":0}, nullable=true)
 	 */
 	private $status = 0;
-
-	/**
-	 * @var string|null
-	 *
-	 * @ORM\Column(name="country", type="string", length=8, options={"default":""}, nullable=true)
-	 */
-	private $country = '';
 
 	/**
 	 * @var string|null
@@ -299,12 +299,12 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param \DateTime $timestamp
+	 * @param \DateTime $creationTime
 	 *
 	 * @return self
 	 */
-	public function setTimestamp( $timestamp ) {
-		$this->timestamp = $timestamp;
+	public function setCreationTime( $creationTime ) {
+		$this->creationTime = $creationTime;
 
 		return $this;
 	}
@@ -312,17 +312,17 @@ class MembershipApplication {
 	/**
 	 * @return \DateTime
 	 */
-	public function getTimestamp() {
-		return $this->timestamp;
+	public function getCreationTime() {
+		return $this->creationTime;
 	}
 
 	/**
-	 * @param string|null $salutation
+	 * @param string|null $applicantSalutation
 	 *
 	 * @return self
 	 */
-	public function setSalutation( $salutation ) {
-		$this->salutation = $salutation;
+	public function setApplicantSalutation( $applicantSalutation ) {
+		$this->applicantSalutation = $applicantSalutation;
 
 		return $this;
 	}
@@ -330,8 +330,8 @@ class MembershipApplication {
 	/**
 	 * @return string|null
 	 */
-	public function getSalutation() {
-		return $this->salutation;
+	public function getApplicantSalutation() {
+		return $this->applicantSalutation;
 	}
 
 	/**
@@ -353,12 +353,12 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param string $title
+	 * @param string $applicantTitle
 	 *
 	 * @return self
 	 */
-	public function setTitle( $title ) {
-		$this->title = $title;
+	public function setApplicantTitle( $applicantTitle ) {
+		$this->applicantTitle = $applicantTitle;
 
 		return $this;
 	}
@@ -366,8 +366,8 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getTitle() {
-		return $this->title;
+	public function getApplicantTitle() {
+		return $this->applicantTitle;
 	}
 
 	/**
@@ -389,13 +389,13 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param string $firstName
+	 * @param string $applicantFirstName
 	 *
 	 * @return self
 	 */
-	public function setFirstName( $firstName ) {
-		$this->firstName = $firstName;
-		$this->setNameFromParts( $firstName, $this->getLastName() );
+	public function setApplicantFirstName( $applicantFirstName ) {
+		$this->applicantFirstName = $applicantFirstName;
+		$this->setNameFromParts( $applicantFirstName, $this->getApplicantLastName() );
 
 		return $this;
 	}
@@ -403,18 +403,18 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getFirstName() {
-		return $this->firstName;
+	public function getApplicantFirstName() {
+		return $this->applicantFirstName;
 	}
 
 	/**
-	 * @param string $lastName
+	 * @param string $applicantLastName
 	 *
 	 * @return self
 	 */
-	public function setLastName( $lastName ) {
-		$this->lastName = $lastName;
-		$this->setNameFromParts( $this->getFirstName(), $lastName );
+	public function setApplicantLastName( $applicantLastName ) {
+		$this->applicantLastName = $applicantLastName;
+		$this->setNameFromParts( $this->getApplicantFirstName(), $applicantLastName );
 
 		return $this;
 	}
@@ -422,8 +422,8 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getLastName() {
-		return $this->lastName;
+	public function getApplicantLastName() {
+		return $this->applicantLastName;
 	}
 
 	/**
@@ -504,12 +504,12 @@ class MembershipApplication {
 	/**
 	 * Set email
 	 *
-	 * @param string $email
+	 * @param string $applicantEmailAddress
 	 *
 	 * @return self
 	 */
-	public function setEmail( $email ) {
-		$this->email = $email;
+	public function setApplicantEmailAddress( $applicantEmailAddress ) {
+		$this->applicantEmailAddress = $applicantEmailAddress;
 
 		return $this;
 	}
@@ -519,19 +519,19 @@ class MembershipApplication {
 	 *
 	 * @return string
 	 */
-	public function getEmail() {
-		return $this->email;
+	public function getApplicantEmailAddress() {
+		return $this->applicantEmailAddress;
 	}
 
 	/**
 	 * Set phone
 	 *
-	 * @param string $phone
+	 * @param string $applicantPhoneNumber
 	 *
 	 * @return self
 	 */
-	public function setPhone( $phone ) {
-		$this->phone = $phone;
+	public function setApplicantPhoneNumber( $applicantPhoneNumber ) {
+		$this->applicantPhoneNumber = $applicantPhoneNumber;
 
 		return $this;
 	}
@@ -541,30 +541,26 @@ class MembershipApplication {
 	 *
 	 * @return string
 	 */
-	public function getPhone() {
-		return $this->phone;
+	public function getApplicantPhoneNumber() {
+		return $this->applicantPhoneNumber;
 	}
 
 	/**
-	 * Sets the date of birth of the applicant
-	 *
 	 * @param \DateTime|null $dateOfBirth
 	 *
 	 * @return self
 	 */
-	public function setDob( $dateOfBirth ) {
-		$this->dateOfBirth = $dateOfBirth;
+	public function setApplicantDateOfBirth( $dateOfBirth ) {
+		$this->applicantDateOfBirth = $dateOfBirth;
 
 		return $this;
 	}
 
 	/**
-	 * Returns the date of birth of the applicant
-	 *
 	 * @return \DateTime|null
 	 */
-	public function getDob() {
-		return $this->dateOfBirth;
+	public function getApplicantDateOfBirth() {
+		return $this->applicantDateOfBirth;
 	}
 
 	/**
@@ -604,12 +600,12 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param integer $membershipFee
+	 * @param integer $paymentAmountInEuro
 	 *
 	 * @return self
 	 */
-	public function setMembershipFee( $membershipFee ) {
-		$this->membershipFee = $membershipFee;
+	public function setPaymentAmount( $paymentAmountInEuro ) {
+		$this->paymentAmountInEuro = $paymentAmountInEuro;
 
 		return $this;
 	}
@@ -617,17 +613,17 @@ class MembershipApplication {
 	/**
 	 * @return integer
 	 */
-	public function getMembershipFee() {
-		return $this->membershipFee;
+	public function getPaymentAmount() {
+		return $this->paymentAmountInEuro;
 	}
 
 	/**
-	 * @param integer $membershipFeeInterval
+	 * @param integer $paymentIntervalInMonths
 	 *
 	 * @return self
 	 */
-	public function setMembershipFeeInterval($membershipFeeInterval) {
-		$this->membershipFeeInterval = $membershipFeeInterval;
+	public function setPaymentIntervalInMonths($paymentIntervalInMonths) {
+		$this->paymentIntervalInMonths = $paymentIntervalInMonths;
 
 		return $this;
 	}
@@ -635,18 +631,18 @@ class MembershipApplication {
 	/**
 	 * @return integer
 	 */
-	public function getMembershipFeeInterval() {
-		return $this->membershipFeeInterval;
+	public function getPaymentIntervalInMonths() {
+		return $this->paymentIntervalInMonths;
 	}
 
 
 	/**
-	 * @param string $accountNumber
+	 * @param string $paymentBankAccount
 	 *
 	 * @return self
 	 */
-	public function setAccountNumber( $accountNumber ) {
-		$this->accountNumber = $accountNumber;
+	public function setPaymentBankAccount( $paymentBankAccount ) {
+		$this->paymentBankAccount = $paymentBankAccount;
 
 		return $this;
 	}
@@ -654,17 +650,17 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getAccountNumber() {
-		return $this->accountNumber;
+	public function getPaymentBankAccount() {
+		return $this->paymentBankAccount;
 	}
 
 	/**
-	 * @param string $bankName
+	 * @param string $paymentBankName
 	 *
 	 * @return self
 	 */
-	public function setBankName( $bankName ) {
-		$this->bankName = $bankName;
+	public function setPaymentBankName( $paymentBankName ) {
+		$this->paymentBankName = $paymentBankName;
 
 		return $this;
 	}
@@ -672,17 +668,17 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getBankName() {
-		return $this->bankName;
+	public function getPaymentBankName() {
+		return $this->paymentBankName;
 	}
 
 	/**
-	 * @param string $bankCode
+	 * @param string $paymentBankCode
 	 *
 	 * @return self
 	 */
-	public function setBankCode( $bankCode ) {
-		$this->bankCode = $bankCode;
+	public function setPaymentBankCode( $paymentBankCode ) {
+		$this->paymentBankCode = $paymentBankCode;
 
 		return $this;
 	}
@@ -690,17 +686,17 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getBankCode() {
-		return $this->bankCode;
+	public function getPaymentBankCode() {
+		return $this->paymentBankCode;
 	}
 
 	/**
-	 * @param string|null $iban
+	 * @param string|null $paymentIban
 	 *
 	 * @return self
 	 */
-	public function setIban( $iban ) {
-		$this->iban = $iban;
+	public function setPaymentIban( $paymentIban ) {
+		$this->paymentIban = $paymentIban;
 
 		return $this;
 	}
@@ -708,17 +704,17 @@ class MembershipApplication {
 	/**
 	 * @return string|null
 	 */
-	public function getIban() {
-		return $this->iban;
+	public function getPaymentIban() {
+		return $this->paymentIban;
 	}
 
 	/**
-	 * @param string|null $bic
+	 * @param string|null $paymentBic
 	 *
 	 * @return self
 	 */
-	public function setBic( $bic ) {
-		$this->bic = $bic;
+	public function setPaymentBic( $paymentBic ) {
+		$this->paymentBic = $paymentBic;
 
 		return $this;
 	}
@@ -726,17 +722,17 @@ class MembershipApplication {
 	/**
 	 * @return string|null
 	 */
-	public function getBic() {
-		return $this->bic;
+	public function getPaymentBic() {
+		return $this->paymentBic;
 	}
 
 	/**
-	 * @param string $accountHolder
+	 * @param string $paymentBankAccountHolder
 	 *
 	 * @return self
 	 */
-	public function setAccountHolder( $accountHolder ) {
-		$this->accountHolder = $accountHolder;
+	public function setPaymentBankAccountHolder( $paymentBankAccountHolder ) {
+		$this->paymentBankAccountHolder = $paymentBankAccountHolder;
 
 		return $this;
 	}
@@ -744,8 +740,8 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getAccountHolder() {
-		return $this->accountHolder;
+	public function getPaymentBankAccountHolder() {
+		return $this->paymentBankAccountHolder;
 	}
 
 	/**
