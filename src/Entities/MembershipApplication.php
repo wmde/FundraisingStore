@@ -55,7 +55,7 @@ class MembershipApplication {
 	 *
 	 * @ORM\Column(name="name", type="string", length=250, options={"default":""}, nullable=false)
 	 */
-	private $name = '';
+	private $probablyUnusedNameField = '';
 
 	/**
 	 * @var string
@@ -371,12 +371,12 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param string $name
+	 * @param string $probablyUnusedNameField
 	 *
 	 * @return self
 	 */
-	public function setName( $name ) {
-		$this->name = $name;
+	public function setProbablyUnusedNameField( $probablyUnusedNameField ) {
+		$this->probablyUnusedNameField = $probablyUnusedNameField;
 
 		return $this;
 	}
@@ -384,8 +384,8 @@ class MembershipApplication {
 	/**
 	 * @return string
 	 */
-	public function getName() {
-		return $this->name;
+	public function getProbablyUnusedNameField() {
+		return $this->probablyUnusedNameField;
 	}
 
 	/**
@@ -435,7 +435,7 @@ class MembershipApplication {
 	 * @return self
 	 */
 	private function setNameFromParts( $firstName, $lastName ) {
-		$this->setName( implode(
+		$this->setProbablyUnusedNameField( implode(
 			' ',
 			array_filter( [ $firstName, $lastName ] )
 		) );
