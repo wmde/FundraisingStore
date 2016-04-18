@@ -18,28 +18,28 @@ class Donation {
 	 *
 	 * @ORM\Column(name="name", type="string", length=250, nullable=true)
 	 */
-	private $name;
+	private $donorFullName;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="ort", type="string", length=250, nullable=true)
 	 */
-	private $city;
+	private $donorCity;
 
 	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="email", type="string", length=250, nullable=true)
 	 */
-	private $email;
+	private $donorEmail;
 
 	/**
 	 * @var boolean
 	 *
 	 * @ORM\Column(name="info", type="boolean", options={"default":0}, nullable=false)
 	 */
-	private $info = 0;
+	private $donorOptsIntoNewsletter = 0;
 
 	/**
 	 * @var boolean
@@ -67,7 +67,7 @@ class Donation {
 	 *
 	 * @ORM\Column(name="periode", type="smallint", options={"default":0}, nullable=false)
 	 */
-	private $period = 0;
+	private $paymentIntervalInMonths = 0;
 
 	/**
 	 * @var string
@@ -88,7 +88,7 @@ class Donation {
 	 *
 	 * @ORM\Column(name="ueb_code", type="string", length=32, options={"default":""}, nullable=false)
 	 */
-	private $transferCode = '';
+	private $bankTransferCode = '';
 
 	/**
 	 * @var string
@@ -131,14 +131,14 @@ class Donation {
 	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(name="dt_new", type="datetime")
 	 */
-	private $dtNew;
+	private $creationTime;
 
 	/**
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="dt_del", type="datetime", nullable=true)
 	 */
-	private $dtDel;
+	private $deletionTime;
 
 	/**
 	 * @var \DateTime
@@ -146,13 +146,6 @@ class Donation {
 	 * @ORM\Column(name="dt_exp", type="datetime", nullable=true)
 	 */
 	private $dtExp;
-
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="status", type="string", length=1, options={"default":"N", "fixed":true}, nullable=false)
-	 */
-	private $status = 'N';
 
 	/**
 	 * @var \DateTime
@@ -169,6 +162,13 @@ class Donation {
 	private $dtBackup;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="status", type="string", length=1, options={"default":"N", "fixed":true}, nullable=false)
+	 */
+	private $status = 'N';
+
+	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -179,87 +179,75 @@ class Donation {
 
 
 	/**
-	 * Set name
+	 * @param string $donorFullName
 	 *
-	 * @param string $name
 	 * @return self
 	 */
-	public function setName( $name ) {
-		$this->name = $name;
+	public function setDonorFullName( $donorFullName ) {
+		$this->donorFullName = $donorFullName;
 
 		return $this;
 	}
 
 	/**
-	 * Get name
-	 *
 	 * @return string
 	 */
-	public function getName() {
-		return $this->name;
+	public function getDonorFullName() {
+		return $this->donorFullName;
 	}
 
 	/**
-	 * Set city
+	 * @param string $donorCity
 	 *
-	 * @param string $city
 	 * @return self
 	 */
-	public function setCity( $city ) {
-		$this->city = $city;
+	public function setDonorCity( $donorCity ) {
+		$this->donorCity = $donorCity;
 
 		return $this;
 	}
 
 	/**
-	 * Get city
-	 *
 	 * @return string
 	 */
-	public function getCity() {
-		return $this->city;
+	public function getDonorCity() {
+		return $this->donorCity;
 	}
 
 	/**
-	 * Set email
+	 * @param string $donorEmail
 	 *
-	 * @param string $email
 	 * @return self
 	 */
-	public function setEmail( $email ) {
-		$this->email = $email;
+	public function setDonorEmail( $donorEmail ) {
+		$this->donorEmail = $donorEmail;
 
 		return $this;
 	}
 
 	/**
-	 * Get email
-	 *
 	 * @return string
 	 */
-	public function getEmail() {
-		return $this->email;
+	public function getDonorEmail() {
+		return $this->donorEmail;
 	}
 
 	/**
-	 * Set info
+	 * @param boolean $donorOptsIntoNewsletter
 	 *
-	 * @param boolean $info
 	 * @return self
 	 */
-	public function setInfo( $info ) {
-		$this->info = $info;
+	public function setDonorOptsIntoNewsletter( $donorOptsIntoNewsletter ) {
+		$this->donorOptsIntoNewsletter = $donorOptsIntoNewsletter;
 
 		return $this;
 	}
 
 	/**
-	 * Get info
-	 *
 	 * @return boolean
 	 */
-	public function getInfo() {
-		return $this->info;
+	public function getDonorOptsIntoNewsletter() {
+		return $this->donorOptsIntoNewsletter;
 	}
 
 	/**
@@ -305,8 +293,6 @@ class Donation {
 	}
 
 	/**
-	 * Set amount
-	 *
 	 * @param string $amount
 	 * @return self
 	 */
@@ -317,8 +303,6 @@ class Donation {
 	}
 
 	/**
-	 * Get amount
-	 *
 	 * @return string
 	 */
 	public function getAmount() {
@@ -326,24 +310,21 @@ class Donation {
 	}
 
 	/**
-	 * Set period
+	 * @param integer $paymentIntervalInMonths
 	 *
-	 * @param integer $period
 	 * @return self
 	 */
-	public function setPeriod( $period ) {
-		$this->period = $period;
+	public function setPaymentIntervalInMonths( $paymentIntervalInMonths ) {
+		$this->paymentIntervalInMonths = $paymentIntervalInMonths;
 
 		return $this;
 	}
 
 	/**
-	 * Get period
-	 *
 	 * @return integer
 	 */
-	public function getPeriod() {
-		return $this->period;
+	public function getPaymentIntervalInMonths() {
+		return $this->paymentIntervalInMonths;
 	}
 
 	/**
@@ -368,8 +349,6 @@ class Donation {
 	}
 
 	/**
-	 * Set comment
-	 *
 	 * @param string $comment
 	 * @return self
 	 */
@@ -380,8 +359,6 @@ class Donation {
 	}
 
 	/**
-	 * Get comment
-	 *
 	 * @return string
 	 */
 	public function getComment() {
@@ -391,11 +368,12 @@ class Donation {
 	/**
 	 * Set bank transfer reference code
 	 *
-	 * @param string $transferCode
+	 * @param string $bankTransferCode
+	 *
 	 * @return self
 	 */
-	public function setTransferCode( $transferCode ) {
-		$this->transferCode = $transferCode;
+	public function setBankTransferCode( $bankTransferCode ) {
+		$this->bankTransferCode = $bankTransferCode;
 
 		return $this;
 	}
@@ -405,13 +383,11 @@ class Donation {
 	 *
 	 * @return string
 	 */
-	public function getTransferCode() {
-		return $this->transferCode;
+	public function getBankTransferCode() {
+		return $this->bankTransferCode;
 	}
 
 	/**
-	 * Set source
-	 *
 	 * @param string $source
 	 * @return self
 	 */
@@ -422,8 +398,6 @@ class Donation {
 	}
 
 	/**
-	 * Get source
-	 *
 	 * @return string
 	 */
 	public function getSource() {
@@ -431,8 +405,6 @@ class Donation {
 	}
 
 	/**
-	 * Set remoteAddr
-	 *
 	 * @param string $remoteAddr
 	 * @return self
 	 */
@@ -443,8 +415,6 @@ class Donation {
 	}
 
 	/**
-	 * Get remoteAddr
-	 *
 	 * @return string
 	 */
 	public function getRemoteAddr() {
@@ -452,8 +422,6 @@ class Donation {
 	}
 
 	/**
-	 * Set hash
-	 *
 	 * @param string $hash
 	 * @return self
 	 */
@@ -464,8 +432,6 @@ class Donation {
 	}
 
 	/**
-	 * Get hash
-	 *
 	 * @return string
 	 */
 	public function getHash() {
@@ -473,8 +439,6 @@ class Donation {
 	}
 
 	/**
-	 * Set isPublic
-	 *
 	 * @param boolean $isPublic
 	 * @return self
 	 */
@@ -485,8 +449,6 @@ class Donation {
 	}
 
 	/**
-	 * Get isPublic
-	 *
 	 * @return boolean
 	 */
 	public function getIsPublic() {
@@ -494,50 +456,42 @@ class Donation {
 	}
 
 	/**
-	 * Set dtNew
+	 * @param \DateTime $creationTime
 	 *
-	 * @param \DateTime $dtNew
 	 * @return self
 	 */
-	public function setDtNew( $dtNew ) {
-		$this->dtNew = $dtNew;
+	public function setCreationTime( $creationTime ) {
+		$this->creationTime = $creationTime;
 
 		return $this;
 	}
 
 	/**
-	 * Get dtNew
-	 *
 	 * @return \DateTime
 	 */
-	public function getDtNew() {
-		return $this->dtNew;
+	public function getCreationTime() {
+		return $this->creationTime;
 	}
 
 	/**
-	 * Set dtDel
+	 * @param \DateTime|null $deletionTime
 	 *
-	 * @param \DateTime|null $dtDel
 	 * @return self
 	 */
-	public function setDtDel( $dtDel ) {
-		$this->dtDel = $dtDel;
+	public function setDeletionTime( $deletionTime ) {
+		$this->deletionTime = $deletionTime;
 
 		return $this;
 	}
 
 	/**
-	 * Get dtDel
-	 *
 	 * @return \DateTime|null
 	 */
-	public function getDtDel() {
-		return $this->dtDel;
+	public function getDeletionTime() {
+		return $this->deletionTime;
 	}
 
 	/**
-	 * Set dtExp
-	 *
 	 * @param \DateTime $dtExp
 	 * @return self
 	 */
@@ -548,8 +502,6 @@ class Donation {
 	}
 
 	/**
-	 * Get dtExp
-	 *
 	 * @return \DateTime
 	 */
 	public function getDtExp() {
@@ -557,8 +509,6 @@ class Donation {
 	}
 
 	/**
-	 * Set status
-	 *
 	 * @param string $status
 	 * @return self
 	 */
@@ -569,8 +519,6 @@ class Donation {
 	}
 
 	/**
-	 * Get status
-	 *
 	 * @return string
 	 */
 	public function getStatus() {
@@ -578,8 +526,6 @@ class Donation {
 	}
 
 	/**
-	 * Set dtGruen
-	 *
 	 * @param \DateTime $dtGruen
 	 * @return self
 	 */
@@ -590,8 +536,6 @@ class Donation {
 	}
 
 	/**
-	 * Get dtGruen
-	 *
 	 * @return \DateTime
 	 */
 	public function getDtGruen() {
@@ -599,8 +543,6 @@ class Donation {
 	}
 
 	/**
-	 * Set dtBackup
-	 *
 	 * @param \DateTime $dtBackup
 	 * @return self
 	 */
@@ -611,8 +553,6 @@ class Donation {
 	}
 
 	/**
-	 * Get dtBackup
-	 *
 	 * @return \DateTime
 	 */
 	public function getDtBackup() {
@@ -620,8 +560,6 @@ class Donation {
 	}
 
 	/**
-	 * Get id
-	 *
 	 * @return integer|null
 	 */
 	public function getId() {
@@ -651,7 +589,7 @@ class Donation {
 		$checkToken = $checkToken . '$' .
 			sha1( sha1( "$checkToken+$serverSecret" ) . '|' .
 				sha1( "{$this->id}+$serverSecret" ) . '|' .
-				sha1( "{$this->dtNew->format( 'Y-m-d H:i:s' )}+$serverSecret" ) );
+				sha1( "{$this->creationTime->format( 'Y-m-d H:i:s' )}+$serverSecret" ) );
 		return $checkToken === $tokenToCheck;
 	}
 
@@ -666,7 +604,7 @@ class Donation {
 		}
 
 		if ( $mode == 1 || $mode == 2 ) {
-			$eintrag = $this->name;
+			$eintrag = $this->donorFullName;
 		} else {
 			$eintrag = "anonym";
 		}
