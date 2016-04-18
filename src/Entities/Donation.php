@@ -13,6 +13,23 @@ use WMDE\Fundraising\Store\DonationData;
  * @ORM\Entity
  */
 class Donation {
+
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="status", type="string", length=1, options={"default":"N", "fixed":true}, nullable=false)
+	 */
+	private $status = 'N';
+
 	/**
 	 * @var string
 	 *
@@ -160,23 +177,6 @@ class Donation {
 	 * @ORM\Column(name="dt_backup", type="datetime", nullable=true)
 	 */
 	private $dtBackup;
-
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="status", type="string", length=1, options={"default":"N", "fixed":true}, nullable=false)
-	 */
-	private $status = 'N';
-
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="IDENTITY")
-	 */
-	private $id;
-
 
 	/**
 	 * @param string $donorFullName
