@@ -118,4 +118,13 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testStatusConstantsExist() {
+		$this->assertNotNull( MembershipApplication::STATUS_MODERATION );
+		$this->assertNotNull( MembershipApplication::STATUS_ABORTED );
+		$this->assertNotNull( MembershipApplication::STATUS_CANCELED );
+		$this->assertNotNull( MembershipApplication::STATUS_CONFIRMED );
+		$this->assertNotNull( MembershipApplication::STATUS_DELETED );
+		$this->assertNotNull( MembershipApplication::STATUS_NEUTRAL );
+	}
+
 }
