@@ -14,6 +14,31 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
  */
 class MembershipApplication {
 
+	const STATUS_CONFIRMED = 1;
+	const STATUS_NEUTRAL = 0;
+	const STATUS_DELETED = -1;
+	const STATUS_MODERATION = -2;
+	const STATUS_ABORTED = -4;
+	const STATUS_CANCELED = -8;
+
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="IDENTITY")
+	 */
+	private $id;
+
+	/**
+	 * FIXME: this should not be nullable
+	 *
+	 * @var integer
+	 *
+	 * @ORM\Column(name="status", type="smallint", options={"default":0}, nullable=true)
+	 */
+	private $status = 0;
+
 	/**
 	 * @var integer|null
 	 *
@@ -230,36 +255,11 @@ class MembershipApplication {
 	private $tracking;
 
 	/**
-	 * FIXME: this should not be nullable
-	 *
-	 * @var integer
-	 *
-	 * @ORM\Column(name="status", type="smallint", options={"default":0}, nullable=true)
-	 */
-	private $status = 0;
-
-	/**
 	 * @var string|null
 	 *
 	 * @ORM\Column(name="data", type="text", nullable=true)
 	 */
 	private $data;
-
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="IDENTITY")
-	 */
-	private $id;
-
-	const STATUS_CONFIRMED = 1;
-	const STATUS_NEUTRAL = 0;
-	const STATUS_DELETED = -1;
-	const STATUS_MODERATION = -2;
-	const STATUS_ABORTED = -4;
-	const STATUS_CANCELED = -8;
 
 	/**
 	 * @return integer
