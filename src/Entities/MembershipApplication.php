@@ -901,8 +901,25 @@ class MembershipApplication {
 		return $this->data;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isUnconfirmed() {
-		return $this->getStatus() === self::STATUS_NEUTRAL;
+		return $this->status === self::STATUS_NEUTRAL;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function needsModeration() {
+		return $this->status < 0 && abs( $this->status ) & abs( self::STATUS_MODERATION );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isCancelled() {
+		return $this->status < 0 && abs( $this->status ) & abs( self::STATUS_CANCELED );
 	}
 
 	public function log( $message ) {
