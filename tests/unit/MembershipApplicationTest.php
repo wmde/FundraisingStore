@@ -127,4 +127,48 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertNotNull( MembershipApplication::STATUS_NEUTRAL );
 	}
 
+	public function testGivenModerationStatus_needsModerationReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus( MembershipApplication::STATUS_MODERATION );
+
+		$this->assertTrue( $application->needsModeration() );
+	}
+
+	public function testGivenDefaultStatus_needsModerationReturnsFalse() {
+		$application = new MembershipApplication();
+
+		$this->assertFalse( $application->needsModeration() );
+	}
+
+	public function testGivenModerationAndCancelledStatus_needsModerationReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus(
+			MembershipApplication::STATUS_MODERATION + MembershipApplication::STATUS_CANCELED
+		);
+
+		$this->assertTrue( $application->needsModeration() );
+	}
+
+	public function testGivenCancelledStatus_isCancelledReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus( MembershipApplication::STATUS_CANCELED );
+
+		$this->assertTrue( $application->isCancelled() );
+	}
+
+	public function testGivenDefaultStatus_isCancelledReturnsFalse() {
+		$application = new MembershipApplication();
+
+		$this->assertFalse( $application->isCancelled() );
+	}
+
+	public function testGivenModerationAndCancelledStatus_isCancelledReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus(
+			MembershipApplication::STATUS_MODERATION + MembershipApplication::STATUS_CANCELED
+		);
+
+		$this->assertTrue( $application->isCancelled() );
+	}
+
 }
