@@ -299,7 +299,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @param \DateTime $creationTime
+	 * @param \DateTime|null $creationTime
 	 *
 	 * @return self
 	 */
@@ -310,7 +310,7 @@ class MembershipApplication {
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getCreationTime() {
 		return $this->creationTime;
