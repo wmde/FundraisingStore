@@ -71,6 +71,13 @@ class Subscription {
 	private $address;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="tracking", type="string", length=50, nullable=true)
+	 */
+	private $tracking;
+
+	/**
 	 * @var \DateTime
 	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(type="datetime")
@@ -241,6 +248,20 @@ class Subscription {
 	public function setCreatedAt( $createdAt ) {
 		$this->createdAt = $createdAt;
 		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTracking() {
+		return $this->tracking;
+	}
+
+	/**
+	 * @param string $tracking
+	 */
+	public function setTracking( $tracking ) {
+		$this->tracking = $tracking;
 	}
 
 	/**
