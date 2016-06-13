@@ -449,6 +449,7 @@ class Donation {
 	}
 
 	/**
+	 * Sets if the donations comment should be public or private.
 	 * @param boolean $isPublic
 	 * @return self
 	 */
@@ -459,6 +460,7 @@ class Donation {
 	}
 
 	/**
+	 * Gets if the donations comment is public or private.
 	 * @return boolean
 	 */
 	public function getIsPublic() {
