@@ -171,4 +171,16 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $application->isCancelled() );
 	}
 
+	public function testWhenDataFieldSizeExceedsLimit_dataFieldIsTruncated() {
+		$membershipApplication = new MembershipApplication();
+		$membershipApplication->encodeAndSetData( [
+			'tooLong' => str_repeat( 'cats! ', 2048 )
+		] );
+
+		$data = $membershipApplication->getDecodedData();
+
+		$this->assertSame( MembershipApplication::MAX_DATA_FIELD_LENGTH, strlen( $data['tooLong'] ) );
+
+	}
+
 }
