@@ -155,6 +155,18 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testWhenDataFieldSizeExceedsLimit_dataFieldIsTruncated() {
+		$donation = new Donation();
+		$donation->encodeAndSetData( [
+			'tooLong' => str_repeat( 'cats! ', 2048 )
+		] );
+
+		$data = $donation->getDecodedData();
+
+		$this->assertSame( Donation::MAX_DATA_FIELD_LENGTH, strlen( $data['tooLong'] ) );
+
+	}
+
 	public function testStatusConstantsExist() {
 		$this->assertNotNull( Donation::STATUS_NEW );
 		$this->assertNotNull( Donation::STATUS_CANCELLED );

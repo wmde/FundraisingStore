@@ -21,6 +21,8 @@ class MembershipApplication {
 	const STATUS_ABORTED = -4;
 	const STATUS_CANCELED = -8;
 
+	const MAX_DATA_FIELD_LENGTH = 2048;
+
 	/**
 	 * @var integer
 	 *
@@ -949,7 +951,11 @@ class MembershipApplication {
 	 * @param array $data
 	 */
 	public function encodeAndSetData( array $dataArray ) {
-		$this->data = base64_encode( serialize( $dataArray ) );
+		$this->data = base64_encode(
+			serialize(
+				$this->truncateInsanelyLongFields( $dataArray )
+			)
+		);
 	}
 
 	/**
@@ -1003,4 +1009,17 @@ class MembershipApplication {
 		$this->setDataObject( $dataObject );
 	}
 
+	/**
+	 * @param array $data
+	 * @return array
+	 */
+	private function truncateInsanelyLongFields( array $data ) {
+		foreach ( array_keys( $data ) as $key ) {
+			if ( is_string( $data[$key] ) ) {
+				$data[$key] = substr( $data[$key], 0, self::MAX_DATA_FIELD_LENGTH );
+			}
+		}
+
+		return $data;
+	}
 }

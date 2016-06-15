@@ -24,6 +24,8 @@ class Donation {
 	const STATUS_MODERATION = 'P';
 	const STATUS_CANCELLED = 'D';
 
+	const MAX_DATA_FIELD_LENGTH = 2048;
+
 	/**
 	 * @var integer
 	 *
@@ -668,7 +670,11 @@ class Donation {
 	 * @param array $data
 	 */
 	public function encodeAndSetData( array $data ) {
-		$this->data = base64_encode( serialize( $data ) );
+		$this->data = base64_encode(
+			serialize(
+				$this->truncateInsanelyLongFields( $data )
+			)
+		);
 	}
 
 	/**
@@ -722,6 +728,20 @@ class Donation {
 		$dataObject = $this->getDataObject();
 		$modificationFunction( $dataObject );
 		$this->setDataObject( $dataObject );
+	}
+
+	/**
+	 * @param array $data
+	 * @return array
+	 */
+	private function truncateInsanelyLongFields( array $data ) {
+		foreach ( array_keys( $data ) as $key ) {
+			if ( is_string( $data[$key] ) ) {
+				$data[$key] = substr( $data[$key], 0, self::MAX_DATA_FIELD_LENGTH );
+			}
+		}
+
+		return $data;
 	}
 
 }
