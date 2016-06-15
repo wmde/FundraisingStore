@@ -4,6 +4,10 @@ matrix:
   include:
     - php: 5.5
       env: DB=sqlite
+    - php: 5.5
+      env: DB=mysql
+    - php: 7
+      env: DB=sqlite
     - php: 7
       env: DB=mysql
 
