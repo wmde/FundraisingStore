@@ -1,6 +1,7 @@
 {
 	"name": "wmde/fundraising-store",
 	"description": "Persistence services around the fundraising database",
+	"license": "GPL-2.0+",
 	"require": {
 		"php": ">=5.6",
 		"doctrine/dbal": "~2.4",
