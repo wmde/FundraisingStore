@@ -24,19 +24,19 @@
 	},
 	"scripts": {
 		"test": [
-			"composer validate --no-interaction",
-			"phpunit"
+			"@validate --no-interaction",
+			"vendor/bin/phpunit"
 		],
 		"cs": [
-			"composer phpcs",
-			"composer phpmd"
+			"@phpcs",
+			"@phpmd"
 		],
 		"ci": [
-			"composer test",
-			"composer cs"
+			"@test",
+			"@cs"
 		],
 		"phpcs": [
-			"vendor/bin/phpcs tests/* --standard=phpcs.xml --extensions=php -sp"
+			"vendor/bin/phpcs tests/ --standard=phpcs.xml --extensions=php -sp"
 		],
 		"phpmd": [
 			"vendor/bin/phpmd tests/ text phpmd.xml"
