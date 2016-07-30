@@ -44,7 +44,7 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 2.0 (2016-mm-dd)
+### Version 2.0 (2016-08-01)
 
 #### Breaking changes
 
@@ -55,6 +55,7 @@ run style checks use `composer cs`.
 	* `Request` was split into `MembershipApplication` and `Subscription` (the type field was removed)
 * The public PHP interfaces of `Donation` and `MembershipApplication` were changed to English.
 * Creation timestamps are now added automatically to donations, membership requests and subscriptions.
+* Changed the minimum PHP version to 5.6
 
 #### New features
 
