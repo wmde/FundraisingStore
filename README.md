@@ -53,7 +53,7 @@ run style checks use `composer cs`.
 	* `Users` => `User`
 	* `BackendImpressions` => `BackendImpression`
 	* `Request` was split into `MembershipApplication` and `Subscription` (the type field was removed)
-* The public PHP interfaces of `Donation` and `MembershipApplication` where changed to English.
+* The public PHP interfaces of `Donation` and `MembershipApplication` were changed to English.
 * Creation timestamps are now added automatically to donations, membership requests and subscriptions.
 
 #### New features
