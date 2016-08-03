@@ -44,7 +44,7 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 2.0 (2016-08-01)
+### Version 2.0 (2016-08-03)
 
 #### Breaking changes
 
