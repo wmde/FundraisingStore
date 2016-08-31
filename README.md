@@ -44,6 +44,9 @@ run style checks use `composer cs`.
 
 ## Release notes
 
+### Next Version (2.0.x)
+* Ability ro re-ruse the file `cli-config.php` when including `FundraisingStore` in an application is removed.
+
 ### Version 2.0 (2016-08-03)
 
 #### Breaking changes
