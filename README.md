@@ -54,7 +54,9 @@ run style checks use `composer cs`.
 	* `BackendImpressions` => `BackendImpression`
 	* `Request` was split into `MembershipApplication` and `Subscription` (the type field was removed)
 * The public PHP interfaces of `Donation` and `MembershipApplication` were changed to English.
-* Creation timestamps are now added automatically to donations, membership requests and subscriptions.
+* Creation timestamps are now added automatically to donations, membership requests and subscriptions. Donation creation 
+  timestamp `dt_new` is now mandatory (not nullable).
+* The `guid` field of `MembershipApplication` was removed.
 * Changed the minimum PHP version to 5.6
 
 #### New features
