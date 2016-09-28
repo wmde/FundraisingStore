@@ -12,6 +12,7 @@ class MembershipApplicationData {
 
 	private $accessToken;
 	private $updateToken;
+	private $preservedStatus;
 
 	/**
 	 * @return string|null
@@ -39,6 +40,20 @@ class MembershipApplicationData {
 	 */
 	public function setUpdateToken( $updateToken ) {
 		$this->updateToken = $updateToken;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getPreservedStatus() {
+		return $this->preservedStatus;
+	}
+
+	/**
+	 * @param string|null $status
+	 */
+	public function setPreservedStatus( $status ) {
+		$this->preservedStatus = $status;
 	}
 
 }
