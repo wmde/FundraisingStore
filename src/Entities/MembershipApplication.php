@@ -967,6 +967,7 @@ class MembershipApplication {
 
 		$data->setAccessToken( array_key_exists( 'token', $dataArray ) ? $dataArray['token'] : null );
 		$data->setUpdateToken( array_key_exists( 'utoken', $dataArray ) ? $dataArray['utoken'] : null );
+		$data->setPreservedStatus( array_key_exists( 'old_status', $dataArray ) ? $dataArray['old_status'] : null );
 
 		return $data;
 	}
@@ -981,10 +982,11 @@ class MembershipApplication {
 			[
 				'token' => $data->getAccessToken(),
 				'utoken' => $data->getUpdateToken(),
+				'old_status' => $data->getPreservedStatus(),
 			]
 		);
 
-		foreach ( [ 'token', 'utoken' ] as $keyName ) {
+		foreach ( [ 'token', 'utoken', 'old_status' ] as $keyName ) {
 			if ( is_null( $dataArray[$keyName] ) ) {
 				unset( $dataArray[$keyName] );
 			}

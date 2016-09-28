@@ -40,12 +40,14 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertNull( $application->getDataObject()->getAccessToken() );
 		$this->assertNull( $application->getDataObject()->getUpdateToken() );
+		$this->assertNull( $application->getDataObject()->getPreservedStatus() );
 	}
 
 	public function testWhenProvidingData_setDataObjectSetsData() {
 		$data = new MembershipApplicationData();
 		$data->setAccessToken( 'foo' );
 		$data->setUpdateToken( 'bar' );
+		$data->setPreservedStatus( 1337 );
 
 		$application = new MembershipApplication();
 		$application->setDataObject( $data );
@@ -54,6 +56,7 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 			[
 				'token' => 'foo',
 				'utoken' => 'bar',
+				'old_status' => 1337,
 			],
 			$application->getDecodedData()
 		);
