@@ -162,6 +162,13 @@ class MembershipApplication {
 	private $membershipType = 'sustaining';
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="payment_type", type="string", options={"default":"BEZ"}, nullable=false)
+	 */
+	private $paymentType = 'BEZ';
+
+	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="membership_fee", type="integer", options={"default":0}, nullable=false)
@@ -597,6 +604,24 @@ class MembershipApplication {
 	 */
 	public function getMembershipType() {
 		return $this->membershipType;
+	}
+
+	/**
+	 * @param string $paymentType
+	 *
+	 * @return self
+	 */
+	public function setPaymentType( $paymentType ) {
+		$this->paymentType = $paymentType;
+
+		return $this;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPaymentType() {
+		return $this->paymentType;
 	}
 
 	/**
