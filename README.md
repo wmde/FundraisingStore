@@ -44,10 +44,14 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Next Version (2.0.x)
+### Version 2.1.0 (2016-10-10)
+
+* Schema change: Added `payment_type` field column to the `request` table
+* Added `MembershipApplication::setPaymentType` and `MembershipApplication::getPaymentType`
+* Added `MembershipApplicationData::setPreservedStatus` and `MembershipApplicationData::getPreservedStatus`
 * Ability ro re-ruse the file `cli-config.php` when including `FundraisingStore` in an application is removed.
 
-### Version 2.0 (2016-08-03)
+### Version 2.0.0 (2016-08-03)
 
 #### Breaking changes
 
