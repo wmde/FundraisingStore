@@ -1,15 +1,17 @@
 <?php
-
+/**
+ * This script is for using the vendor/bin/doctrine command while developing
+ * the FundraisingStore library.
+ *
+ * If you include FundraisingStore in your application you'll have to create a similar file
+ * in your application root. That file should also initialize the database,
+ * using a configuration method that fits your application.
+ */
 use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use WMDE\Fundraising\Store\Factory;
 
-// Load config for both dependency and standalone use case
-if ( file_exists( __DIR__ . '/../../local-db-config.php' ) ) {
-	require_once( __DIR__ . '/../../local-db-config.php' );
-} else {
-	require_once( __DIR__ . '/local-db-config.php' );
-}
+require_once( __DIR__ . '/local-db-config.php' );
 
 $factory = new Factory( DriverManager::getConnection( [
 	'driver' => 'pdo_mysql',
