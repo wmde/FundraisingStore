@@ -607,6 +607,8 @@ class MembershipApplication {
 	}
 
 	/**
+	 * @since 2.1
+	 *
 	 * @param string $paymentType
 	 *
 	 * @return self
@@ -618,6 +620,8 @@ class MembershipApplication {
 	}
 
 	/**
+	 * @since 2.1
+	 *
 	 * @return string
 	 */
 	public function getPaymentType() {

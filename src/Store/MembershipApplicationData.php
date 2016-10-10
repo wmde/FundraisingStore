@@ -43,6 +43,7 @@ class MembershipApplicationData {
 	}
 
 	/**
+	 * @since 2.1
 	 * @return int|null
 	 */
 	public function getPreservedStatus() {
@@ -50,6 +51,7 @@ class MembershipApplicationData {
 	}
 
 	/**
+	 * @since 2.1
 	 * @param string|null $status
 	 */
 	public function setPreservedStatus( $status ) {
