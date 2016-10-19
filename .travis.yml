@@ -2,11 +2,7 @@ language: php
 
 matrix:
   include:
-    - php: 5.6
-      env: DB=sqlite
-    - php: 5.6
-      env: DB=mysql
-    - php: 7
+    - php: 7.1
       env: DB=sqlite; TYPE=coverage
     - php: 7
       env: DB=mysql

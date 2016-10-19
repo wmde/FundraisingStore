@@ -44,6 +44,10 @@ run style checks use `composer cs`.
 
 ## Release notes
 
+### Version 2.2.0 (dev)
+
+* Changed the minimum PHP version to 7.0
+
 ### Version 2.1.0 (2016-10-10)
 
 * Schema change: Added `payment_type` field column to the `request` table
