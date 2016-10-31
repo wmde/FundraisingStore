@@ -44,13 +44,18 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 2.2.0 (dev)
+### Version 3.0.0 (dev)
 
-* Changed the minimum PHP version to 7.0
+#### Breaking changes
+
 * Positive subscription status
    * All status flags are now positive, for better usage with bitwise operators
    * Removed flags that are not used anywhere.
    * Renamed flag `STATUS_NEUTRAL` to `STATUS_NEW`.
+   
+#### Other changes
+   
+* Changed the minimum PHP version to 7.0
 
 ### Version 2.1.0 (2016-10-10)
 
