@@ -18,6 +18,12 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame( 'Awesome_Meows!!!', $subscription->getConfirmationCode() );
 	}
 
+	public function testSetAndGetSource() {
+		$subscription = new Subscription();
+		$subscription->setSource( 'foobar' );
+		$this->assertSame( 'foobar', $subscription->getSource() );
+	}
+
 	public function testIsUnconfirmedReturnsTrueForNewSubscriptions() {
 		$this->assertTrue( ( new Subscription() )->isUnconfirmed() );
 	}
