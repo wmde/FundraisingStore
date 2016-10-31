@@ -2,27 +2,27 @@
 
 namespace WMDE\Fundraising\Store\Tests;
 
-use WMDE\Fundraising\Entities\MembershipApplication;
+use WMDE\Fundraising\Entities\DoctrineMembershipApplication;
 use WMDE\Fundraising\Store\MembershipApplicationData;
 
 /**
- * @covers WMDE\Fundraising\Entities\MembershipApplication
+ * @covers WMDE\Fundraising\Entities\DoctrineMembershipApplication
  * @covers WMDE\Fundraising\Store\MembershipApplicationData
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
+class DoctrineMembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 
 	public function testWhenSettingIdToAnInteger_getIdReturnsIt() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setId( 1337 );
 
 		$this->assertSame( 1337, $application->getId() );
 	}
 
 	public function testWhenSettingIdToNull_getIdReturnsNull() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setId( 1337 );
 		$application->setId( null );
 
@@ -30,13 +30,13 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenIdIsNotSet_getIdReturnsNull() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 
 		$this->assertNull( $application->getId() );
 	}
 
 	public function testGivenNoData_getDataObjectReturnsObjectWithNullValues() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 
 		$this->assertNull( $application->getDataObject()->getAccessToken() );
 		$this->assertNull( $application->getDataObject()->getUpdateToken() );
@@ -49,7 +49,7 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 		$data->setUpdateToken( 'bar' );
 		$data->setPreservedStatus( 1337 );
 
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setDataObject( $data );
 
 		$this->assertSame(
@@ -63,7 +63,7 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenProvidingNullData_setObjectDoesNotSetFields() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setDataObject( new MembershipApplicationData() );
 
 		$this->assertSame(
@@ -73,7 +73,7 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenDataAlreadyExists_setDataObjectRetainsAndUpdatesData() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->encodeAndSetData( [
 			'nyan' => 'cat',
 			'token' => 'wee',
@@ -98,7 +98,7 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenModifyingTheDataObject_modificationsAreReflected() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->encodeAndSetData( [
 			'nyan' => 'cat',
 			'token' => 'wee',
@@ -122,53 +122,53 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testStatusConstantsExist() {
-		$this->assertNotNull( MembershipApplication::STATUS_MODERATION );
-		$this->assertNotNull( MembershipApplication::STATUS_ABORTED );
-		$this->assertNotNull( MembershipApplication::STATUS_CANCELED );
-		$this->assertNotNull( MembershipApplication::STATUS_CONFIRMED );
-		$this->assertNotNull( MembershipApplication::STATUS_DELETED );
-		$this->assertNotNull( MembershipApplication::STATUS_NEUTRAL );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_MODERATION );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_ABORTED );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_CANCELED );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_CONFIRMED );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_DELETED );
+		$this->assertNotNull( DoctrineMembershipApplication::STATUS_NEUTRAL );
 	}
 
 	public function testGivenModerationStatus_needsModerationReturnsTrue() {
-		$application = new MembershipApplication();
-		$application->setStatus( MembershipApplication::STATUS_MODERATION );
+		$application = new DoctrineMembershipApplication();
+		$application->setStatus( DoctrineMembershipApplication::STATUS_MODERATION );
 
 		$this->assertTrue( $application->needsModeration() );
 	}
 
 	public function testGivenDefaultStatus_needsModerationReturnsFalse() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 
 		$this->assertFalse( $application->needsModeration() );
 	}
 
 	public function testGivenModerationAndCancelledStatus_needsModerationReturnsTrue() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setStatus(
-			MembershipApplication::STATUS_MODERATION + MembershipApplication::STATUS_CANCELED
+			DoctrineMembershipApplication::STATUS_MODERATION + DoctrineMembershipApplication::STATUS_CANCELED
 		);
 
 		$this->assertTrue( $application->needsModeration() );
 	}
 
 	public function testGivenCancelledStatus_isCancelledReturnsTrue() {
-		$application = new MembershipApplication();
-		$application->setStatus( MembershipApplication::STATUS_CANCELED );
+		$application = new DoctrineMembershipApplication();
+		$application->setStatus( DoctrineMembershipApplication::STATUS_CANCELED );
 
 		$this->assertTrue( $application->isCancelled() );
 	}
 
 	public function testGivenDefaultStatus_isCancelledReturnsFalse() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 
 		$this->assertFalse( $application->isCancelled() );
 	}
 
 	public function testGivenModerationAndCancelledStatus_isCancelledReturnsTrue() {
-		$application = new MembershipApplication();
+		$application = new DoctrineMembershipApplication();
 		$application->setStatus(
-			MembershipApplication::STATUS_MODERATION + MembershipApplication::STATUS_CANCELED
+			DoctrineMembershipApplication::STATUS_MODERATION + DoctrineMembershipApplication::STATUS_CANCELED
 		);
 
 		$this->assertTrue( $application->isCancelled() );

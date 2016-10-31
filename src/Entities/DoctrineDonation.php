@@ -12,7 +12,7 @@ use WMDE\Fundraising\Store\DonationData;
  * @ORM\Table(name="spenden", indexes={@ORM\Index(name="email", columns={"email"}), @ORM\Index(name="name", columns={"name"}), @ORM\Index(name="ort", columns={"ort"}), @ORM\Index(name="dt_new", columns={"dt_new", "is_public"}), @ORM\Index(name="dt_exp", columns={"dt_exp", "dt_del"}), @ORM\Index(name="zahlweise", columns={"zahlweise", "dt_new"}), @ORM\Index(name="dt_gruen", columns={"dt_gruen", "dt_del"}), @ORM\Index(name="ueb_code", columns={"ueb_code"}), @ORM\Index(name="dt_backup", columns={"dt_backup"}), @ORM\Index(name="status", columns={"status", "dt_new"}), @ORM\Index(name="comment_list", columns={"is_public", "dt_del"})})
  * @ORM\Entity
  */
-class Donation {
+class DoctrineDonation {
 
 	/**
 	 * @since 2.0
@@ -191,7 +191,7 @@ class Donation {
 	/**
 	 * @param string $donorFullName
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setDonorFullName( $donorFullName ) {
 		$this->donorFullName = $donorFullName;
@@ -209,7 +209,7 @@ class Donation {
 	/**
 	 * @param string $donorCity
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setDonorCity( $donorCity ) {
 		$this->donorCity = $donorCity;
@@ -227,7 +227,7 @@ class Donation {
 	/**
 	 * @param string $donorEmail
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setDonorEmail( $donorEmail ) {
 		$this->donorEmail = $donorEmail;
@@ -245,7 +245,7 @@ class Donation {
 	/**
 	 * @param boolean $donorOptsIntoNewsletter
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setDonorOptsIntoNewsletter( $donorOptsIntoNewsletter ) {
 		$this->donorOptsIntoNewsletter = $donorOptsIntoNewsletter;
@@ -264,7 +264,8 @@ class Donation {
 	 * Set donation receipt state
 	 *
 	 * @param boolean $donationReceipt
-	 * @return self
+	 *
+*@return DoctrineDonation
 	 */
 	public function setDonationReceipt( $donationReceipt ) {
 		$this->donationReceipt = $donationReceipt;
@@ -285,7 +286,8 @@ class Donation {
 	 * Set publicly displayed donation record
 	 *
 	 * @param string $publicRecord
-	 * @return self
+	 *
+*@return DoctrineDonation
 	 */
 	public function setPublicRecord( $publicRecord ) {
 		$this->publicRecord = $publicRecord;
@@ -304,7 +306,8 @@ class Donation {
 
 	/**
 	 * @param string $amount
-	 * @return self
+	 *
+*@return DoctrineDonation
 	 */
 	public function setAmount( $amount ) {
 		$this->amount = $amount;
@@ -322,7 +325,7 @@ class Donation {
 	/**
 	 * @param integer $paymentIntervalInMonths
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setPaymentIntervalInMonths( $paymentIntervalInMonths ) {
 		$this->paymentIntervalInMonths = $paymentIntervalInMonths;
@@ -341,7 +344,8 @@ class Donation {
 	 * Set payment type short code
 	 *
 	 * @param string $paymentType
-	 * @return self
+	 *
+*@return DoctrineDonation
 	 */
 	public function setPaymentType( $paymentType ) {
 		$this->paymentType = $paymentType;
@@ -360,7 +364,8 @@ class Donation {
 
 	/**
 	 * @param string $comment
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -380,7 +385,7 @@ class Donation {
 	 *
 	 * @param string $bankTransferCode
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setBankTransferCode( $bankTransferCode ) {
 		$this->bankTransferCode = $bankTransferCode;
@@ -399,7 +404,8 @@ class Donation {
 
 	/**
 	 * @param string $source
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setSource( $source ) {
 		$this->source = $source;
@@ -416,7 +422,8 @@ class Donation {
 
 	/**
 	 * @param string $remoteAddr
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setRemoteAddr( $remoteAddr ) {
 		$this->remoteAddr = $remoteAddr;
@@ -433,7 +440,8 @@ class Donation {
 
 	/**
 	 * @param string $hash
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setHash( $hash ) {
 		$this->hash = $hash;
@@ -450,8 +458,10 @@ class Donation {
 
 	/**
 	 * Sets if the donations comment should be public or private.
-	 * @param boolean $isPublic
-	 * @return self
+	 *
+*@param boolean $isPublic
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setIsPublic( $isPublic ) {
 		$this->isPublic = $isPublic;
@@ -470,7 +480,7 @@ class Donation {
 	/**
 	 * @param \DateTime $creationTime
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setCreationTime( $creationTime ) {
 		$this->creationTime = $creationTime;
@@ -488,7 +498,7 @@ class Donation {
 	/**
 	 * @param \DateTime|null $deletionTime
 	 *
-	 * @return self
+	 * @return DoctrineDonation
 	 */
 	public function setDeletionTime( $deletionTime ) {
 		$this->deletionTime = $deletionTime;
@@ -505,7 +515,8 @@ class Donation {
 
 	/**
 	 * @param \DateTime $dtExp
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setDtExp( $dtExp ) {
 		$this->dtExp = $dtExp;
@@ -522,7 +533,8 @@ class Donation {
 
 	/**
 	 * @param string $status
-	 * @return self
+	 *
+	 * @return DoctrineDonation
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -539,7 +551,8 @@ class Donation {
 
 	/**
 	 * @param \DateTime $dtGruen
-	 * @return self
+	 *
+	 *@return DoctrineDonation
 	 */
 	public function setDtGruen( $dtGruen ) {
 		$this->dtGruen = $dtGruen;
@@ -556,7 +569,8 @@ class Donation {
 
 	/**
 	 * @param \DateTime $dtBackup
-	 * @return self
+	 *
+	 *@return DoctrineDonation
 	 */
 	public function setDtBackup( $dtBackup ) {
 		$this->dtBackup = $dtBackup;
@@ -632,7 +646,8 @@ class Donation {
 	 * @deprecated since 2.0, use encodeAndSetData or setDataObject instead
 	 *
 	 * @param string $data Base 64 encoded, serialized PHP array
-	 * @return self
+	 *
+*@return DoctrineDonation
 	 */
 	public function setData( $data ) {
 		$this->data = $data;

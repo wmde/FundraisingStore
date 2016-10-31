@@ -2,20 +2,20 @@
 
 namespace WMDE\Fundraising\Store\Tests;
 
-use WMDE\Fundraising\Entities\Donation;
+use WMDE\Fundraising\Entities\DoctrineDonation;
 use WMDE\Fundraising\Store\DonationData;
 
 /**
- * @covers WMDE\Fundraising\Entities\Donation
+ * @covers WMDE\Fundraising\Entities\DoctrineDonation
  * @covers WMDE\Fundraising\Store\DonationData
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DonationTest extends \PHPUnit_Framework_TestCase {
+class DoctrineDonationTest extends \PHPUnit_Framework_TestCase {
 
 	public function testDataEncodingAndDecodingRoundtrips() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 
 		$someData = [
 			'nyan' => 'cat',
@@ -30,20 +30,20 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGivenNoData_getDecodedDataReturnsEmptyArray() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 
 		$this->assertSame( [], $donation->getDecodedData() );
 	}
 
 	public function testWhenSettingIdToAnInteger_getIdReturnsIt() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->setId( 1337 );
 
 		$this->assertSame( 1337, $donation->getId() );
 	}
 
 	public function testWhenSettingIdToNull_getIdReturnsNull() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->setId( 1337 );
 		$donation->setId( null );
 
@@ -51,13 +51,13 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenIdIsNotSet_getIdReturnsNull() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 
 		$this->assertNull( $donation->getId() );
 	}
 
 	public function testGivenNoData_getDataObjectReturnsObjectWithNullValues() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 
 		$this->assertNull( $donation->getDataObject()->getAccessToken() );
 		$this->assertNull( $donation->getDataObject()->getUpdateToken() );
@@ -65,7 +65,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testGivenData_getDataObjectReturnsTheValues() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->encodeAndSetData( [
 			'token' => 'foo',
 			'utoken' => 'bar',
@@ -83,7 +83,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 		$data->setUpdateToken( 'bar' );
 		$data->setUpdateTokenExpiry( 'baz' );
 
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->setDataObject( $data );
 
 		$this->assertSame(
@@ -97,7 +97,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenProvidingNullData_setObjectDoesNotSetFields() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->setDataObject( new DonationData() );
 
 		$this->assertSame(
@@ -107,7 +107,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenDataAlreadyExists_setDataObjectRetainsAndUpdatesData() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->encodeAndSetData( [
 			'nyan' => 'cat',
 			'token' => 'wee',
@@ -132,7 +132,7 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testWhenModifyingTheDataObject_modificationsAreReflected() {
-		$donation = new Donation();
+		$donation = new DoctrineDonation();
 		$donation->encodeAndSetData( [
 			'nyan' => 'cat',
 			'token' => 'wee',
@@ -156,12 +156,12 @@ class DonationTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testStatusConstantsExist() {
-		$this->assertNotNull( Donation::STATUS_NEW );
-		$this->assertNotNull( Donation::STATUS_CANCELLED );
-		$this->assertNotNull( Donation::STATUS_EXTERNAL_BOOKED );
-		$this->assertNotNull( Donation::STATUS_EXTERNAL_INCOMPLETE );
-		$this->assertNotNull( Donation::STATUS_MODERATION );
-		$this->assertNotNull( Donation::STATUS_PROMISE );
+		$this->assertNotNull( DoctrineDonation::STATUS_NEW );
+		$this->assertNotNull( DoctrineDonation::STATUS_CANCELLED );
+		$this->assertNotNull( DoctrineDonation::STATUS_EXTERNAL_BOOKED );
+		$this->assertNotNull( DoctrineDonation::STATUS_EXTERNAL_INCOMPLETE );
+		$this->assertNotNull( DoctrineDonation::STATUS_MODERATION );
+		$this->assertNotNull( DoctrineDonation::STATUS_PROMISE );
 	}
 
 }
