@@ -84,13 +84,9 @@ class Subscription {
 	 */
 	private $createdAt;
 
+	const STATUS_NEW = 0;
 	const STATUS_CONFIRMED = 1;
-	const STATUS_NEUTRAL = 0;
-	const STATUS_DELETED = -1;
-	const STATUS_MODERATION = -2;
-	const STATUS_ABORTED = -4;
-	const STATUS_CANCELED = -8;
-
+	const STATUS_MODERATION = 2;
 
 	/**
 	 * Set name
