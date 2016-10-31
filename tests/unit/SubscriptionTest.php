@@ -17,4 +17,16 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 		$subscription->setHexConfirmationCode( '417765736f6d655f4d656f7773212121' );
 		$this->assertSame( 'Awesome_Meows!!!', $subscription->getConfirmationCode() );
 	}
+
+	public function testIsUnconfirmedReturnsTrueForNewSubscriptions() {
+		$this->assertTrue( ( new Subscription() )->isUnconfirmed() );
+	}
+
+	public function testIsUnconfirmedReturnsFalseForConfirmedSubscriptions() {
+		$subscription = new Subscription();
+		$subscription->setStatus( Subscription::STATUS_CONFIRMED );
+
+		$this->assertFalse( $subscription->isUnconfirmed() );
+	}
+
 }

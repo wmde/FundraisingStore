@@ -28,14 +28,14 @@ class Subscription {
 	private $email = '';
 
 	/**
-	 * @var \DateTime
+	 * @var \DateTime|null
 	 *
 	 * @ORM\Column(name="export", type="datetime", nullable=true)
 	 */
 	private $export;
 
 	/**
-	 * @var \DateTime
+	 * @var \DateTime|null
 	 *
 	 * @ORM\Column(name="backup", type="datetime", nullable=true)
 	 */
@@ -84,198 +84,114 @@ class Subscription {
 	 */
 	private $createdAt;
 
-	const STATUS_NEW = 0;
-	const STATUS_CONFIRMED = 1;
-	const STATUS_MODERATION = 2;
+	/* public */ const STATUS_NEW = 0;
+	/* public */ const STATUS_CONFIRMED = 1;
+	/* public */ const STATUS_MODERATION = 2;
 
-	/**
-	 * Set name
-	 *
-	 * @param string $fullName
-	 * @return self
-	 */
-	public function setFullName( $fullName ) {
+	public function setFullName( string $fullName ): self {
 		$this->fullName = $fullName;
 
 		return $this;
 	}
 
-	/**
-	 * Get name
-	 *
-	 * @return string
-	 */
-	public function getFullName() {
+	public function getFullName(): string {
 		return $this->fullName;
 	}
 
-	/**
-	 * Set email
-	 *
-	 * @param string $email
-	 * @return self
-	 */
-	public function setEmail( $email ) {
+	public function setEmail( string $email ): self {
 		$this->email = $email;
 
 		return $this;
 	}
 
-	/**
-	 * Get email
-	 *
-	 * @return string
-	 */
-	public function getEmail() {
+	public function getEmail(): string {
 		return $this->email;
 	}
 
-	/**
-	 * Set export
-	 *
-	 * @param \DateTime $export
-	 * @return self
-	 */
-	public function setExport( $export ) {
+	public function setExport( \DateTime $export = null ): self {
 		$this->export = $export;
 
 		return $this;
 	}
 
 	/**
-	 * Get export
-	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getExport() {
 		return $this->export;
 	}
 
-	/**
-	 * Set backup
-	 *
-	 * @param \DateTime $backup
-	 * @return self
-	 */
-	public function setBackup( $backup ) {
+	public function setBackup( \DateTime $backup = null ): self {
 		$this->backup = $backup;
 
 		return $this;
 	}
 
 	/**
-	 * Get backup
-	 *
-	 * @return \DateTime
+	 * @return \DateTime|null
 	 */
 	public function getBackup() {
 		return $this->backup;
 	}
 
-	/**
-	 * Set status
-	 *
-	 * @param integer $status
-	 * @return self
-	 */
-	public function setStatus( $status ) {
+	public function setStatus( int $status ): self {
 		$this->status = $status;
 
 		return $this;
 	}
 
-	/**
-	 * Get status
-	 *
-	 * @return integer
-	 */
-	public function getStatus() {
+	public function getStatus(): int {
 		return $this->status;
 	}
 
-	/**
-	 * Set guid
-	 *
-	 * @param string $confirmationCode
-	 * @return self
-	 */
-	public function setConfirmationCode( $confirmationCode ) {
+	public function setConfirmationCode( string $confirmationCode ): self {
 		$this->confirmationCode = $confirmationCode;
 
 		return $this;
 	}
 
-	/**
-	 * Get guid
-	 *
-	 * @return string
-	 */
-	public function getConfirmationCode() {
+	public function getConfirmationCode(): string {
 		return $this->confirmationCode;
 	}
 
-	/**
-	 * Get id
-	 *
-	 * @return integer
-	 */
-	public function getId() {
+	public function getId(): int {
 		return $this->id;
 	}
 
-	/**
-	 * @return Address
-	 */
-	public function getAddress() {
+	public function getAddress(): Address {
 		return $this->address;
 	}
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getCreatedAt() {
+	public function setAddress( Address $address ) {
+		$this->address = $address;
+	}
+
+	public function getCreatedAt(): \DateTime {
 		return $this->createdAt;
 	}
 
-	/**
-	 * @param \DateTime $createdAt
-	 * @return self
-	 */
-	public function setCreatedAt( $createdAt ) {
+	public function setCreatedAt( \DateTime $createdAt ): self {
 		$this->createdAt = $createdAt;
 		return $this;
 	}
 
-	/**
-	 * @return string
-	 */
-	public function getTracking() {
+	public function getTracking(): string {
 		return $this->tracking;
 	}
 
-	/**
-	 * @param string $tracking
-	 */
-	public function setTracking( $tracking ) {
+	public function setTracking( string $tracking ) {
 		$this->tracking = $tracking;
 	}
 
-	/**
-	 * @param Address $address
-	 */
-	public function setAddress( $address ) {
-		$this->address = $address;
+	public function isUnconfirmed(): bool {
+		return $this->getStatus() === self::STATUS_NEW;
 	}
 
-	public function isUnconfirmed() {
-		return $this->getStatus() === self::STATUS_NEUTRAL;
-	}
-
-	public function getHexConfirmationCode() {
+	public function getHexConfirmationCode(): string {
 		return bin2hex( $this->confirmationCode );
 	}
 
-	public function setHexConfirmationCode( $confirmationCode ) {
+	public function setHexConfirmationCode( string $confirmationCode ) {
 		$this->confirmationCode = hex2bin( $confirmationCode );
 	}
 
