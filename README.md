@@ -56,6 +56,8 @@ run style checks use `composer cs`.
 #### Other changes
    
 * Changed the minimum PHP version to 7.0
+* Added `source` field to `subscription` table. This field indicates what led to the subscription,
+  for instance the "remind me later" feature.
 
 ### Version 2.1.0 (2016-10-10)
 

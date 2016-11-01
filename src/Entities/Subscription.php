@@ -78,6 +78,13 @@ class Subscription {
 	private $tracking;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="source", type="string", length=50, nullable=true)
+	 */
+	private $source;
+
+	/**
 	 * @var \DateTime
 	 * @Gedmo\Timestampable(on="create")
 	 * @ORM\Column(type="datetime")
@@ -193,6 +200,16 @@ class Subscription {
 
 	public function setHexConfirmationCode( string $confirmationCode ) {
 		$this->confirmationCode = hex2bin( $confirmationCode );
+	}
+
+	public function setSource( string $source ): self {
+		$this->source = $source;
+
+		return $this;
+	}
+
+	public function getSource(): string {
+		return $this->source;
 	}
 
 }
