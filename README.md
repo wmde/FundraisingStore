@@ -48,16 +48,20 @@ run style checks use `composer cs`.
 
 #### Breaking changes
 
-* Positive subscription status
-   * All status flags are now positive, for better usage with bitwise operators
-   * Removed flags that are not used anywhere.
-   * Renamed flag `STATUS_NEUTRAL` to `STATUS_NEW`.
-   
-#### Other changes
-   
+* The Subscription status flags have been removed and usage of setStatus and getStatus is now discouraged
 * Changed the minimum PHP version to 7.0
+
+#### New features
+
 * Added `source` field to `subscription` table. This field indicates what led to the subscription,
   for instance the "remind me later" feature.
+* Added `Subscription::getSource` and `Subscription::setSource`
+* Added `Subscription::markAsConfirmed`
+* Added `Subscription::markForModeration`
+
+#### Bug fixes
+
+* `Subscription::isUnconfirmed` now correctly returns true when a subscription has been marked for moderation
 
 ### Version 2.1.0 (2016-10-10)
 

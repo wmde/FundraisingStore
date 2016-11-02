@@ -91,9 +91,9 @@ class Subscription {
 	 */
 	private $createdAt;
 
-	/* public */ const STATUS_NEW = 0;
-	/* public */ const STATUS_CONFIRMED = 1;
-	/* public */ const STATUS_MODERATION = 2;
+	private $STATUS_NEW = 0;
+	private $STATUS_CONFIRMED = 1;
+	private $STATUS_MODERATION = 2;
 
 	public function setFullName( string $fullName ): self {
 		$this->fullName = $fullName;
@@ -141,6 +141,12 @@ class Subscription {
 		return $this->backup;
 	}
 
+	/**
+	 * Usage of this method is discouraged.
+	 *
+	 * @param int $status
+	 * @return Subscription
+	 */
 	public function setStatus( int $status ): self {
 		$this->status = $status;
 
@@ -149,6 +155,7 @@ class Subscription {
 
 	/**
 	 * Usage of this method is discouraged. Try using something like @see isUnconfirmed
+	 *
 	 * @return int
 	 */
 	public function getStatus(): int {
@@ -195,7 +202,7 @@ class Subscription {
 	}
 
 	public function isUnconfirmed(): bool {
-		return $this->getStatus() !== self::STATUS_CONFIRMED;
+		return $this->getStatus() !== $this->STATUS_CONFIRMED;
 	}
 
 	public function getHexConfirmationCode(): string {
@@ -206,14 +213,34 @@ class Subscription {
 		$this->confirmationCode = hex2bin( $confirmationCode );
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public function setSource( string $source ): self {
 		$this->source = $source;
 
 		return $this;
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public function getSource(): string {
 		return $this->source;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public function markAsConfirmed() {
+		$this->status = $this->STATUS_CONFIRMED;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public function markForModeration() {
+		$this->status = $this->STATUS_MODERATION;
 	}
 
 }
