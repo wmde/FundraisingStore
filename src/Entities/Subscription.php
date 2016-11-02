@@ -147,6 +147,10 @@ class Subscription {
 		return $this;
 	}
 
+	/**
+	 * Usage of this method is discouraged. Try using something like @see isUnconfirmed
+	 * @return int
+	 */
 	public function getStatus(): int {
 		return $this->status;
 	}
@@ -191,7 +195,7 @@ class Subscription {
 	}
 
 	public function isUnconfirmed(): bool {
-		return $this->getStatus() === self::STATUS_NEW;
+		return $this->getStatus() !== self::STATUS_CONFIRMED;
 	}
 
 	public function getHexConfirmationCode(): string {
