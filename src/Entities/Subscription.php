@@ -142,8 +142,10 @@ class Subscription {
 	}
 
 	/**
-	 * Usage of this method is discouraged.
-	 *
+	 * Usage of this method is discouraged, it's only for initialization with Doctrine.
+	 * 
+	 * @see Subscription::markAsConfirmed()
+ 	 * @see Subscription::markForModeration()
 	 * @param int $status
 	 * @return Subscription
 	 */
