@@ -143,7 +143,8 @@ class Subscription {
 
 	/**
 	 * Usage of this method is discouraged.
-	 *
+	 * 
+	 * @deprecated
 	 * @param int $status
 	 * @return Subscription
 	 */
