@@ -1,9 +1,18 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace WMDE\Fundraising\Store\Tests;
 
 use WMDE\Fundraising\Entities\Subscription;
 
+/**
+ * @covers WMDE\Fundraising\Entities\Subscription
+ *
+ * @licence GNU GPL v2+
+ * @author Gabriel Birke < gabriel.birke@wikimedia.de >
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
 class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGivenABinaryConfirmationCode_itCanBeConvertedToHex() {

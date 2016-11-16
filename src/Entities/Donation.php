@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -656,6 +658,10 @@ class Donation {
 	 * @return array
 	 */
 	public function getDecodedData() {
+		if ( $this->data === null ) {
+			return [];
+		}
+
 		$data = unserialize( base64_decode( $this->data ) );
 
 		return is_array( $data ) ? $data : [];
