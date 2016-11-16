@@ -58,6 +58,7 @@ run style checks use `composer cs`.
 * Added `Subscription::getSource` and `Subscription::setSource`
 * Added `Subscription::markAsConfirmed`
 * Added `Subscription::markForModeration`
+* Added `Subscription::needsModeration`
 
 #### Bug fixes
 

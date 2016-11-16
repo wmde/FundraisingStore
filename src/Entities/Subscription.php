@@ -93,6 +93,7 @@ class Subscription {
 	 */
 	private $createdAt;
 
+	// TODO: replace by private constants once using PHP 7.1+
 	private $STATUS_NEW = 0;
 	private $STATUS_CONFIRMED = 1;
 	private $STATUS_MODERATION = 2;
@@ -205,10 +206,6 @@ class Subscription {
 		$this->tracking = $tracking;
 	}
 
-	public function isUnconfirmed(): bool {
-		return $this->status !== $this->STATUS_CONFIRMED;
-	}
-
 	public function getHexConfirmationCode(): string {
 		return bin2hex( $this->confirmationCode );
 	}
@@ -245,6 +242,17 @@ class Subscription {
 	 */
 	public function markForModeration() {
 		$this->status = $this->STATUS_MODERATION;
+	}
+
+	public function isUnconfirmed(): bool {
+		return $this->status !== $this->STATUS_CONFIRMED;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	public function needsModeration(): bool {
+		return $this->status === $this->STATUS_MODERATION;
 	}
 
 }

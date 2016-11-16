@@ -51,4 +51,17 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $subscription->isUnconfirmed() );
 	}
 
+	public function testWhenSubscriptionIsNew_needsModerationReturnsFalse() {
+		$subscription = new Subscription();
+
+		$this->assertFalse( $subscription->needsModeration() );
+	}
+
+	public function testWhenPendingModeration_needsModerationReturnsTrue() {
+		$subscription = new Subscription();
+		$subscription->markForModeration();
+
+		$this->assertTrue( $subscription->needsModeration() );
+	}
+
 }
