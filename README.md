@@ -49,6 +49,8 @@ run style checks use `composer cs`.
 #### Breaking changes
 
 * The Subscription status flags have been removed and usage of setStatus and getStatus is now discouraged
+* Renamed `Donation` to `DoctrineDonation`
+* Renamed `MembershipApplication` to `DoctrineMembershipApplication`
 * Changed the minimum PHP version to 7.0
 
 #### New features

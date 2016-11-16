@@ -12,7 +12,7 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
  * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
  * @ORM\Entity
  */
-class MembershipApplication {
+class DoctrineMembershipApplication {
 
 	const STATUS_CONFIRMED = 1;
 	const STATUS_NEUTRAL = 0;
@@ -287,7 +287,7 @@ class MembershipApplication {
 	/**
 	 * @param integer|null $donationId
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setDonationId( $donationId ) {
 		$this->donationId = $donationId;
@@ -308,7 +308,7 @@ class MembershipApplication {
 	/**
 	 * @param \DateTime|null $creationTime
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setCreationTime( $creationTime ) {
 		$this->creationTime = $creationTime;
@@ -326,7 +326,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $applicantSalutation
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantSalutation( $applicantSalutation ) {
 		$this->applicantSalutation = $applicantSalutation;
@@ -344,7 +344,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $company
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setCompany( $company ) {
 		$this->company = $company;
@@ -362,7 +362,7 @@ class MembershipApplication {
 	/**
 	 * @param string $applicantTitle
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantTitle( $applicantTitle ) {
 		$this->applicantTitle = $applicantTitle;
@@ -380,7 +380,7 @@ class MembershipApplication {
 	/**
 	 * @param string $probablyUnusedNameField
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setProbablyUnusedNameField( $probablyUnusedNameField ) {
 		$this->probablyUnusedNameField = $probablyUnusedNameField;
@@ -398,7 +398,7 @@ class MembershipApplication {
 	/**
 	 * @param string $applicantFirstName
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantFirstName( $applicantFirstName ) {
 		$this->applicantFirstName = $applicantFirstName;
@@ -417,7 +417,7 @@ class MembershipApplication {
 	/**
 	 * @param string $applicantLastName
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantLastName( $applicantLastName ) {
 		$this->applicantLastName = $applicantLastName;
@@ -439,7 +439,7 @@ class MembershipApplication {
 	 * @param string|null $firstName
 	 * @param string|null $lastName
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	private function setNameFromParts( $firstName, $lastName ) {
 		$this->setProbablyUnusedNameField( implode(
@@ -455,7 +455,7 @@ class MembershipApplication {
 	 *
 	 * @param string|null $address
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setAddress( $address ) {
 		$this->address = $address;
@@ -475,7 +475,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $postcode
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPostcode( $postcode ) {
 		$this->postcode = $postcode;
@@ -493,7 +493,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $city
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setCity( $city ) {
 		$this->city = $city;
@@ -513,7 +513,7 @@ class MembershipApplication {
 	 *
 	 * @param string $applicantEmailAddress
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantEmailAddress( $applicantEmailAddress ) {
 		$this->applicantEmailAddress = $applicantEmailAddress;
@@ -535,7 +535,7 @@ class MembershipApplication {
 	 *
 	 * @param string $applicantPhoneNumber
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantPhoneNumber( $applicantPhoneNumber ) {
 		$this->applicantPhoneNumber = $applicantPhoneNumber;
@@ -555,7 +555,7 @@ class MembershipApplication {
 	/**
 	 * @param \DateTime|null $dateOfBirth
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setApplicantDateOfBirth( $dateOfBirth ) {
 		$this->applicantDateOfBirth = $dateOfBirth;
@@ -573,7 +573,7 @@ class MembershipApplication {
 	/**
 	 * @param string $wikimediumShipping
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setWikimediumShipping( $wikimediumShipping ) {
 		$this->wikimediumShipping = $wikimediumShipping;
@@ -591,7 +591,7 @@ class MembershipApplication {
 	/**
 	 * @param string $membershipType
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setMembershipType( $membershipType ) {
 		$this->membershipType = $membershipType;
@@ -611,7 +611,7 @@ class MembershipApplication {
 	 *
 	 * @param string $paymentType
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentType( $paymentType ) {
 		$this->paymentType = $paymentType;
@@ -631,7 +631,7 @@ class MembershipApplication {
 	/**
 	 * @param integer $paymentAmountInEuro
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentAmount( $paymentAmountInEuro ) {
 		$this->paymentAmountInEuro = $paymentAmountInEuro;
@@ -649,7 +649,7 @@ class MembershipApplication {
 	/**
 	 * @param integer $paymentIntervalInMonths
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentIntervalInMonths($paymentIntervalInMonths) {
 		$this->paymentIntervalInMonths = $paymentIntervalInMonths;
@@ -668,7 +668,7 @@ class MembershipApplication {
 	/**
 	 * @param string $paymentBankAccount
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentBankAccount( $paymentBankAccount ) {
 		$this->paymentBankAccount = $paymentBankAccount;
@@ -686,7 +686,7 @@ class MembershipApplication {
 	/**
 	 * @param string $paymentBankName
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentBankName( $paymentBankName ) {
 		$this->paymentBankName = $paymentBankName;
@@ -704,7 +704,7 @@ class MembershipApplication {
 	/**
 	 * @param string $paymentBankCode
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentBankCode( $paymentBankCode ) {
 		$this->paymentBankCode = $paymentBankCode;
@@ -722,7 +722,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $paymentIban
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentIban( $paymentIban ) {
 		$this->paymentIban = $paymentIban;
@@ -740,7 +740,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $paymentBic
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentBic( $paymentBic ) {
 		$this->paymentBic = $paymentBic;
@@ -758,7 +758,7 @@ class MembershipApplication {
 	/**
 	 * @param string $paymentBankAccountHolder
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setPaymentBankAccountHolder( $paymentBankAccountHolder ) {
 		$this->paymentBankAccountHolder = $paymentBankAccountHolder;
@@ -776,7 +776,7 @@ class MembershipApplication {
 	/**
 	 * @param string $comment
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
@@ -796,7 +796,7 @@ class MembershipApplication {
 	 *
 	 * @param \DateTime|null $export
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setExport( $export ) {
 		$this->export = $export;
@@ -818,7 +818,7 @@ class MembershipApplication {
 	 *
 	 * @param \DateTime|null $backup
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setBackup( $backup ) {
 		$this->backup = $backup;
@@ -838,7 +838,7 @@ class MembershipApplication {
 	/**
 	 * @param boolean $wikilogin
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setWikilogin( $wikilogin ) {
 		$this->wikilogin = $wikilogin;
@@ -856,7 +856,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $tracking
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setTracking( $tracking ) {
 		$this->tracking = $tracking;
@@ -877,7 +877,7 @@ class MembershipApplication {
 	 *
 	 * @param integer $status
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setStatus( $status ) {
 		$this->status = $status;
@@ -898,7 +898,7 @@ class MembershipApplication {
 	/**
 	 * @param string|null $country
 	 *
-	 * @return self
+	 * @return DoctrineMembershipApplication
 	 */
 	public function setCountry( $country ) {
 		$this->country = $country;
@@ -915,7 +915,8 @@ class MembershipApplication {
 
 	/**
 	 * @param string|null $data
-	 * @return self
+	 *
+*@return DoctrineMembershipApplication
 	 */
 	public function setData( $data ) {
 		$this->data = $data;
