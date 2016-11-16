@@ -24,18 +24,18 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame( 'foobar', $subscription->getSource() );
 	}
 
-	public function testIsUnconfirmedReturnsTrueForNewSubscriptions() {
+	public function testWhenSubscriptionIsNew_isUnconfirmedReturnsTrue() {
 		$this->assertTrue( ( new Subscription() )->isUnconfirmed() );
 	}
 
-	public function testIsUnconfirmedReturnsFalseForConfirmedSubscriptions() {
+	public function testWhenConfirmed_isUnconfirmedReturnsFalse() {
 		$subscription = new Subscription();
 		$subscription->markAsConfirmed();
 
 		$this->assertFalse( $subscription->isUnconfirmed() );
 	}
 
-	public function testIsUnconfirmedReturnsTrueForSubscriptionsPendingModeration() {
+	public function testWhenPendingModeration_isUnconfirmedReturnsTrue() {
 		$subscription = new Subscription();
 		$subscription->markForModeration();
 

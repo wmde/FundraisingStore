@@ -204,7 +204,7 @@ class Subscription {
 	}
 
 	public function isUnconfirmed(): bool {
-		return $this->getStatus() !== $this->STATUS_CONFIRMED;
+		return $this->status !== $this->STATUS_CONFIRMED;
 	}
 
 	public function getHexConfirmationCode(): string {
