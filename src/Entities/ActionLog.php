@@ -1,5 +1,7 @@
 <?php
 
+declare( strict_types = 1 );
+
 namespace WMDE\Fundraising\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
