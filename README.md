@@ -20,12 +20,12 @@ this package as well as its dependencies.
 To add this package as a local, per-project dependency to your project, simply add a
 dependency on `wmde/fundraising-store` to your project's `composer.json` file.
 Here is a minimal example of a `composer.json` file that just defines a dependency on
-Fundraising Store 2.x:
+Fundraising Store 3.x:
 
 ```js
 {
     "require": {
-        "wmde/fundraising-store": "^2.0.0"
+        "wmde/fundraising-store": "^3.0.0"
     }
 }
 ```
@@ -44,7 +44,7 @@ run style checks use `composer cs`.
 
 ## Release notes
 
-### Version 3.0.0 (dev)
+### Version 3.0.0 (2016-11-16)
 
 #### Breaking changes
 
