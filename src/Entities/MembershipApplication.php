@@ -194,7 +194,7 @@ class MembershipApplication {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="bank_name", type="string", length=50, options={"default":""}, nullable=false)
+	 * @ORM\Column(name="bank_name", type="string", length=100, options={"default":""}, nullable=false)
 	 */
 	private $paymentBankName = '';
 
