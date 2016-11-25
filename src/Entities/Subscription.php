@@ -53,7 +53,7 @@ class Subscription {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="confirmationCode", type="blob", length=16, nullable=true)
+	 * @ORM\Column(name="confirmationCode", type="string", length=32, nullable=true)
 	 */
 	private $confirmationCode;
 
@@ -204,14 +204,6 @@ class Subscription {
 
 	public function setTracking( string $tracking ) {
 		$this->tracking = $tracking;
-	}
-
-	public function getHexConfirmationCode(): string {
-		return bin2hex( $this->confirmationCode );
-	}
-
-	public function setHexConfirmationCode( string $confirmationCode ) {
-		$this->confirmationCode = hex2bin( $confirmationCode );
 	}
 
 	/**
