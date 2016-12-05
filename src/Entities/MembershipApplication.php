@@ -981,7 +981,7 @@ class MembershipApplication {
 	 * NOTE: if possible, use @see modifyDataObject instead, as it provides a nicer API.
 	 *
 	 * @since 2.0
-	 * @param array $data
+	 * @param array $dataArray
 	 */
 	public function encodeAndSetData( array $dataArray ) {
 		$this->data = base64_encode( serialize( $dataArray ) );
