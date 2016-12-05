@@ -23,9 +23,11 @@ use Gedmo\Timestampable\TimestampableListener;
 class Factory {
 
 	private $entityManager;
+	private $proxyDir;
 
-	public function __construct( Connection $connection ) {
+	public function __construct( Connection $connection, $proxyDir = '/tmp' ) {
 		$this->connection = $connection;
+		$this->proxyDir = $proxyDir;
 	}
 
 	/**
@@ -58,6 +60,7 @@ class Factory {
 		$driver = new AnnotationDriver( $annotationReader, $paths );
 		AnnotationRegistry::registerLoader( 'class_exists' );
 		$config->setMetadataDriverImpl( $driver );
+		$config->setProxyDir( $this->proxyDir );
 
 		$eventManager = $this->connection->getEventManager();
 		$timestampableListener = new TimestampableListener;
