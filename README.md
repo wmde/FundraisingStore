@@ -44,6 +44,10 @@ run style checks use `composer cs`.
 
 ## Release notes
 
+### Version 4.1.0 (2016-12-06)
+
+* Add parameter for setting proxy dir to Factory. For backwards compatibility it's optional and defaults to `/tmp`.
+
 ### Version 4.0.0 (2016-11-25)
 
 #### Breaking changes
