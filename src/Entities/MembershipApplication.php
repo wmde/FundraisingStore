@@ -953,6 +953,14 @@ class MembershipApplication {
 		return $this->status < 0 && abs( $this->status ) & abs( self::STATUS_CANCELED );
 	}
 
+	/**
+	 * @since 4.2
+	 * @return bool
+	 */
+	public function isDeleted() {
+		return $this->status < 0 && abs( $this->status ) & abs( self::STATUS_DELETED );
+	}
+
 	public function log( $message ) {
 		$dataArray = $this->getDecodedData();
 		$dataArray[ "log" ][ date( "Y-m-d H:i:s" ) ] = $message;
