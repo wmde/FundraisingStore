@@ -176,4 +176,26 @@ class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $application->isCancelled() );
 	}
 
+	public function testGivenDeletedStatus_isDeletedReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus( MembershipApplication::STATUS_DELETED );
+
+		$this->assertTrue( $application->isDeleted() );
+	}
+
+	public function testGivenDefaultStatus_isDeletedReturnsFalse() {
+		$application = new MembershipApplication();
+
+		$this->assertFalse( $application->isCancelled() );
+	}
+
+	public function testGivenModerationAndDeletedStatus_isDeletedReturnsTrue() {
+		$application = new MembershipApplication();
+		$application->setStatus(
+			MembershipApplication::STATUS_MODERATION + MembershipApplication::STATUS_DELETED
+		);
+
+		$this->assertTrue( $application->isDeleted() );
+	}
+
 }
