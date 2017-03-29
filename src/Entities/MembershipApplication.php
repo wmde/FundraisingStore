@@ -11,7 +11,15 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
 /**
  * @since 2.0
  *
- * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
+ * @ORM\Table(
+ *     name="request",
+ *     indexes={
+ *          @ORM\Index(name="idx_donation_id", columns={"donation_id"}),
+ *			@ORM\Index(name="m_email", columns={"email"}, flags={"fulltext"}),
+ *          @ORM\Index(name="m_name", columns={"name"}, flags={"fulltext"}),
+ *     		@ORM\Index(name="m_ort", columns={"ort"}, flags={"fulltext"})
+ *     }
+ *	 )
  * @ORM\Entity
  */
 class MembershipApplication {

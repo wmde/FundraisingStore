@@ -25,7 +25,7 @@ Fundraising Store 4.x:
 ```json
 {
     "require": {
-        "wmde/fundraising-store": "^4.0.0"
+        "wmde/fundraising-store": "^5.0.0"
     }
 }
 ```
@@ -43,6 +43,13 @@ required by our CI by executing `composer ci`. To just run tests use `composer t
 run style checks use `composer cs`.
 
 ## Release notes
+
+### Version 5.0.0 (2017-03-29)
+
+#### Breaking changes
+
+* Added full text indices for donations and memberships. This breaks backward compatibility for MySQL versions < 5.6.
+* Prefixed all indices of donations with `d_`.
 
 ### Version 4.2.0 (2017-01-04)
 
