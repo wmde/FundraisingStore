@@ -50,6 +50,8 @@ run style checks use `composer cs`.
 
 * Added full text indices for donations and memberships. This breaks backward compatibility for MySQL versions < 5.6.
 * Prefixed all indices of donations with `d_`.
+* Mark `donation_id` of `MembershipApplication` as deprecated. It's no longer written by the fundraising frontend, but 
+  still referenced in some places by the backend, so for now we just mark it as deprecated instead of removing it.
 
 ### Version 4.2.0 (2017-01-04)
 
