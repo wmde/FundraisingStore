@@ -11,7 +11,14 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
 /**
  * @since 2.0
  *
- * @ORM\Table(name="request", indexes={@ORM\Index(name="idx_donation_id", columns={"donation_id"})})
+ * @ORM\Table(
+ *     name="request",
+ *     indexes={
+ *			@ORM\Index(name="m_email", columns={"email"}, flags={"fulltext"}),
+ *          @ORM\Index(name="m_name", columns={"name"}, flags={"fulltext"}),
+ *     		@ORM\Index(name="m_ort", columns={"ort"}, flags={"fulltext"})
+ *     }
+ *	 )
  * @ORM\Entity
  */
 class MembershipApplication {
@@ -42,6 +49,11 @@ class MembershipApplication {
 	private $status = 0;
 
 	/**
+	 * This is no longer written by the fundraising frontend.
+	 *
+	 * Until we remove all references to this field in the backend, the field is not removed but just marked as deprecated.
+	 *
+	 * @deprecated
 	 * @var integer|null
 	 *
 	 * @ORM\Column(name="donation_id", type="integer", nullable=true)
