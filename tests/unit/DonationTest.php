@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\Donation;
 use WMDE\Fundraising\Store\DonationData;
 
@@ -14,7 +15,7 @@ use WMDE\Fundraising\Store\DonationData;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class DonationTest extends \PHPUnit_Framework_TestCase {
+class DonationTest extends TestCase {
 
 	public function testDataEncodingAndDecodingRoundtrips() {
 		$donation = new Donation();

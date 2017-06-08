@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\Subscription;
 
 /**
@@ -13,7 +14,7 @@ use WMDE\Fundraising\Entities\Subscription;
  * @author Gabriel Birke < gabriel.birke@wikimedia.de >
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SubscriptionTest extends \PHPUnit_Framework_TestCase {
+class SubscriptionTest extends TestCase {
 
 	public function testSetAndGetSource() {
 		$subscription = new Subscription();

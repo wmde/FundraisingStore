@@ -93,10 +93,9 @@ class Subscription {
 	 */
 	private $createdAt;
 
-	// TODO: replace by private constants once using PHP 7.1+
-	private $STATUS_NEW = 0;
-	private $STATUS_CONFIRMED = 1;
-	private $STATUS_MODERATION = 2;
+	private const STATUS_NEW = 0;
+	private const STATUS_CONFIRMED = 1;
+	private const STATUS_MODERATION = 2;
 
 	public function setFullName( string $fullName ): self {
 		$this->fullName = $fullName;
@@ -226,25 +225,25 @@ class Subscription {
 	 * @since 3.0
 	 */
 	public function markAsConfirmed() {
-		$this->status = $this->STATUS_CONFIRMED;
+		$this->status = self::STATUS_CONFIRMED;
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public function markForModeration() {
-		$this->status = $this->STATUS_MODERATION;
+		$this->status = self::STATUS_MODERATION;
 	}
 
 	public function isUnconfirmed(): bool {
-		return $this->status !== $this->STATUS_CONFIRMED;
+		return $this->status !== self::STATUS_CONFIRMED;
 	}
 
 	/**
 	 * @since 3.0
 	 */
 	public function needsModeration(): bool {
-		return $this->status === $this->STATUS_MODERATION;
+		return $this->status === self::STATUS_MODERATION;
 	}
 
 }
