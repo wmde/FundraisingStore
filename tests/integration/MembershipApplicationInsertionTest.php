@@ -4,9 +4,10 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\MembershipApplication;
 
-class MembershipApplicationInsertionTest extends \PHPUnit_Framework_TestCase {
+class MembershipApplicationInsertionTest extends TestCase {
 
 	public function testNewMembershipApplicationCanBeInserted() {
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();

@@ -33,12 +33,12 @@ class Donation {
 	/**
 	 * @since 2.0
 	 */
-	const STATUS_NEW = 'N'; // status for direct debit
-	const STATUS_PROMISE = 'Z'; // status for bank transfer
-	const STATUS_EXTERNAL_INCOMPLETE = 'X'; // status for external payments
-	const STATUS_EXTERNAL_BOOKED = 'B'; // status for external payments
-	const STATUS_MODERATION = 'P';
-	const STATUS_CANCELLED = 'D';
+	public const STATUS_NEW = 'N'; // status for direct debit
+	public const STATUS_PROMISE = 'Z'; // status for bank transfer
+	public const STATUS_EXTERNAL_INCOMPLETE = 'X'; // status for external payments
+	public const STATUS_EXTERNAL_BOOKED = 'B'; // status for external payments
+	public const STATUS_MODERATION = 'P';
+	public const STATUS_CANCELLED = 'D';
 
 	/**
 	 * @var integer

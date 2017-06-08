@@ -3,16 +3,15 @@
 	"description": "Persistence services around the fundraising database",
 	"license": "GPL-2.0+",
 	"require": {
-		"php": ">=7.0",
+		"php": ">=7.1",
 		"doctrine/dbal": "~2.4",
 		"doctrine/orm": "~2.4",
 		"gedmo/doctrine-extensions": "^2.4"
 	},
 	"require-dev": {
-		"squizlabs/php_codesniffer": "~2.2",
-		"phpmd/phpmd": "~2.3",
-		"phpunit/phpunit": "~5.4",
-		"ockcyp/covers-validator": "~0.4.0"
+		"squizlabs/php_codesniffer": "~3.0",
+		"phpunit/phpunit": "~6.2",
+		"ockcyp/covers-validator": "~0.6.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -31,8 +30,7 @@
 			"vendor/bin/covers-validator"
 		],
 		"cs": [
-			"@phpcs",
-			"@phpmd"
+			"@phpcs"
 		],
 		"ci": [
 			"@test",
@@ -40,9 +38,6 @@
 		],
 		"phpcs": [
 			"vendor/bin/phpcs tests/ --standard=phpcs.xml --extensions=php -sp"
-		],
-		"phpmd": [
-			"vendor/bin/phpmd tests/ text phpmd.xml"
 		]
 	},
 	"bin": [

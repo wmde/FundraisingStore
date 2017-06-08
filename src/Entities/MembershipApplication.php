@@ -23,12 +23,12 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
  */
 class MembershipApplication {
 
-	const STATUS_CONFIRMED = 1;
-	const STATUS_NEUTRAL = 0;
-	const STATUS_DELETED = -1;
-	const STATUS_MODERATION = -2;
-	const STATUS_ABORTED = -4;
-	const STATUS_CANCELED = -8;
+	public const STATUS_CONFIRMED = 1;
+	public const STATUS_NEUTRAL = 0;
+	public const STATUS_DELETED = -1;
+	public const STATUS_MODERATION = -2;
+	public const STATUS_ABORTED = -4;
+	public const STATUS_CANCELED = -8;
 
 	/**
 	 * @var integer

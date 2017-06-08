@@ -4,12 +4,14 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Jonas Kress
  */
-class DatabaseInstallationTest extends \PHPUnit_Framework_TestCase {
+class DatabaseInstallationTest extends TestCase {
 
 	public function testGetTablesAreThere() {
 		$environment = TestEnvironment::newDefault();

@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\MembershipApplication;
 use WMDE\Fundraising\Store\MembershipApplicationData;
 
@@ -14,7 +15,7 @@ use WMDE\Fundraising\Store\MembershipApplicationData;
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class MembershipApplicationTest extends \PHPUnit_Framework_TestCase {
+class MembershipApplicationTest extends TestCase {
 
 	public function testWhenSettingIdToAnInteger_getIdReturnsIt() {
 		$application = new MembershipApplication();
