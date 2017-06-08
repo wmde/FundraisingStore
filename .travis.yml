@@ -1,3 +1,6 @@
+dist: trusty
+sudo: required
+
 language: php
 
 matrix:
@@ -6,8 +9,6 @@ matrix:
       env: DB=sqlite; TYPE=coverage
     - php: 7.1
       env: DB=mysql
-
-sudo: true
 
 install:
   - if [ "$DB" == "mysql" ]; then mysql -e 'create database spenden;'; fi
