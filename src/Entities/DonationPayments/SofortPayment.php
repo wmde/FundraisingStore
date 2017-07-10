@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace WMDE\Fundraising\Entities\DonationPayments;
 
 use Doctrine\ORM\Mapping as ORM;
+use WMDE\Fundraising\Entities\DonationPayment;
 
 /**
  * @since 6.0
@@ -12,36 +13,22 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="donation_payment_sofort")
  * @ORM\Entity
  */
-class SofortPayment {
+class SofortPayment extends DonationPayment {
 
 	/**
 	 * @var string
 	 * Example value: W-Q-ABCDEZ
 	 *
 	 * @ORM\Column(name="transfer_code", type="string", length=10, unique=true)
-	 * @ORM\Id
 	 */
 	private $bankTransferCode = '';
 
-	/**
-	 * @var integer
-	 * Example value: 1337
-	 *
-	 * @ORM\Column(name="donation_id", type="integer", unique=true)
-	 */
-	private $donationId = '';
-
-	public function __construct( string $bankTransferCode, int $donationId ) {
+	public function __construct( string $bankTransferCode ) {
 		$this->bankTransferCode = $bankTransferCode;
-		$this->donationId = $donationId;
 	}
 
 	public function getBankTransferCode(): string {
 		return $this->bankTransferCode;
-	}
-
-	public function getDonationId(): int {
-		return $this->donationId;
 	}
 
 }
