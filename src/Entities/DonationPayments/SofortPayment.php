@@ -2,14 +2,14 @@
 
 declare( strict_types = 1 );
 
-namespace WMDE\Fundraising\Entities\Payments;
+namespace WMDE\Fundraising\Entities\DonationPayments;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @since 6.0
  *
- * @ORM\Table(name="payment_sofort")
+ * @ORM\Table(name="donation_payment_sofort")
  * @ORM\Entity
  */
 class SofortPayment {
@@ -30,5 +30,18 @@ class SofortPayment {
 	 * @ORM\Column(name="donation_id", type="integer", unique=true)
 	 */
 	private $donationId = '';
+
+	public function __construct( string $bankTransferCode, int $donationId ) {
+		$this->bankTransferCode = $bankTransferCode;
+		$this->donationId = $donationId;
+	}
+
+	public function getBankTransferCode(): string {
+		return $this->bankTransferCode;
+	}
+
+	public function getDonationId(): int {
+		return $this->donationId;
+	}
 
 }

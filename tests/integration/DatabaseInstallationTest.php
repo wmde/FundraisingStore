@@ -41,7 +41,7 @@ class DatabaseInstallationTest extends TestCase {
 		yield [ 'spenden' ];
 		yield [ 'subscription' ];
 		yield [ 'users' ];
-		yield [ 'payment_sofort' ];
+		yield [ 'donation_payment_sofort' ];
 	}
 
 }
