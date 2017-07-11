@@ -34,13 +34,36 @@ This package provides `vendor/bin/cli-config.php` file required by the Doctrine 
 database credentials must be provided in `vendor/bin/config.ini`. Rename or copy `vendor/bin/config.ini.template`
 and fill in actual credentials.
 
-## Tests
+## Development
 
-This library comes with a set up PHPUnit tests that cover all non-trivial code. Additionally, code
-style checks by PHPCS and PHPMD are supported. The configuration for all 3 these tools can be found
-in the root directory. You can use the tools in their standard manner, though can run all checks
-required by our CI by executing `composer ci`. To just run tests use `composer test`, and to just
-run style checks use `composer cs`.
+In order to create a level playing field for development this project uses
+<a href="https://docs.docker.com/engine/installation/">docker</a> &
+<a href="https://docs.docker.com/compose/install/">docker-compose</a>,
+as well as <a href="https://getcomposer.org/">composer</a> for dependency management.
+
+### Provision the system
+
+    docker-compose build
+
+### Install dependencies
+
+    docker run -it --rm --user $(id -u):$(id -g) -v "$PWD":/code -v ~/.composer:/composer -w /code composer composer install
+
+### Tests
+
+    docker-compose run --rm app vendor/bin/phpunit
+
+### Running test and code-style checks with composer
+All committed code is checked by our CI against the unit tests and the coding styleguide. 
+The configuration for these tools can be found in the root directory. 
+After installation through composer you can either call the tools directly from their location in `vendor/bin` 
+or use the provided `composer` tasks:
+
+	composer ci   # Run all checks
+	composer cs   # Run style checks
+	composer test # Run unit tests
+
+Be aware that the concepts of composer as a script runner and containerization might not work together out-of-the-box.
 
 ## Release notes
 
