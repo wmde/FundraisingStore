@@ -41,9 +41,9 @@ In order to create a level playing field for development this project uses
 <a href="https://docs.docker.com/compose/install/">docker-compose</a>,
 as well as <a href="https://getcomposer.org/">composer</a> for dependency management.
 
-### Start-up the system
+### Provision the system
 
-    docker-compose up -d
+    docker-compose build
 
 ### Install dependencies
 
