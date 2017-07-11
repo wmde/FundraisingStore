@@ -4,6 +4,13 @@
 	- https://github.com/squizlabs/PHP_CodeSniffer/tree/master/CodeSniffer/Standards
 -->
 <ruleset name="MediaWiki">
+    <file>src/</file>
+    <file>tests/</file>
+
+    <arg name="extensions" value="php"/>
+    <arg value="s"/>
+    <arg value="p"/>
+
     <rule ref="Generic.Classes" />
     <rule ref="Generic.CodeAnalysis">
         <exclude name="Generic.CodeAnalysis.EmptyStatement" />
