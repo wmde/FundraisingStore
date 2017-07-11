@@ -205,6 +205,11 @@ class Donation {
 	private $dtBackup;
 
 	/**
+	 * @ORM\OneToOne(targetEntity="WMDE\Fundraising\Entities\DonationPayment", cascade={"all"}, fetch="EAGER")
+	 */
+	private $payment;
+
+	/**
 	 * @param string $donorFullName
 	 *
 	 * @return self
@@ -593,6 +598,15 @@ class Donation {
 	public function getId() {
 		return $this->id;
 	}
+
+	public function getPayment(): ?DonationPayment {
+		return $this->payment;
+	}
+
+	public function setPayment( DonationPayment $payment ) {
+		$this->payment = $payment;
+	}
+
 
 	/**
 	 * @since 2.0

@@ -13,26 +13,36 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseInstallationTest extends TestCase {
 
-	public function testGetTablesAreThere() {
+	private $databaseName;
+	private $tableNames;
+
+	public function setUp() {
 		$environment = TestEnvironment::newDefault();
+		$this->databaseName = $environment->getDatabaseName();
+		$this->tableNames = $environment->getFactory()->getConnection()->getSchemaManager()->createSchema()->getTableNames();
+	}
 
-		$tableNames = $environment->getFactory()->getConnection()->getSchemaManager()->createSchema()->getTableNames();
-
-		$dbName = $environment->getDatabaseName();
-
-		$this->assertSame(
-			[
-				$dbName . '.action_log',
-				$dbName . '.address',
-				$dbName . '.backend_banner',
-				$dbName . '.backend_impressions',
-				$dbName . '.request',
-				$dbName . '.spenden',
-				$dbName . '.subscription',
-				$dbName . '.users',
-			],
-			$tableNames
+	/**
+	 * @dataProvider expectedTableNameProvider
+	 */
+	public function testTablesAreCreated( string $tableName ) {
+		$this->assertContains(
+			$this->databaseName . '.' . $tableName,
+			$this->tableNames
 		);
+	}
+
+	public function expectedTableNameProvider() {
+		yield [ 'action_log' ];
+		yield [ 'address' ];
+		yield [ 'backend_banner' ];
+		yield [ 'backend_impressions' ];
+		yield [ 'request' ];
+		yield [ 'spenden' ];
+		yield [ 'subscription' ];
+		yield [ 'users' ];
+		yield [ 'donation_payment' ];
+		yield [ 'donation_payment_sofort' ];
 	}
 
 }
