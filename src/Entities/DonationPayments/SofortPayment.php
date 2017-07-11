@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Entities\DonationPayments;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use WMDE\Fundraising\Entities\DonationPayment;
 
@@ -23,6 +24,13 @@ class SofortPayment extends DonationPayment {
 	 */
 	private $bankTransferCode = '';
 
+	/**
+	 * @var DateTime
+	 *
+	 * @ORM\Column(name="confirmed_at", type="datetime", nullable=true)
+	 */
+	private $confirmedAt;
+
 	public function __construct( string $bankTransferCode ) {
 		$this->bankTransferCode = $bankTransferCode;
 	}
@@ -31,4 +39,11 @@ class SofortPayment extends DonationPayment {
 		return $this->bankTransferCode;
 	}
 
+	public function getConfirmedAt(): ?DateTime {
+		return $this->confirmedAt;
+	}
+
+	public function setConfirmedAt( DateTime $confirmedAt ) {
+		$this->confirmedAt = $confirmedAt;
+	}
 }
