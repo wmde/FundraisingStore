@@ -7,7 +7,7 @@ app:
   working_dir: /code
 
 database:
-  image: mysql:5
+  image: mysql:5.6
   environment:
     - MYSQL_RANDOM_ROOT_PASSWORD=yes
     - MYSQL_USER=fundraising
