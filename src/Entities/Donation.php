@@ -618,7 +618,7 @@ class Donation {
 	}
 
 	public function getUExpiry() {
-		return $this->getDecodedData()[ 'uexpiry' ];
+		return $this->getDecodedData()['uexpiry'];
 	}
 
 	public function uTokenIsExpired() {
@@ -648,11 +648,11 @@ class Donation {
 		if ( $mode == 1 || $mode == 2 ) {
 			$eintrag = $this->donorFullName;
 		} else {
-			$eintrag = "anonym";
+			$eintrag = 'anonym';
 		}
 
-		if ( ( $mode == 1 || $mode == 3 ) && !empty( $data[ "ort" ] ) ) {
-			$eintrag .= ", " . $data[ "ort" ];
+		if ( ( $mode == 1 || $mode == 3 ) && !empty( $data['ort'] ) ) {
+			$eintrag .= ', ' . $data['ort'];
 		}
 
 		return $eintrag;

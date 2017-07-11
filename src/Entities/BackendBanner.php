@@ -9,7 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @since 0.1
  *
- * @ORM\Table(name="backend_banner", indexes={@ORM\Index(name="idx_cn_name", columns={"cn_name"}), @ORM\Index(name="idx_keyword", columns={"keyword"})})
+ * @ORM\Table(
+ *   name="backend_banner",
+ *   indexes={
+ *     @ORM\Index(name="idx_cn_name", columns={"cn_name"}),
+ *     @ORM\Index(name="idx_keyword", columns={"keyword"})
+ *   }
+ * )
  * @ORM\Entity
  */
 class BackendBanner {

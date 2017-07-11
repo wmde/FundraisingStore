@@ -975,7 +975,7 @@ class MembershipApplication {
 
 	public function log( $message ) {
 		$dataArray = $this->getDecodedData();
-		$dataArray[ "log" ][ date( "Y-m-d H:i:s" ) ] = $message;
+		$dataArray['log'][date( 'Y-m-d H:i:s' )] = $message;
 		$this->encodeAndSetData( $dataArray );
 
 		return $this;
