@@ -17,10 +17,9 @@ use WMDE\Fundraising\Entities\DonationPayments\SofortPayment;
  */
 class SofortPaymentTest extends TestCase {
 
-	public function testPersistenceRoundTrip() {
+	public function testPersistenceRoundTrip(): void {
 		$donation = new Donation();
 		$payment = new SofortPayment();
-		$payment->setConfirmedAt( new DateTime( '2017-07-14T22:00:01Z' ) );
 		$donation->setPayment( $payment );
 
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
@@ -33,7 +32,20 @@ class SofortPaymentTest extends TestCase {
 		$retrievedPayment = $entityManager->getRepository( SofortPayment::class )
 			->findOneBy( [] );
 
-		$this->assertEquals( new DateTime( '2017-07-14T22:00:01Z' ), $retrievedPayment->getConfirmedAt() );
 		$this->assertSame( $payment->getId(), $retrievedPayment->getId() );
+		$this->assertNull( $retrievedPayment->getConfirmedAt() );
+
+		$payment->setConfirmedAt( new DateTime( '2017-07-14T22:00:01Z' ) );
+		$entityManager->persist( $donation );
+		$entityManager->flush();
+
+		/**
+		 * @var $retrievedPayment SofortPayment
+		 */
+		$retrievedPayment = $entityManager->getRepository( SofortPayment::class )
+			->findOneBy( [] );
+
+		$this->assertSame( $payment->getId(), $retrievedPayment->getId() );
+		$this->assertEquals( new DateTime( '2017-07-14T22:00:01Z' ), $retrievedPayment->getConfirmedAt() );
 	}
 }
