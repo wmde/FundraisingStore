@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use DateTime;
 use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\Donation;
 use WMDE\Fundraising\Entities\DonationPayments\SofortPayment;
@@ -16,24 +17,23 @@ use WMDE\Fundraising\Entities\DonationPayments\SofortPayment;
  */
 class SofortPaymentTest extends TestCase {
 
-	private const BANK_TRANSFER_CODE = 'W-Q-ABCDEZ';
-
 	public function testPersistenceRoundTrip() {
 		$donation = new Donation();
-		$payment = new SofortPayment( self::BANK_TRANSFER_CODE );
+		$payment = new SofortPayment();
+		$payment->setConfirmedAt( new DateTime( '2017-07-14T22:00:01Z' ) );
 		$donation->setPayment( $payment );
-		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
 
+		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
 		$entityManager->persist( $donation );
 		$entityManager->flush();
+
 		/**
 		 * @var $retrievedPayment SofortPayment
 		 */
 		$retrievedPayment = $entityManager->getRepository( SofortPayment::class )
-			->findOneByBankTransferCode( self::BANK_TRANSFER_CODE );
+			->findOneBy( [] );
 
-		$this->assertSame( self::BANK_TRANSFER_CODE, $retrievedPayment->getBankTransferCode() );
+		$this->assertEquals( new DateTime( '2017-07-14T22:00:01Z' ), $retrievedPayment->getConfirmedAt() );
 		$this->assertSame( $payment->getId(), $retrievedPayment->getId() );
 	}
-
 }

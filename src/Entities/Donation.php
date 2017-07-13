@@ -13,19 +13,19 @@ use WMDE\Fundraising\Store\DonationData;
  *
  * @ORM\Table(
  *     name="spenden",
- *	 indexes={
- *	 		@ORM\Index(name="d_email", columns={"email"}, flags={"fulltext"}),
- *		  	@ORM\Index(name="d_name", columns={"name"}, flags={"fulltext"}),
- *	 		@ORM\Index(name="d_ort", columns={"ort"}, flags={"fulltext"}),
- *	 		@ORM\Index(name="d_dt_new", columns={"dt_new", "is_public"}),
- *	 		@ORM\Index(name="d_zahlweise", columns={"zahlweise", "dt_new"}),
- *	 		@ORM\Index(name="d_dt_gruen", columns={"dt_gruen", "dt_del"}),
- *	 		@ORM\Index(name="d_ueb_code", columns={"ueb_code"}),
- *	 		@ORM\Index(name="d_dt_backup", columns={"dt_backup"}),
- *	 		@ORM\Index(name="d_status", columns={"status", "dt_new"}),
- *	 		@ORM\Index(name="d_comment_list", columns={"is_public", "dt_del"})
- *	 }
- *  )
+ *     indexes={
+ *         @ORM\Index(name="d_email", columns={"email"}, flags={"fulltext"}),
+ *         @ORM\Index(name="d_name", columns={"name"}, flags={"fulltext"}),
+ *         @ORM\Index(name="d_ort", columns={"ort"}, flags={"fulltext"}),
+ *         @ORM\Index(name="d_dt_new", columns={"dt_new", "is_public"}),
+ *         @ORM\Index(name="d_zahlweise", columns={"zahlweise", "dt_new"}),
+ *         @ORM\Index(name="d_dt_gruen", columns={"dt_gruen", "dt_del"}),
+ *         @ORM\Index(name="d_ueb_code", columns={"ueb_code"}),
+ *         @ORM\Index(name="d_dt_backup", columns={"dt_backup"}),
+ *         @ORM\Index(name="d_status", columns={"status", "dt_new"}),
+ *         @ORM\Index(name="d_comment_list", columns={"is_public", "dt_del"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class Donation {
