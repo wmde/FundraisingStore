@@ -17,7 +17,7 @@ use WMDE\Fundraising\Entities\DonationPayment;
 class SofortPayment extends DonationPayment {
 
 	/**
-	 * @var DateTime
+	 * @var DateTime|null
 	 *
 	 * @ORM\Column(name="confirmed_at", type="datetime", nullable=true)
 	 */
@@ -27,7 +27,7 @@ class SofortPayment extends DonationPayment {
 		return $this->confirmedAt;
 	}
 
-	public function setConfirmedAt( DateTime $confirmedAt ) {
+	public function setConfirmedAt( DateTime $confirmedAt = null ): void {
 		$this->confirmedAt = $confirmedAt;
 	}
 }
