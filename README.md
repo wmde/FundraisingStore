@@ -176,6 +176,9 @@ Initial release with `Store\Factory`, `Store\Installer` and these entities:
 * Spenden
 * Users
 
+## Future Plans
+* Migrate the payment metadata from `Donation::data` to specific subclasses of the `DonationPayment` abstract class. 
+
 ## Links
 
 * [Fundraising Store on Packagist](https://packagist.org/packages/wmde/fundraising-store)
