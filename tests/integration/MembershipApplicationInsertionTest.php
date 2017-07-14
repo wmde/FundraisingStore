@@ -13,11 +13,13 @@ class MembershipApplicationInsertionTest extends TestCase {
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
 		$entityManager->persist( new MembershipApplication() );
 		$entityManager->flush();
+
 		$count = $entityManager->createQueryBuilder()
 			->select( 'COUNT(r.id)' )
 			->from( MembershipApplication::class, 'r' )
 			->getQuery()
 			->getSingleScalarResult();
-		$this->assertEquals( 1, $count ); // Can't use assertSame because a string is returned
+
+		$this->assertSame( '1', $count );
 	}
 }
