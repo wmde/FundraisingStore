@@ -17,22 +17,14 @@
 You can use [Composer](http://getcomposer.org/) to download and install
 this package as well as its dependencies.
 
-To add this package as a local, per-project dependency to your project, simply add a
-dependency on `wmde/fundraising-store` to your project's `composer.json` file.
-Here is a minimal example of a `composer.json` file that just defines a dependency on
-Fundraising Store 4.x:
+To add this package as a local, per-project dependency to your project, run:
 
-```json
-{
-    "require": {
-        "wmde/fundraising-store": "^5.0.0"
-    }
-}
-```
+    composer require wmde/fundraising-store
 
-This package provides `vendor/bin/cli-config.php` file required by the Doctrine Console. In order to use it,
-database credentials must be provided in `vendor/bin/config.ini`. Rename or copy `vendor/bin/config.ini.template`
-and fill in actual credentials.
+This package provides `vendor/bin/cli-config.php` file required by the Doctrine Console.
+A default database configuration, compatible with the container used for integration tests (see `docker-compose.yml`),
+can be found in `local-db-config.php`. 
+Applications wanting to use this package in conjunction with the Doctrine Console should provide their own `cli-config.php`.
 
 ## Development
 
