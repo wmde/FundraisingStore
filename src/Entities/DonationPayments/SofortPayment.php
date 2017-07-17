@@ -27,7 +27,7 @@ class SofortPayment extends DonationPayment {
 		return $this->confirmedAt;
 	}
 
-	public function setConfirmedAt( DateTime $confirmedAt = null ): void {
+	public function setConfirmedAt( ?DateTime $confirmedAt ): void {
 		$this->confirmedAt = $confirmedAt;
 	}
 }
