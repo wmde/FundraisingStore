@@ -59,7 +59,7 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
-### Version 6.0.0 (2017-07-14)
+### Version 6.0.0 (2017-07-18)
 
 * Added `DonationPayments\SofortPayment` entity
 
