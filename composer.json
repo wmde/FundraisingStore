@@ -4,8 +4,8 @@
 	"license": "GPL-2.0+",
 	"require": {
 		"php": ">=7.1",
-		"doctrine/dbal": "~2.4",
-		"doctrine/orm": "~2.4",
+		"doctrine/dbal": "^2.5",
+		"doctrine/orm": "^2.5",
 		"gedmo/doctrine-extensions": "^2.4"
 	},
 	"require-dev": {
