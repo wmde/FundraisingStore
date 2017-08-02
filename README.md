@@ -61,6 +61,8 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ### Version 6.0.1 (2017-08-02)
 
+* Updated Doctrine DBAL and ORM min version.
+
 ### Version 6.0.0 (2017-07-18)
 
 * Added `DonationPayments\SofortPayment` entity
