@@ -165,6 +165,7 @@ class DonationTest extends TestCase {
 		$this->assertNotNull( Donation::STATUS_EXTERNAL_INCOMPLETE );
 		$this->assertNotNull( Donation::STATUS_MODERATION );
 		$this->assertNotNull( Donation::STATUS_PROMISE );
+		$this->assertNotNull( Donation::STATUS_EXPORTED );
 	}
 
 }
