@@ -41,6 +41,13 @@ class Donation {
 	public const STATUS_CANCELLED = 'D';
 
 	/**
+	 * @since 6.1
+	 * @deprecated since 6.1; This status is defined for historical reasons. It should not be used to define a
+	 * donation's status anymore.
+	 */
+	public const STATUS_EXPORTED = 'E';
+
+	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
