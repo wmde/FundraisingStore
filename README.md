@@ -59,6 +59,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 6.1.0 (2017-08-16)
+
+* Introduced constant `Donation::STATUS_EXPORTED` for historical reasons.
+
 ### Version 6.0.1 (2017-08-02)
 
 * Updated Doctrine DBAL and ORM min version.
