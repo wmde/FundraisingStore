@@ -26,20 +26,4 @@ class MembershipApplicationInsertionTest extends TestCase {
 		$this->assertSame( '1', $count );
 	}
 
-	public function testMembershipApplicationCanBeLoaded(): void {
-		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
-
-		$application = new MembershipApplication();
-		$application->setDonationReceipt( true );
-
-		$entityManager->persist( $application );
-		$entityManager->flush();
-
-		/**
-		 * @var MembershipApplication $application
-		 */
-		$application = $entityManager->getRepository( MembershipApplication::class )->find( $application->getId() );
-
-		$this->assertTrue( $application->getDonationReceipt() );
-	}
 }
