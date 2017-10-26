@@ -7,9 +7,12 @@ namespace WMDE\Fundraising\Store\Tests;
 use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\MembershipApplication;
 
+/**
+ * @covers \WMDE\Fundraising\Entities\MembershipApplication
+ */
 class MembershipApplicationInsertionTest extends TestCase {
 
-	public function testNewMembershipApplicationCanBeInserted() {
+	public function testNewMembershipApplicationCanBeInserted(): void {
 		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
 		$entityManager->persist( new MembershipApplication() );
 		$entityManager->flush();
@@ -22,4 +25,5 @@ class MembershipApplicationInsertionTest extends TestCase {
 
 		$this->assertSame( '1', $count );
 	}
+
 }

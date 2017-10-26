@@ -59,6 +59,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 7.0.0 (2017-11-01)
+
+* Introduced `MembershipApplication::setDonationReceipt()` et al.
+
 ### Version 6.1.0 (2017-08-16)
 
 * Introduced constant `Donation::STATUS_EXPORTED` for historical reasons.

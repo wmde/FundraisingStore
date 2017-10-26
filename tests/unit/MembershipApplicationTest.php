@@ -9,8 +9,8 @@ use WMDE\Fundraising\Entities\MembershipApplication;
 use WMDE\Fundraising\Store\MembershipApplicationData;
 
 /**
- * @covers WMDE\Fundraising\Entities\MembershipApplication
- * @covers WMDE\Fundraising\Store\MembershipApplicationData
+ * @covers \WMDE\Fundraising\Entities\MembershipApplication
+ * @covers \WMDE\Fundraising\Store\MembershipApplicationData
  *
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -197,6 +197,19 @@ class MembershipApplicationTest extends TestCase {
 		);
 
 		$this->assertTrue( $application->isDeleted() );
+	}
+
+	public function testDefaultDonationReceiptValue_isNull(): void {
+		$application = new MembershipApplication();
+
+		$this->assertNull( $application->getDonationReceipt() );
+	}
+
+	public function testSetDonationReceiptValue_canBeRetrieved(): void {
+		$application = new MembershipApplication();
+		$application->setDonationReceipt( false );
+
+		$this->assertFalse( $application->getDonationReceipt() );
 	}
 
 }

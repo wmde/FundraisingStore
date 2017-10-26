@@ -283,6 +283,13 @@ class MembershipApplication {
 	private $data;
 
 	/**
+	 * @var boolean|null
+	 *
+	 * @ORM\Column(name="donation_receipt", type="boolean", nullable=true)
+	 */
+	private $donationReceipt;
+
+	/**
 	 * @return integer
 	 */
 	public function getId() {
@@ -1058,6 +1065,31 @@ class MembershipApplication {
 		$dataObject = $this->getDataObject();
 		$modificationFunction( $dataObject );
 		$this->setDataObject( $dataObject );
+	}
+
+	/**
+	 * Set donation receipt state
+	 *
+	 * @since 7.0
+	 *
+	 * @param boolean|null $donationReceipt
+	 * @return self
+	 */
+	public function setDonationReceipt( ?bool $donationReceipt ): self {
+		$this->donationReceipt = $donationReceipt;
+
+		return $this;
+	}
+
+	/**
+	 * Get donation receipt state
+	 *
+	 * @since 7.0
+	 *
+	 * @return boolean|null
+	 */
+	public function getDonationReceipt(): ?bool {
+		return $this->donationReceipt;
 	}
 
 }
