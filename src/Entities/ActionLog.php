@@ -17,7 +17,7 @@ class ActionLog {
 	 * @var \DateTime
 	 *
 	 * @ORM\Version
-	 * @ORM\Column(name="al_timestamp", type="datetime", options={"default":0}, nullable=false)
+	 * @ORM\Column(name="al_timestamp", type="datetime", options={"default":"CURRENT_TIMESTAMP"}, nullable=false)
 	 */
 	private $alTimestamp = 0;
 
