@@ -290,6 +290,12 @@ class MembershipApplication {
 	private $donationReceipt;
 
 	/**
+	 * @ORM\OneToOne(targetEntity="AddressChange")
+	 * @ORM\JoinColumn(name="address_change_id", referencedColumnName="id")
+	 */
+	private $addressChange;
+
+	/**
 	 * @return integer
 	 */
 	public function getId() {
@@ -1092,4 +1098,28 @@ class MembershipApplication {
 		return $this->donationReceipt;
 	}
 
+	/**
+	 * Get AddressChange reference
+	 *
+	 * @since 8.0
+	 *
+	 * @return AddressChange
+	 */
+	public function getAddressChange(): ?AddressChange {
+		return $this->addressChange;
+	}
+
+	/**
+	 * Set AddressChange reference
+	 *
+	 * @since 8.0
+	 *
+	 * @param AddressChange $addressChange
+	 * @return self
+	 */
+	public function setAddressChange(AddressChange $addressChange): self {
+		$this->addressChange = $addressChange;
+
+		return $this;
+	}
 }

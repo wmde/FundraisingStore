@@ -58,4 +58,5 @@ class DonationData {
 		$this->updateTokenExpiry = $updateTokenExpiry;
 	}
 
+
 }
