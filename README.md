@@ -59,6 +59,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 8.0.0 (2018-06-06)
+
+* Add `AddressChange` entity for address export functionality
+
 ### Version 7.0.1 (2017-12-05)
 
 * Changed default timestamp value from "0" to "current time", prevening errors on newer versions of MySQL

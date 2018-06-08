@@ -765,4 +765,28 @@ class Donation {
 		$this->setDataObject( $dataObject );
 	}
 
+	/**
+	 * Get AddressChange reference
+	 *
+	 * @since 8.0
+	 *
+	 * @return AddressChange
+	 */
+	public function getAddressChange(): ?AddressChange {
+		return $this->addressChange;
+	}
+
+	/**
+	 * Set AddressChange reference
+	 *
+	 * @since 8.0
+	 *
+	 * @param AddressChange $addressChange
+	 * @return self
+	 */
+	public function setAddressChange(AddressChange $addressChange): self {
+		$this->addressChange = $addressChange;
+
+		return $this;
+	}
 }
