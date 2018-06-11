@@ -218,8 +218,13 @@ class Donation {
 
 	/**
 	 * @ORM\OneToOne(targetEntity="WMDE\Fundraising\Entities\AddressChange", cascade={"all"}, fetch="EAGER")
+	 * @ORM\JoinColumn(name="address_change_id", referencedColumnName="id")
 	 */
 	private $addressChange;
+
+	public function __construct() {
+		$this->addressChange = new AddressChange();
+	}
 
 	/**
 	 * @param string $donorFullName
@@ -777,7 +782,7 @@ class Donation {
 	 *
 	 * @return AddressChange
 	 */
-	public function getAddressChange(): ?AddressChange {
+	public function getAddressChange(): AddressChange {
 		return $this->addressChange;
 	}
 
@@ -785,13 +790,11 @@ class Donation {
 	 * Set AddressChange reference
 	 *
 	 * @since 8.0
+	 * @param $addressChange AddressChange
 	 *
-	 * @param AddressChange $addressChange
-	 * @return self
+	 * @return AddressChange
 	 */
-	public function setAddressChange(AddressChange $addressChange): self {
-		$this->addressChange = $addressChange;
-
-		return $this;
+	public function setAddressChange(AddressChange $addressChange) {
+		return $this->addressChange = $addressChange;
 	}
 }

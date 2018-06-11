@@ -5,7 +5,7 @@ language: php
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.2
       env: DB=sqlite; TYPE=coverage
     - php: 7.2
       env: DB=mysql
@@ -14,7 +14,9 @@ install:
   - if [ "$DB" == "mysql" ]; then mysql -e 'create database spenden;'; fi
   - travis_retry composer install
 
-script: composer ci
+script:
+  - composer validate --no-interaction
+  - make ci
 
 after_success: bash tests/uploadCoverage.sh
 
