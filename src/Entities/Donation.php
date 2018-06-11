@@ -217,6 +217,11 @@ class Donation {
 	private $payment;
 
 	/**
+	 * @ORM\OneToOne(targetEntity="WMDE\Fundraising\Entities\AddressChange", cascade={"all"}, fetch="EAGER")
+	 */
+	private $addressChange;
+
+	/**
 	 * @param string $donorFullName
 	 *
 	 * @return self
