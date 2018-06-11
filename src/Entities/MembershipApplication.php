@@ -291,8 +291,16 @@ class MembershipApplication {
 
 	/**
 	 * @ORM\OneToOne(targetEntity="AddressChange", cascade={"all"}, fetch="EAGER")
+	 * @ORM\JoinColumn(name="address_change_id", referencedColumnName="id")
 	 */
 	private $addressChange;
+
+	/**
+	 * Donation constructor creates a new AddressChange entity unless one is supplied by Doctrine
+	 */
+	public function __construct() {
+		$this->addressChange = new AddressChange();
+	}
 
 	/**
 	 * @return integer
@@ -1104,7 +1112,7 @@ class MembershipApplication {
 	 *
 	 * @return AddressChange
 	 */
-	public function getAddressChange(): ?AddressChange {
+	public function getAddressChange(): AddressChange {
 		return $this->addressChange;
 	}
 
@@ -1112,13 +1120,11 @@ class MembershipApplication {
 	 * Set AddressChange reference
 	 *
 	 * @since 8.0
+	 * @param $addressChange AddressChange
 	 *
-	 * @param AddressChange $addressChange
-	 * @return self
+	 * @return AddressChange
 	 */
-	public function setAddressChange(AddressChange $addressChange): self {
-		$this->addressChange = $addressChange;
-
-		return $this;
+	public function setAddressChange(AddressChange $addressChange) {
+		return $this->addressChange = $addressChange;
 	}
 }
