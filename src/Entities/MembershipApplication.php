@@ -290,8 +290,7 @@ class MembershipApplication {
 	private $donationReceipt;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="AddressChange")
-	 * @ORM\JoinColumn(name="address_change_id", referencedColumnName="id")
+	 * @ORM\OneToOne(targetEntity="AddressChange", cascade={"all"}, fetch="EAGER")
 	 */
 	private $addressChange;
 
