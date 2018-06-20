@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace WMDE\Fundraising\Store\Tests;
 
+use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
 use WMDE\Fundraising\Entities\AddressChange;
 
@@ -12,14 +13,22 @@ use WMDE\Fundraising\Entities\AddressChange;
  */
 class AddressChangeTest extends TestCase {
 
+	/**
+	 * @var EntityManager
+	 */
+	private $entityManager;
+
+	public function setUp(): void {
+		$this->entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
+	}
+
 	public function testWhenNewAddressChangeIsPersisted_uuidIsGeneratedAndStored() {
 		$addressChange = new AddressChange();
-		$entityManager = TestEnvironment::newDefault()->getFactory()->getEntityManager();
-		$entityManager->persist( $addressChange );
-		$entityManager->flush();
+		$this->entityManager->persist( $addressChange );
+		$this->entityManager->flush();
 
 		/** @var AddressChange $retrievedAddressChange */
-		$retrievedAddressChange = $entityManager->getRepository( AddressChange::class )->findOneBy( [] );
+		$retrievedAddressChange = $this->entityManager->getRepository( AddressChange::class )->findOneBy( [] );
 
 		$this->assertSame( $addressChange->getCurrentIdentifier(), $retrievedAddressChange->getCurrentIdentifier() );
 	}

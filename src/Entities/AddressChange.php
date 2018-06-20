@@ -33,20 +33,17 @@ class AddressChange {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="current_identifier", type="string", length=36, nullable=true)
+	 * @ORM\Column(name="current_identifier", type="string", length=36, nullable=true, unique=true)
 	 */
 	private $identifier;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="previous_identifier", type="string", length=36, nullable=true)
+	 * @ORM\Column(name="previous_identifier", type="string", length=36, nullable=true, unique=true)
 	 */
 	private $previousIdentifier;
 
-	/**
-	 * Ensure that every AddressChange object gets a UUID but do not overwrite pre-fetched Doctrine values
-	 */
 	public function __construct() {
 		if ($this->identifier === null) {
 			$this->generateUuid();
