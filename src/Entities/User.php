@@ -55,13 +55,6 @@ class User {
 	private $userPassNotification;
 
 	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="user_salt", type="string", length=8, options={"default":""}, nullable=false)
-	 */
-	private $userSalt = '';
-
-	/**
 	 * @var boolean
 	 *
 	 * @ORM\Column(name="user_role", type="boolean", options={"default":0}, nullable=true)
@@ -188,27 +181,6 @@ class User {
 	 */
 	public function getUserPassNotification() {
 		return $this->userPassNotification;
-	}
-
-	/**
-	 * Set userSalt
-	 *
-	 * @param string $userSalt
-	 * @return self
-	 */
-	public function setUserSalt( $userSalt ) {
-		$this->userSalt = $userSalt;
-
-		return $this;
-	}
-
-	/**
-	 * Get userSalt
-	 *
-	 * @return string
-	 */
-	public function getUserSalt() {
-		return $this->userSalt;
 	}
 
 	/**
