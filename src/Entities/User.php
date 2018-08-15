@@ -36,7 +36,7 @@ class User {
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="user_pass", type="string", length=32, options={"default":""}, nullable=false)
+	 * @ORM\Column(name="user_pass", type="string", length=255, options={"default":""}, nullable=false)
 	 */
 	private $userPass = '';
 
