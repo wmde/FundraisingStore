@@ -33,14 +33,10 @@ class DatabaseInstallationTest extends TestCase {
 	}
 
 	public function expectedTableNameProvider() {
-		yield [ 'action_log' ];
 		yield [ 'address' ];
-		yield [ 'backend_banner' ];
-		yield [ 'backend_impressions' ];
 		yield [ 'request' ];
 		yield [ 'spenden' ];
 		yield [ 'subscription' ];
-		yield [ 'users' ];
 		yield [ 'donation_payment' ];
 		yield [ 'donation_payment_sofort' ];
 	}

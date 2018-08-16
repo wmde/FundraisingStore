@@ -5,7 +5,7 @@ declare( strict_types = 1 );
 namespace WMDE\Fundraising\Store\Tests;
 
 use PHPUnit\Framework\TestCase;
-use WMDE\Fundraising\Entities\ActionLog;
+use WMDE\Fundraising\Entities\Address;
 
 /**
  * @licence GNU GPL v2+
@@ -14,7 +14,7 @@ use WMDE\Fundraising\Entities\ActionLog;
 class AutoloaderTest extends TestCase {
 
 	public function testCanLoadEntities() {
-		$this->assertInternalType( 'object', new ActionLog() );
+		$this->assertInternalType( 'object', new Address() );
 	}
 
 }

@@ -25,7 +25,7 @@ class Factory {
 	private $entityManager;
 	private $proxyDir;
 
-	public function __construct( Connection $connection, $proxyDir = '/tmp' ) {
+	public function __construct( Connection $connection, $proxyDir = '/tmp', array $doctrineEntitPaths ) {
 		$this->connection = $connection;
 		$this->proxyDir = $proxyDir;
 	}

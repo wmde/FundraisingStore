@@ -59,6 +59,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 9.0.0 (2018-08-16)
+
+* Remove `User`, `ActionLog`, `BackendBanner`, `BackendImpression` doctrine entity and move them to `fundraising-backend` repository
+
 ### Version 8.0.0 (2018-06-06)
 
 * Add `AddressChange` entity for address export functionality
