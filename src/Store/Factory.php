@@ -15,19 +15,20 @@ use Gedmo\Timestampable\TimestampableListener;
 /**
  * @since 0.1
  *
- * @licence GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
- * @author Jonas Kress
- * @author Kai Nissen < kai.nissen@wikimedia.de >
+ * @license GNU GPL v2+
  */
 class Factory {
 
 	private $entityManager;
 	private $proxyDir;
+	private $doctrineEntityPaths;
 
-	public function __construct( Connection $connection, $proxyDir = '/tmp' ) {
+	private const DEFAULT_DOCTRINE_ENTITY_PATHS = [__DIR__ . '/../Entities/'];
+
+	public function __construct( Connection $connection, $proxyDir = '/tmp', array $doctrineEntityPaths = [] ) {
 		$this->connection = $connection;
 		$this->proxyDir = $proxyDir;
+		$this->doctrineEntityPaths = $doctrineEntityPaths;
 	}
 
 	/**
@@ -53,8 +54,8 @@ class Factory {
 	}
 
 	private function setupEntityManager() {
-		$paths = [ __DIR__ . '/../Entities/' ];
 		$config = Setup::createConfiguration();
+		$paths = array_merge( self::DEFAULT_DOCTRINE_ENTITY_PATHS, $this->doctrineEntityPaths );
 
 		$annotationReader = new AnnotationReader();
 		$driver = new AnnotationDriver( $annotationReader, $paths );
