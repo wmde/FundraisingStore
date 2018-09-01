@@ -3,7 +3,6 @@
 [![Build Status](https://secure.travis-ci.org/wmde/FundraisingStore.png?branch=master)](http://travis-ci.org/wmde/FundraisingStore)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wmde/FundraisingStore/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/wmde/FundraisingStore/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/wmde/FundraisingStore/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wmde/FundraisingStore/?branch=master)
-[![Dependency Status](https://www.versioneye.com/php/wmde:fundraising-store/dev-master/badge.svg)](https://www.versioneye.com/php/wmde:fundraising-store/dev-master)
 [![Download count](https://poser.pugx.org/wmde/fundraising-store/d/total.png)](https://packagist.org/packages/wmde/fundraising-store)
 [![License](https://poser.pugx.org/wmde/fundraising-store/license.svg)](https://packagist.org/packages/wmde/fundraising-store)
 
