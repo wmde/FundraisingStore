@@ -25,6 +25,12 @@ A default database configuration, compatible with the container used for integra
 can be found in `local-db-config.php`. 
 Applications wanting to use this package in conjunction with the Doctrine Console should provide their own `cli-config.php`.
 
+## Architecture and Future
+
+This library and the tables it creates is used by the fundraising Bounded Contexts and by the Fundaising Operation Center application. The idea is to migrate this library away by moving all code specific to a Bounded Context into that Bounded Context and all code specific to an application to that application. This way the Bounded Contexts can have truely private peristance and follow the [Clean Architecture + Bounded Contexts architecture rules](https://www.entropywins.wtf/blog/2018/08/14/clean-architecture-bounded-contexts/).
+
+For a short history of we ended up with this library, see [Bounded Contexts in the Wikimedia Fundraising Software](https://www.entropywins.wtf/blog/2018/08/14/bounded-contexts-in-the-wikimedia-fundraising-software/)
+
 ## Development
 
 In order to create a level playing field for development this project uses
