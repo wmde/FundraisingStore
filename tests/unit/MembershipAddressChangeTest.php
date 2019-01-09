@@ -6,6 +6,7 @@ namespace WMDE\Fundraising\Store\Tests;
 
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
+use WMDE\Fundraising\Entities\AddressChange;
 use WMDE\Fundraising\Entities\MembershipApplication;
 
 /**
@@ -24,6 +25,7 @@ class MembershipAddressChangeTest extends TestCase {
 
 	public function testWhenMembershipApplicationIsCreated_addressChangeUuidIsStored(): void {
 		$application = new MembershipApplication();
+		$application->setAddressChange( new AddressChange( AddressChange::ADDRESS_TYPE_PERSON ) );
 
 		$oldId = $application->getAddressChange()->getCurrentIdentifier();
 		$this->entityManager->persist( $application );
@@ -39,6 +41,7 @@ class MembershipAddressChangeTest extends TestCase {
 
 	public function testWhenAddressIsUpdated_addressChangeUuidIsUpdated(): void {
 		$application = new MembershipApplication();
+		$application->setAddressChange( new AddressChange( AddressChange::ADDRESS_TYPE_COMPANY ) );
 
 		$oldId = $application->getAddressChange()->getCurrentIdentifier();
 

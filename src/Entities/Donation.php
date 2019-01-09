@@ -222,10 +222,6 @@ class Donation {
 	 */
 	private $addressChange;
 
-	public function __construct() {
-		$this->addressChange = new AddressChange();
-	}
-
 	/**
 	 * @param string $donorFullName
 	 *

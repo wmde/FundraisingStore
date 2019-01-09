@@ -6,6 +6,7 @@ namespace WMDE\Fundraising\Store\Tests;
 
 use Doctrine\ORM\EntityManager;
 use PHPUnit\Framework\TestCase;
+use WMDE\Fundraising\Entities\AddressChange;
 use WMDE\Fundraising\Entities\Donation;
 
 /**
@@ -24,6 +25,7 @@ class DonationAddressChangeTest extends TestCase {
 
 	public function testWhenDonationIsCreated_addressChangeUuidIsStored(): void {
 		$donation = new Donation();
+		$donation->setAddressChange( new AddressChange( AddressChange::ADDRESS_TYPE_PERSON ) );
 
 		$oldId = $donation->getAddressChange()->getCurrentIdentifier();
 		$this->entityManager->persist( $donation );
@@ -39,6 +41,7 @@ class DonationAddressChangeTest extends TestCase {
 
 	public function testWhenAddressIsUpdated_addressChangeUuidIsUpdated(): void {
 		$donation = new Donation();
+		$donation->setAddressChange( new AddressChange( AddressChange::ADDRESS_TYPE_COMPANY ) );
 
 		$oldId = $donation->getAddressChange()->getCurrentIdentifier();
 

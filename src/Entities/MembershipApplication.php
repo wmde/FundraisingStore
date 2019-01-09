@@ -296,13 +296,6 @@ class MembershipApplication {
 	private $addressChange;
 
 	/**
-	 * Donation constructor creates a new AddressChange entity unless one is supplied by Doctrine
-	 */
-	public function __construct() {
-		$this->addressChange = new AddressChange();
-	}
-
-	/**
 	 * @return integer
 	 */
 	public function getId() {
