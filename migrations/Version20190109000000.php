@@ -2,17 +2,25 @@
 
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Driver\PDOStatement;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Statement;
 use Doctrine\Migrations\AbstractMigration;
 use WMDE\Fundraising\Entities\AddressChange;
 
 /**
- * Auto-generated Migration: Please modify to your needs!
+ * This class alters the AddressChange table
+ * It adds the two columns third_party_identifier and address_type
+ * Afterwards, the address_type column is filled with the appropriate value for each row
+ *
+ * This script should only be executed in maintenance mode, as the ALTER table queries may take a while to process
+ *
+ * @package DoctrineMigrations
  */
 final class Version20190109000000 extends AbstractMigration {
-	private const DB_QUERY_PAGE_SIZE = 1000;
+	private const DB_QUERY_PAGE_SIZE = 5000;
 	private const DB_TABLE_ADDRESS_CHANGE = 'address_change';
+	private const DB_TABLE_DONATIONS = 'spenden';
+	private const DB_TABLE_MEMBERSHIP_APPLICATIONS = 'request';
 
 	public function up( Schema $schema ): void {
 		$this->abortIf(
@@ -30,33 +38,44 @@ final class Version20190109000000 extends AbstractMigration {
 		$pageCount = (int)ceil( $entityCount / self::DB_QUERY_PAGE_SIZE );
 		echo $entityCount . ' entries to be updated.' . PHP_EOL;
 		for ( $page = 0; $page < $pageCount; $page++ ) {
-			echo 'Page ' . ( $pageCount + 1 ) . ' / ' . $pageCount . PHP_EOL;
+			echo 'Page ' . ( $page + 1 ) . ' / ' . $pageCount . PHP_EOL;
 			$query = '';
 			foreach ( $this->getCurrentPage() as $addressEntry ) {
 				$data = $addressEntry['donation_data'] ?? $addressEntry['membership_data'];
+				if ( $data === null ) {
+					// Entries with no data are deleted from the AddressChange table and the foreign key reference is removed
+					$query .= $this->getAddressChangeDeleteQueries( (int) $addressEntry['id'] );
+					continue;
+				}
 				$type = $this->getAddressType( $data );
-				$query .= 'UPDATE address_change ( address_type ) VALUES ( "' . $type . '" );';
+				$query .= 'UPDATE address_change SET address_type = "' . $type . '" WHERE id = "' . $addressEntry['id'] . '";';
 			}
 			if ( $query !== '' ) {
 				$stmt = $this->connection->prepare( $query );
 				$stmt->execute();
 				$stmt->closeCursor();
 				$this->connection->commit();
+				$this->connection->beginTransaction();
 			}
 		}
 	}
 
 	private function getAddressType( string $data ): string {
-		$data = unserialize( base64_decode( $data ) );
-		if ( $data['adresstyp'] === 'person' ) {
-			return AddressChange::ADDRESS_TYPE_PERSON;
-		}
-		if ( $data['adresstyp'] === 'firma' ) {
+		if ( isset( $data['adresstyp'] ) && $data['adresstyp'] === 'firma'
+			|| ( isset( $data['firma'] ) && $data['firma'] !== '' ) ) {
 			return AddressChange::ADDRESS_TYPE_COMPANY;
 		}
+		return AddressChange::ADDRESS_TYPE_PERSON;
 	}
 
-	private function getCurrentPage(): Statement {
+	private function getAddressChangeDeleteQueries( int $id ): string {
+		$query = 'UPDATE ' . self::DB_TABLE_DONATIONS . ' SET address_change_id = NULL WHERE address_change_id = ' . $id . ';';
+		$query .= 'UPDATE ' . self::DB_TABLE_MEMBERSHIP_APPLICATIONS . ' SET address_change_id = NULL WHERE address_change_id = ' . $id . ';';
+		$query .= 'DELETE FROM ' . self::DB_TABLE_ADDRESS_CHANGE . ' WHERE id = ' . $id . ';';
+		return $query;
+	}
+
+	private function getCurrentPage(): PDOStatement {
 		$queryBuilder = $this->connection->createQueryBuilder();
 		$query = $queryBuilder->select( 'address_change.id, s.data as donation_data, r.data as membership_data' )
 			->from( 'address_change' )
@@ -71,7 +90,7 @@ final class Version20190109000000 extends AbstractMigration {
 				'r',
 				'r.address_change_id = address_change.id'
 			)->orderBy( 'address_change.id', 'ASC' )
-			->where( 'address_type is NULL' )
+			->where( 'address_type = ""' )
 			->setMaxResults( self::DB_QUERY_PAGE_SIZE );
 		return $query->execute();
 	}
@@ -80,7 +99,7 @@ final class Version20190109000000 extends AbstractMigration {
 		$queryBuilder = $this->connection->createQueryBuilder();
 		$queryBuilder->select( 'COUNT(id)' )
 			->from( self::DB_TABLE_ADDRESS_CHANGE, self::DB_TABLE_ADDRESS_CHANGE )
-			->where( 'address_type is NULL' );
+			->where( 'address_type = ""' );
 
 		return (int)$queryBuilder->execute()->fetchColumn( 0 );
 	}
