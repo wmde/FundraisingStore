@@ -64,6 +64,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.0.0 (2019-01-11)
+
+* Add `addressType` and `thirdPartyIdentifier` to `AddressChange`
+
 ### Version 9.0.0 (2018-08-16)
 
 * Remove `User`, `ActionLog`, `BackendBanner`, `BackendImpression` doctrine entity and move them to `fundraising-backend` repository
