@@ -36,9 +36,13 @@ final class Version20190109000000 extends AbstractMigration {
 	public function postUp( Schema $schema ) {
 		$entityCount = $this->getTotalUpdateRowCount();
 		$pageCount = (int)ceil( $entityCount / self::DB_QUERY_PAGE_SIZE );
-		echo $entityCount . ' entries to be updated.' . PHP_EOL;
+		$this->write( $entityCount . ' entries to be updated.' );
+		// As the migration progresses, this low-cardinality temporary index speeds up getCurrentPage query
+		$this->connection->exec( 'CREATE INDEX tmp_address_change ON address_change (address_type)' );
+		$this->connection->setAutoCommit( false );
+		$this->connection->connect(); // with autoCommit set to false, this implicitly begins a new Transaction. beginTransaction leads to wonky behavior
 		for ( $page = 0; $page < $pageCount; $page++ ) {
-			echo 'Page ' . ( $page + 1 ) . ' / ' . $pageCount . PHP_EOL;
+			$startTime = microtime( true );
 			$query = '';
 			foreach ( $this->getCurrentPage() as $addressEntry ) {
 				$data = $addressEntry['donation_data'] ?? $addressEntry['membership_data'];
@@ -51,13 +55,12 @@ final class Version20190109000000 extends AbstractMigration {
 				$query .= 'UPDATE address_change SET address_type = "' . $type . '" WHERE id = "' . $addressEntry['id'] . '";';
 			}
 			if ( $query !== '' ) {
-				$stmt = $this->connection->prepare( $query );
-				$stmt->execute();
-				$stmt->closeCursor();
+				$this->connection->exec( $query );
 				$this->connection->commit();
-				$this->connection->beginTransaction();
+				$this->write( sprintf( 'Updated page %d / %d - %.2f seconds', $page + 1, $pageCount, microtime( true ) - $startTime ) );
 			}
 		}
+		$this->connection->exec( 'DROP INDEX tmp_address_change ON address_change' );
 	}
 
 	private function getAddressType( string $data ): string {
@@ -89,7 +92,7 @@ final class Version20190109000000 extends AbstractMigration {
 				'request',
 				'r',
 				'r.address_change_id = address_change.id'
-			)->orderBy( 'address_change.id', 'ASC' )
+			)
 			->where( 'address_type = ""' )
 			->setMaxResults( self::DB_QUERY_PAGE_SIZE );
 		return $query->execute();
