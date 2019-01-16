@@ -9,8 +9,8 @@ use WMDE\Fundraising\Entities\AddressChange;
 
 /**
  * This class alters the AddressChange table
- * It adds the two columns third_party_identifier and address_type
- * Afterwards, the address_type column is filled with the appropriate value for each row
+ * It adds the address_type column so that AddressChange is directly storing the type of the address (person vs company)
+ * Afterwards, the column is filled with the appropriate value for each row
  *
  * This script should only be executed in maintenance mode, as the ALTER table queries may take a while to process
  *
@@ -28,9 +28,8 @@ final class Version20190109000000 extends AbstractMigration {
 			'Migration can only be executed safely on \'mysql\'.'
 		);
 		$this->addSql(
-			'ALTER TABLE address_change ADD third_party_identifier INT DEFAULT NULL, ADD address_type VARCHAR(10) NOT NULL'
+			'ALTER TABLE address_change ADD address_type VARCHAR(10) NOT NULL'
 		);
-		$this->addSql( 'CREATE UNIQUE INDEX UNIQ_7B0E7B9F71AFE7AD ON address_change (third_party_identifier)' );
 	}
 
 	public function postUp( Schema $schema ) {
@@ -112,7 +111,6 @@ final class Version20190109000000 extends AbstractMigration {
 			$this->connection->getDatabasePlatform()->getName() !== 'mysql',
 			'Migration can only be executed safely on \'mysql\'.'
 		);
-		$this->addSql( 'DROP INDEX UNIQ_7B0E7B9F71AFE7AD ON address_change' );
-		$this->addSql( 'ALTER TABLE address_change DROP third_party_identifier, DROP address_type' );
+		$this->addSql( 'ALTER TABLE address_change DROP address_type' );
 	}
 }
