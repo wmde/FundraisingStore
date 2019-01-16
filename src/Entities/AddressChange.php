@@ -49,13 +49,6 @@ class AddressChange {
 	private $previousIdentifier;
 
 	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="third_party_identifier", type="integer", nullable=true, unique=true)
-	 */
-	private $thirdPartyIdentifier;
-
-	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="address_type", type="string", length = 10)
@@ -95,14 +88,6 @@ class AddressChange {
 
 	public function setAddress( Address $address ) {
 		$this->address = $address;
-	}
-
-	public function getThirdPartyIdentifier(): int {
-		return $this->thirdPartyIdentifier;
-	}
-
-	public function setThirdPartyIdentifier( int $thirdPartyIdentifier ): void {
-		$this->thirdPartyIdentifier = $thirdPartyIdentifier;
 	}
 
 	public function getAddressType(): string {
