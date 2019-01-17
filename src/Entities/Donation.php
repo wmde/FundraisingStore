@@ -778,7 +778,7 @@ class Donation {
 	 *
 	 * @return AddressChange
 	 */
-	public function getAddressChange(): AddressChange {
+	public function getAddressChange(): ?AddressChange {
 		return $this->addressChange;
 	}
 
