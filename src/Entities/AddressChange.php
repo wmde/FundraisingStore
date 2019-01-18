@@ -10,7 +10,12 @@ use Ramsey\Uuid\Uuid;
 /**
  * @since 8.0
  *
- * @ORM\Table( name="address_change" )
+ * @ORM\Table(
+ *     name="address_change",
+ *     indexes={
+ *     	@ORM\Index(name="ac_export_date", columns={"export_date"})
+ *     }
+ * )
  * @ORM\Entity
  */
 class AddressChange {
@@ -54,6 +59,17 @@ class AddressChange {
 	 * @ORM\Column(name="address_type", type="string", length = 10)
 	 */
 	private $addressType;
+
+	/**
+	 * Date of last export
+	 *
+	 * No getter / setter needed -> read access is in AddressChange repo and update in exporter code
+	 *
+	 * @var \DateTime
+	 *
+	 * @ORM\Column(name="export_date", type="datetime", nullable=true)
+	 */
+	private $exportDate;
 
 	public function __construct( string $addressType ) {
 		$this->addressType = $addressType;

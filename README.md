@@ -64,6 +64,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.2.0 (2019-01-18)
+
+* Add `exportDate` to `AddressChange`
+
 ### Version 10.1.0 (2019-01-16)
 
 * Remove `thirdPartyIdentifier` from `AddressChange`
