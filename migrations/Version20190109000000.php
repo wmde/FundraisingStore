@@ -28,8 +28,9 @@ final class Version20190109000000 extends AbstractMigration {
 			'Migration can only be executed safely on \'mysql\'.'
 		);
 		$this->addSql(
-			'ALTER TABLE address_change ADD address_type VARCHAR(10) NOT NULL'
+			'ALTER TABLE address_change ADD address_type VARCHAR(10) NOT NULL, ADD export_date DATETIME'
 		);
+		$this->addSql( 'CREATE INDEX ac_export_date ON address_change (export_date)' );
 	}
 
 	public function postUp( Schema $schema ) {
@@ -111,6 +112,7 @@ final class Version20190109000000 extends AbstractMigration {
 			$this->connection->getDatabasePlatform()->getName() !== 'mysql',
 			'Migration can only be executed safely on \'mysql\'.'
 		);
-		$this->addSql( 'ALTER TABLE address_change DROP address_type' );
+		$this->addSql( 'DROP INDEX ac_export_date ON address_change' );
+		$this->addSql( 'ALTER TABLE address_change DROP address_type, DROP export_date' );
 	}
 }
