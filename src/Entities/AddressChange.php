@@ -71,7 +71,29 @@ class AddressChange {
 	 */
 	private $exportDate;
 
+	/**
+	 * When this was created
+	 *
+	 * No getter / setter needed, modification is in AddressChange repo
+	 *
+	 * @var \DateTime
+	 * @ORM\Column(type="datetime")
+	 */
+	private $createdAt;
+
+	/**
+	 * When this was last modified
+	 *
+	 * No getter / setter needed, modification is in AddressChange repo
+	 *
+	 * @var \DateTime
+	 * @ORM\Column(type="datetime")
+	 */
+	private $modifiedAt;
+
 	public function __construct( string $addressType ) {
+		$this->createdAt = new \DateTime();
+		$this->modifiedAt = new \DateTime();
 		$this->addressType = $addressType;
 		if ($this->identifier === null) {
 			$this->generateUuid();
