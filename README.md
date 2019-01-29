@@ -64,6 +64,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.3.0 (2019-01-29)
+
+* Add `createdAt` and `modifiedAt` to `AddressChange`
+
 ### Version 10.2.0 (2019-01-18)
 
 * Add `exportDate` to `AddressChange`
