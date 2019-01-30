@@ -64,6 +64,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.3.1 (2019-01-30)
+
+* Fix column names in database for `createdAt` and `modifiedAt` to `AddressChange`
+
 ### Version 10.3.0 (2019-01-29)
 
 * Add `createdAt` and `modifiedAt` to `AddressChange`
