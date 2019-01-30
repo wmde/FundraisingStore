@@ -77,7 +77,7 @@ class AddressChange {
 	 * No getter / setter needed, modification is in AddressChange repo
 	 *
 	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
+	 * @ORM\Column(name="created_at", type="datetime")
 	 */
 	private $createdAt;
 
@@ -87,7 +87,7 @@ class AddressChange {
 	 * No getter / setter needed, modification is in AddressChange repo
 	 *
 	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
+	 * @ORM\Column(name="modified_at", type="datetime")
 	 */
 	private $modifiedAt;
 
