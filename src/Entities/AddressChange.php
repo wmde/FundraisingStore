@@ -120,7 +120,7 @@ class AddressChange {
 		return $this->previousIdentifier;
 	}
 
-	public function getAddress(): Address {
+	public function getAddress(): ?Address {
 		return $this->address;
 	}
 
