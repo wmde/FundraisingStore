@@ -28,7 +28,10 @@ final class Version20190109000000 extends AbstractMigration {
 			'Migration can only be executed safely on \'mysql\'.'
 		);
 		$this->addSql(
-			'ALTER TABLE address_change ADD address_type VARCHAR(10) NOT NULL, ADD export_date DATETIME, ADD created_at DATETIME, ADD modified_at DATETIME'
+			'ALTER TABLE address_change ADD address_type VARCHAR(10) NOT NULL, ' .
+			'ADD export_date DATETIME, ' .
+			'ADD created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, ' .
+			'ADD modified_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP'
 		);
 		$this->addSql( 'CREATE INDEX ac_export_date ON address_change (export_date)' );
 	}
