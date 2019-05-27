@@ -15,13 +15,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Address {
 
 	/**
-	 * @var boolean
-	 *
-	 * @ORM\Column(name="donation_receipt", type="boolean", nullable=false)
-	 */
-	private $donationReceipt = false;
-
-	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="salutation", type="string", length=16, nullable=true)
@@ -92,20 +85,6 @@ class Address {
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	private $id;
-
-	/**
-	 * @return bool
-	 */
-	public function isOptedIntoDonationReceipt() {
-		return $this->donationReceipt;
-	}
-
-	/**
-	 * @param bool $donationReceipt
-	 */
-	public function setDonationReceipt( $donationReceipt ) {
-		$this->donationReceipt = $donationReceipt;
-	}
 
 	/**
 	 * Set salutation
