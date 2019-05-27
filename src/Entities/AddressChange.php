@@ -25,6 +25,13 @@ class AddressChange {
 	public const ADDRESS_TYPE_COMPANY = 'company';
 
 	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="donation_receipt", type="boolean", nullable=false)
+	 */
+	private $donationReceipt = false;
+
+	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -118,6 +125,14 @@ class AddressChange {
 
 	public function getPreviousIdentifier(): ?string {
 		return $this->previousIdentifier;
+	}
+
+	public function isOptedIntoDonationReceipt() {
+		return $this->donationReceipt;
+	}
+
+	public function setDonationReceipt( $donationReceipt ) {
+		$this->donationReceipt = $donationReceipt;
 	}
 
 	public function getAddress(): ?Address {
