@@ -26,6 +26,6 @@ final class Version20190524000000 extends AbstractMigration
 	{
 		$this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-		$this->addSql('ALTER TABLE address DROP donation_receipt');
+		$this->addSql('ALTER TABLE address_change DROP donation_receipt');
 	}
 }
