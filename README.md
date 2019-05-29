@@ -64,9 +64,17 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
-### Version 10.3.2 (2019-05-29)
+### Version 10.4.0 (2019-05-29)
 
 * Add `donationReceipt` to `AddressChange`
+
+### Version 10.3.3 (2019-02-04)
+
+* Fix address change migration
+
+### Version 10.3.2 (2019-01-31)
+
+* Allow `getAddress` to return null in `AddressChange`
 
 ### Version 10.3.1 (2019-01-30)
 
