@@ -64,6 +64,10 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.4.1 (2020-01-30)
+
+* Change `donationReceipt` default to `true`
+
 ### Version 10.4.0 (2019-05-29)
 
 * Add `donationReceipt` to `AddressChange`
