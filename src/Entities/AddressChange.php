@@ -25,13 +25,6 @@ class AddressChange {
 	public const ADDRESS_TYPE_COMPANY = 'company';
 
 	/**
-	 * @var boolean
-	 *
-	 * @ORM\Column(name="donation_receipt", type="boolean", nullable=false)
-	 */
-	private $donationReceipt = false;
-
-	/**
 	 * @var integer
 	 *
 	 * @ORM\Column(name="id", type="integer")
@@ -97,6 +90,14 @@ class AddressChange {
 	 * @ORM\Column(name="modified_at", type="datetime")
 	 */
 	private $modifiedAt;
+
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="donation_receipt", type="boolean", nullable=false)
+	 */
+	private $donationReceipt = true;
+
 
 	public function __construct( string $addressType ) {
 		$this->createdAt = new \DateTime();
