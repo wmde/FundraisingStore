@@ -6,6 +6,8 @@ namespace WMDE\Fundraising\Store;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Persistence\Mapping\Driver\MappingDriver;
+use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -22,13 +24,23 @@ class Factory {
 	private $entityManager;
 	private $proxyDir;
 	private $doctrineEntityPaths;
+	private $additionalMetadataDrivers;
 
 	private const DEFAULT_DOCTRINE_ENTITY_PATHS = [__DIR__ . '/../Entities/'];
 
-	public function __construct( Connection $connection, $proxyDir = '/tmp', array $doctrineEntityPaths = [] ) {
+	/**
+	 * Factory constructor.
+	 * @param Connection $connection
+	 * @param string $proxyDir
+	 * @param string[] $doctrineEntityPaths Paths to additional annotated entities that are not part of the store
+	 * @param MappingDriver[] $additionalMetadataDrivers namespace => driver
+	 */
+	public function __construct( Connection $connection, $proxyDir = '/tmp', array $doctrineEntityPaths = [],
+			$additionalMetadataDrivers = [] ) {
 		$this->connection = $connection;
 		$this->proxyDir = $proxyDir;
 		$this->doctrineEntityPaths = $doctrineEntityPaths;
+		$this->additionalMetadataDrivers = $additionalMetadataDrivers;
 	}
 
 	/**
@@ -58,8 +70,13 @@ class Factory {
 		$paths = array_merge( self::DEFAULT_DOCTRINE_ENTITY_PATHS, $this->doctrineEntityPaths );
 
 		$annotationReader = new AnnotationReader();
-		$driver = new AnnotationDriver( $annotationReader, $paths );
+		$annotationDriver = new AnnotationDriver( $annotationReader, $paths );
 		AnnotationRegistry::registerLoader( 'class_exists' );
+		$driver = new MappingDriverChain();
+		$driver->addDriver( $annotationDriver, 'WMDE\Fundraising\Entities' );
+		foreach ( $this->additionalMetadataDrivers as $namespace => $additionalMetadataDriver ) {
+			$driver->addDriver( $additionalMetadataDriver, $namespace );
+		}
 		$config->setMetadataDriverImpl( $driver );
 		$config->setProxyDir( $this->proxyDir );
 
