@@ -64,6 +64,11 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Version 10.5.0 (2020-01-31)
+
+* Add `$additionalMetadataDrivers` parameter to `Factory` to support XML-mapped entities (e.g. in the AddressChange 
+  bounded context).    
+
 ### Version 10.4.1 (2020-01-30)
 
 * Change `donationReceipt` default to `true`
