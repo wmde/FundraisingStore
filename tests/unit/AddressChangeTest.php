@@ -23,7 +23,7 @@ class AddressChangeTest extends TestCase {
 	}
 
 	public function testWhenNewAddressChangeIsPersisted_uuidIsGeneratedAndStored() {
-		$addressChange = new AddressChange( AddressChange::ADDRESS_TYPE_PERSON );
+		$addressChange = AddressChange::newDonationAddressChange( AddressChange::ADDRESS_TYPE_PERSON, 1 );
 		$this->entityManager->persist( $addressChange );
 		$this->entityManager->flush();
 
@@ -34,7 +34,7 @@ class AddressChangeTest extends TestCase {
 	}
 
 	public function testWhenAddressIdentifierIsUpdated_dataIsProperlyAssigned() {
-		$addressChange = new AddressChange( AddressChange::ADDRESS_TYPE_PERSON  );
+		$addressChange = AddressChange::newMembershipAddressChange( AddressChange::ADDRESS_TYPE_PERSON, 2 );
 		$initialIdentifier = $addressChange->getCurrentIdentifier();
 		$addressChange->updateAddressIdentifier();
 

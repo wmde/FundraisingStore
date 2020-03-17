@@ -64,6 +64,12 @@ Be aware that the concepts of composer as a script runner and containerization m
 
 ## Release notes
 
+### Scheduled for next release (11.x)
+* Invert relationship of Donation and Membership to AddressChange. 
+  WARNING: This gets rid of the "cascade" feature (automatic creation of AddressChange records
+  when creating Donations/memberships). The FundraisingFrontend would have to implement an event 
+  handler that does the creation.
+
 ### Version 10.5.0 (2020-01-31)
 
 * Add `$additionalMetadataDrivers` parameter to `Factory` to support XML-mapped entities (e.g. in the AddressChange 

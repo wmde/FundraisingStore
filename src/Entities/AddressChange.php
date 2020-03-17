@@ -13,7 +13,8 @@ use Ramsey\Uuid\Uuid;
  * @ORM\Table(
  *     name="address_change",
  *     indexes={
- *     	@ORM\Index(name="ac_export_date", columns={"export_date"})
+ *     	@ORM\Index(name="ac_export_date", columns={"export_date"}),
+ *      @ORM\Index(name="ac_ext_id", columns={"external_id_type", "external_id"})
  *     }
  * )
  * @ORM\Entity
@@ -23,6 +24,10 @@ class AddressChange {
 	public const ADDRESS_TYPE_PERSON = 'person';
 
 	public const ADDRESS_TYPE_COMPANY = 'company';
+
+	public const EXTERNAL_ID_TYPE_DONATION = 'donation';
+
+	public const EXTERNAL_ID_TYPE_MEMBERSHIP = 'membership';
 
 	/**
 	 * @var integer
@@ -59,6 +64,20 @@ class AddressChange {
 	 * @ORM\Column(name="address_type", type="string", length = 10)
 	 */
 	private $addressType;
+
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="external_id", type="integer")
+	 */
+	private $externalId;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="external_id_type", type="string", length=10 )
+	 */
+	private $externalIdType;
 
 	/**
 	 * Date of last export
@@ -99,13 +118,23 @@ class AddressChange {
 	private $donationReceipt = true;
 
 
-	public function __construct( string $addressType ) {
+	private function __construct( string $addressType, string $externalIdType, int $externalId ) {
 		$this->createdAt = new \DateTime();
 		$this->modifiedAt = new \DateTime();
 		$this->addressType = $addressType;
+		$this->externalIdType = $externalIdType;
+		$this->externalId = $externalId;
 		if ($this->identifier === null) {
 			$this->generateUuid();
 		}
+	}
+
+	public static function newDonationAddressChange( string $addressType, int $donationId ): self {
+		return new self( $addressType, self::EXTERNAL_ID_TYPE_DONATION, $donationId );
+	}
+
+	public static function newMembershipAddressChange( string $addressType, int $membershipId ): self {
+		return new self( $addressType, self::EXTERNAL_ID_TYPE_MEMBERSHIP, $membershipId );
 	}
 
 	private function generateUuid(): void {

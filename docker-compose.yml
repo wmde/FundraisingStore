@@ -15,3 +15,5 @@ database:
     - MYSQL_DATABASE=fundraising
   expose:
     - "3306"
+  ports:
+    - "3309:3306"
