@@ -54,7 +54,7 @@ class MembershipApplicationData {
 
 	/**
 	 * @since 2.1
-	 * @param string|null $status
+	 * @param int|null $status
 	 */
 	public function setPreservedStatus( $status ) {
 		$this->preservedStatus = $status;
